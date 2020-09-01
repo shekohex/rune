@@ -178,16 +178,19 @@ fn main() {
     assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
 }
 </code></pre>
-<p>Conversely, the type check would fail if it's not valid:</p>
-<pre><code class="language-text">error: virtual machine error
-  ┌─ .\scripts\book\4_bad_type_check.rn:4:5
+<p>Conversely, the type check would fail if it's not valid.</p>
+<pre><code class="language-rust noplaypen">use std::test::assert;
+
+fn main() {
+    assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/bad_type_check.rn
+error: virtual machine error
+  ┌─ scripts/book/4/bad_type_check.rn:4:5
   │
 4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
-  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  │     │
-  │     virtual machine error
-  │     assertion failed: vectors should be strings
-  │     error in user-defined function
+  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ panicked `assertion failed `vectors should be strings``
 </code></pre>
 <p>So this allows us to determine which type is which and act accordingly:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
@@ -210,7 +213,7 @@ fn main() {
 n is a String
 n is a vector
 n is unknown
-== Unit (1.0544ms)
+== () (1.0544ms)
 </code></pre>
 <p>A tighter way to accomplish this could be by using pattern matching:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
@@ -233,7 +236,7 @@ fn main() {
 n is a String
 n is a vector
 n is unknown
-== Unit (1.0544ms)
+== () (1.0544ms)
 </code></pre>
 
                     </main>

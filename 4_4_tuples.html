@@ -174,9 +174,9 @@ needed.</p>
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_masquerade.rn
-0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;See&quot;), StaticString(&quot;Me&quot;)] })
-0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;Don\'t&quot;), StaticString(&quot;!&quot;)] })
-== Unit (485.6µs)
+(&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;)
+(&quot;Now&quot;, &quot;You&quot;, &quot;Don\'t&quot;, &quot;!&quot;)
+== () (38.3136ms)
 </code></pre>
 <p>The following is a simple example of a function returning a tuple:</p>
 <pre><code class="language-rust noplaypen">fn foo() {
@@ -188,8 +188,8 @@ fn main() {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/basic_tuples.rn
-0 = Tuple(Shared { access: fully accessible, count: 1, data: [Integer(1), StaticString(&quot;test&quot;)] })
-== Unit (387.6µs)
+(1, &quot;test&quot;)
+== () (387.6µs)
 </code></pre>
 <p>Tuples can also be pattern matched:</p>
 <pre><code class="language-rust noplaypen">fn main() {
@@ -204,9 +204,9 @@ fn main() {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_patterns.rn
-0 = StaticString(&quot;the first part was a number:&quot;)
-1 = Integer(1)
-== Unit (6.7067ms)
+&quot;the first part was a number:&quot;
+1
+== () (7.7892ms)
 </code></pre>
 
                     </main>

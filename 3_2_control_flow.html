@@ -182,7 +182,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/numbers_game.rn
 less than one
 something else
-== Unit (3.8608ms)
+== () (3.8608ms)
 </code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> Expressions</a></h2>
 <p>If expressions allow you to provide a condition with one or more code branches.
@@ -197,7 +197,7 @@ If the condition is <code>true</code>, the provided block of code will run.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional.rn
 The number *is* smaller than 5
-== Unit (5.108ms)
+== () (5.108ms)
 </code></pre>
 <p>Optionally, we can add another branch under <code>else</code>, which will execute in case
 the condition is false.</p>
@@ -213,7 +213,7 @@ the condition is false.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else.rn
 the number is smaller than 5
-== Unit (196.1µs)
+== () (196.1µs)
 </code></pre>
 <p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
 specify many different conditions.</p>
@@ -231,7 +231,7 @@ specify many different conditions.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else_ifs.rn
 the number is smaller than 5
-== Unit (227.9µs)
+== () (227.9µs)
 </code></pre>
 <p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
 a <code>match</code>.</p>
@@ -254,7 +254,7 @@ a <code>match</code>.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/first_match.rn
 the number is smaller than 5
-== Unit (124.2µs)
+== () (124.2µs)
 </code></pre>
 
                     </main>

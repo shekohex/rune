@@ -192,10 +192,10 @@ its output.
 Like this:</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
 Hello World
-== Unit (412.2µs)
+== () (412.2µs)
 </code></pre>
 <p>At the end of the script you see this rather odd looking line:</p>
-<pre><code class="language-text">== Unit (412.2µs)
+<pre><code class="language-text">== () (412.2µs)
 </code></pre>
 <p>This simply means that the script evaluated to a unit, or a <code>()</code>.
 And that the execution took <code>412</code> microseconds.</p>
@@ -242,7 +242,7 @@ This means that every variable that points to an object on the stack, points to
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/shared_ownership.rn
 1
 2
-== Unit (913.4µs)
+== () (913.4µs)
 </code></pre>
 <p>This can potentially cause issues if we call an external function that expects
 to take ownership of its arguments.</p>
@@ -311,7 +311,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/numbers_game.rn
 less than one
 something else
-== Unit (3.8608ms)
+== () (3.8608ms)
 </code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> Expressions</a></h2>
 <p>If expressions allow you to provide a condition with one or more code branches.
@@ -326,7 +326,7 @@ If the condition is <code>true</code>, the provided block of code will run.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional.rn
 The number *is* smaller than 5
-== Unit (5.108ms)
+== () (5.108ms)
 </code></pre>
 <p>Optionally, we can add another branch under <code>else</code>, which will execute in case
 the condition is false.</p>
@@ -342,7 +342,7 @@ the condition is false.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else.rn
 the number is smaller than 5
-== Unit (196.1µs)
+== () (196.1µs)
 </code></pre>
 <p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
 specify many different conditions.</p>
@@ -360,7 +360,7 @@ specify many different conditions.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else_ifs.rn
 the number is smaller than 5
-== Unit (227.9µs)
+== () (227.9µs)
 </code></pre>
 <p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
 a <code>match</code>.</p>
@@ -383,7 +383,7 @@ a <code>match</code>.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/first_match.rn
 the number is smaller than 5
-== Unit (124.2µs)
+== () (124.2µs)
 </code></pre>
 <h1><a class="header" href="#loops" id="loops">Loops</a></h1>
 <p>Loops are a fundamental building block common to many programming languages.
@@ -411,7 +411,7 @@ currently in and continue running right after it.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/while_loop.rn
 The value is 50
-== Unit (501.1µs)
+== () (501.1µs)
 </code></pre>
 <h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
 <p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
@@ -457,7 +457,7 @@ By default, this is simply a unit <code>()</code>.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_break.rn
 The final count is: 11
-== Unit (281.5µs)
+== () (281.5µs)
 </code></pre>
 <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
 <p>In this section we will be discussing <em>Pattern Matching</em>.</p>
@@ -489,7 +489,7 @@ Another number: 2.
 A vector starting with one and two, followed by 42.
 One, but this time as a string.
 Something else. Can I go eat now?
-== Unit (5.691ms)
+== () (5.691ms)
 </code></pre>
 <p>We will be covering each of these variants in detail in the coming sections.</p>
 <h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
@@ -525,7 +525,7 @@ fn main() {
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/ignore.rn
 Second item in vector is 2.
-== Unit (281.3µs)
+== () (281.3µs)
 </code></pre>
 <p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
 in scope of the match arm.</p>
@@ -541,7 +541,7 @@ fn main() {
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/bind.rn
 Second item in vector is 2.
-== Unit (6.25ms)
+== () (6.25ms)
 </code></pre>
 <p>Here are some more examples:</p>
 <ul>
@@ -570,7 +570,7 @@ fn main() {
 Pretty fast!
 Can't tell 😞
 What, where did you get that?
-== Unit (5.3533ms)
+== () (5.3533ms)
 </code></pre>
 <h1><a class="header" href="#types" id="types">Types</a></h1>
 <p>Types in Rune are identified uniquely by their <em>path</em>.
@@ -591,16 +591,19 @@ fn main() {
     assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
 }
 </code></pre>
-<p>Conversely, the type check would fail if it's not valid:</p>
-<pre><code class="language-text">error: virtual machine error
-  ┌─ .\scripts\book\4_bad_type_check.rn:4:5
+<p>Conversely, the type check would fail if it's not valid.</p>
+<pre><code class="language-rust noplaypen">use std::test::assert;
+
+fn main() {
+    assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/bad_type_check.rn
+error: virtual machine error
+  ┌─ scripts/book/4/bad_type_check.rn:4:5
   │
 4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
-  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  │     │
-  │     virtual machine error
-  │     assertion failed: vectors should be strings
-  │     error in user-defined function
+  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ panicked `assertion failed `vectors should be strings``
 </code></pre>
 <p>So this allows us to determine which type is which and act accordingly:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
@@ -623,7 +626,7 @@ fn main() {
 n is a String
 n is a vector
 n is unknown
-== Unit (1.0544ms)
+== () (1.0544ms)
 </code></pre>
 <p>A tighter way to accomplish this could be by using pattern matching:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
@@ -646,7 +649,7 @@ fn main() {
 n is a String
 n is a vector
 n is unknown
-== Unit (1.0544ms)
+== () (1.0544ms)
 </code></pre>
 <h1><a class="header" href="#primitives-and-references" id="primitives-and-references">Primitives and References</a></h1>
 <p>Primitives are values stored immediately on the stack.
@@ -674,7 +677,7 @@ variable will cause a separate copy of the variable to be used.</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/copy.rn
 2
 1
-== Unit (691.3µs)
+== () (691.3µs)
 </code></pre>
 <p>In contrast, other types like <em>strings</em> are stored by reference on the stack.</p>
 <p>Assigning them to a different variable will only copy the reference and increase
@@ -691,7 +694,7 @@ As shown here:</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/primitives.rn
 Hello World
 Hello World
-== Unit (9.7406ms)
+== () (9.7406ms)
 </code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>A vector is a native data structure of Rune which is a dynamic list of values.
@@ -707,9 +710,9 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/vectors.rn
-0 = Integer(42)
-0 = StaticString(&quot;Hello&quot;)
-== Unit (7.5299ms)
+42
+&quot;Hello&quot;
+== () (7.2266ms)
 </code></pre>
 <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
 <p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
@@ -723,9 +726,9 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_3/objects.rn
-0 = StaticString(&quot;bar&quot;)
-0 = Integer(42)
-== Unit (6.1466ms)
+&quot;bar&quot;
+42
+== () (7.9265ms)
 </code></pre>
 <p>These are useful because they allow their data to be specified dynamically,
 which is exactly the same use case as storing unknown JSON.</p>
@@ -769,7 +772,7 @@ cba225dad143779a0a9543cfb05cde9710083af5
 15133745237c014ff8bae53d8ff8f3c137c732c7
 39ac97ab4ebe26118e807eb91c7656ab95b1fcac
 3f6310eeeaca22d0373cc11d8b34d346bd12a364
-== Unit (331.3324ms)
+== () (331.3324ms)
 </code></pre>
 <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
 <p>Tuples in Rune are a fixed-size sequences of values.
@@ -786,9 +789,9 @@ needed.</p>
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_masquerade.rn
-0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;See&quot;), StaticString(&quot;Me&quot;)] })
-0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;Don\'t&quot;), StaticString(&quot;!&quot;)] })
-== Unit (485.6µs)
+(&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;)
+(&quot;Now&quot;, &quot;You&quot;, &quot;Don\'t&quot;, &quot;!&quot;)
+== () (38.3136ms)
 </code></pre>
 <p>The following is a simple example of a function returning a tuple:</p>
 <pre><code class="language-rust noplaypen">fn foo() {
@@ -800,8 +803,8 @@ fn main() {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/basic_tuples.rn
-0 = Tuple(Shared { access: fully accessible, count: 1, data: [Integer(1), StaticString(&quot;test&quot;)] })
-== Unit (387.6µs)
+(1, &quot;test&quot;)
+== () (387.6µs)
 </code></pre>
 <p>Tuples can also be pattern matched:</p>
 <pre><code class="language-rust noplaypen">fn main() {
@@ -816,9 +819,9 @@ fn main() {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_patterns.rn
-0 = StaticString(&quot;the first part was a number:&quot;)
-1 = Integer(1)
-== Unit (6.7067ms)
+&quot;the first part was a number:&quot;
+1
+== () (7.7892ms)
 </code></pre>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>Functions are truly pervasive when it comes to programming.
@@ -834,7 +837,7 @@ deciding what to execute.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/main_function.rn
 Hello World
-== Unit (277.8µs)
+== () (277.8µs)
 </code></pre>
 <p>In Rune, you don't have to specify the return type of a function.
 Given that Rune is a dynamic programming language, this allows a function to
@@ -856,7 +859,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/return_value.rn
 Hello
 1
-== Unit (8.437ms)
+== () (8.437ms)
 </code></pre>
 <p>Depending on who you talk to, this is either the best things since sliced bread
 or quite scary.
@@ -874,7 +877,7 @@ build strings using variables from the environment.</p>
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_6/basic_template.rn
 I am 30 years old!
-== Unit (4.5678ms)
+== () (4.5678ms)
 </code></pre>
 <p>Template strings are accelerated by the Vm, each argument uses a <em>display
 protocol</em> and it can be a very efficient to build complex strings out of it.</p>
@@ -958,7 +961,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/5/user_database.rn
 setbac is inactive
 setbac is active
-== Unit (6.2095ms)
+== () (6.2095ms)
 </code></pre>
 <p>Structs can also be pattern matched, like most types.</p>
 <p>But since the fields of a struct are known at compile time, the compiler can
@@ -995,7 +998,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/5/struct_matching.rn
 Yep, it's setbac.
 Other user: newt.
-== Unit (1.0652ms)
+== () (1.0652ms)
 </code></pre>
 <h1><a class="header" href="#enums" id="enums">Enums</a></h1>
 <p>Rune has support for <em>enumerations</em>.
@@ -1041,7 +1044,7 @@ Count: 9
 Second count!
 Count: 0
 Count: 1
-== Unit (9.0745ms)
+== () (9.0745ms)
 </code></pre>
 <p>Using an <code>Option</code> allows us to easily model the scenario where we have an
 optional function parameter, with a default fallback value.</p>
@@ -1070,7 +1073,7 @@ fn main() {
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/6_1/basic_try.rn
 Result: 2, 1
-== Unit (7.4912ms)
+== () (7.4912ms)
 </code></pre>
 <h1><a class="header" href="#asynchronous-programming" id="asynchronous-programming">Asynchronous programming</a></h1>
 <p>Rune has first class support for Rust-like asynchronous programming.
@@ -1102,7 +1105,7 @@ the result of those tasks.</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http.rn
 200 OK
 200 OK
-== Unit (591.0319ms)
+== () (591.0319ms)
 </code></pre>
 <p>In the above code we send two requests <em>concurrently</em>. They are both processed
 at the same time and we collect the result.</p>
@@ -1139,7 +1142,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_timeout.rn
 200 OK
 Request timed out!
-== Unit (3.2231404s)
+== () (3.2231404s)
 </code></pre>
 <p>But wait, this is taking three seconds. We're not running the requests
 concurrently any longer!</p>
@@ -1178,7 +1181,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_concurrent.rn
 Result: 200 OK
 Request timed out!
-== Unit (2.0028603s)
+== () (2.0028603s)
 </code></pre>
 <p>If you've been using future in Rust, one thing immediately pops out to you.</p>
 <p>We're using <code>.await</code> in a non-<code>async</code> function!</p>
@@ -1218,7 +1221,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/8/function_pointers.rn
 Result: 3
 Result: -1
-== Unit (5.4354ms)
+== () (5.4354ms)
 </code></pre>
 <h2><a class="header" href="#closures" id="closures">Closures</a></h2>
 <p>Closures are anonymous functions which closes over their environment.
@@ -1229,7 +1232,7 @@ them to be used when the function is being called.</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/8/basic_closure.rn
 Result: 4
 Result: 3
-== Unit (5.4354ms)
+== () (5.4354ms)
 </code></pre>
 <blockquote>
 <p>Hint: Closures which do not capture their environment are <em>identical</em> in

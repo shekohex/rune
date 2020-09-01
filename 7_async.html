@@ -189,7 +189,7 @@ the result of those tasks.</p>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http.rn
 200 OK
 200 OK
-== Unit (591.0319ms)
+== () (591.0319ms)
 </code></pre>
 <p>In the above code we send two requests <em>concurrently</em>. They are both processed
 at the same time and we collect the result.</p>
@@ -226,7 +226,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_timeout.rn
 200 OK
 Request timed out!
-== Unit (3.2231404s)
+== () (3.2231404s)
 </code></pre>
 <p>But wait, this is taking three seconds. We're not running the requests
 concurrently any longer!</p>
@@ -265,7 +265,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_concurrent.rn
 Result: 200 OK
 Request timed out!
-== Unit (2.0028603s)
+== () (2.0028603s)
 </code></pre>
 <p>If you've been using future in Rust, one thing immediately pops out to you.</p>
 <p>We're using <code>.await</code> in a non-<code>async</code> function!</p>
