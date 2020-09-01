@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html" class="active"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html" class="active"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -175,9 +175,14 @@ what the function returns by default unless a <code>return</code> is specified.<
 }
 
 fn main() {
-    dbg(foo(0)); // =&gt; outputs: &quot;less than one&quot;
-    dbg(foo(10)); // =&gt; outputs: &quot;something else&quot;
+    println(foo(0)) // =&gt; outputs: &quot;less than one&quot;
+    println(foo(10)); // =&gt; outputs: &quot;something else&quot;
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/numbers_game.rn
+less than one
+something else
+== Unit (3.8608ms)
 </code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> Expressions</a></h2>
 <p>If expressions allow you to provide a condition with one or more code branches.
@@ -186,9 +191,13 @@ If the condition is <code>true</code>, the provided block of code will run.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;The number *is* smaller than 5&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional.rn
+The number *is* smaller than 5
+== Unit (5.108ms)
 </code></pre>
 <p>Optionally, we can add another branch under <code>else</code>, which will execute in case
 the condition is false.</p>
@@ -196,11 +205,15 @@ the condition is false.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;the number is smaller than 5&quot;);
     } else {
-        dbg(&quot;the number is 5 or bigger&quot;);
+        println(&quot;the number is 5 or bigger&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else.rn
+the number is smaller than 5
+== Unit (196.1µs)
 </code></pre>
 <p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
 specify many different conditions.</p>
@@ -208,13 +221,17 @@ specify many different conditions.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;the number is smaller than 5&quot;);
     } else if number == 5 {
-        dbg(&quot;the number is exactly 5&quot;);
+        println(&quot;the number is exactly 5&quot;);
     } else {
-        dbg(&quot;the number is bigger than 5&quot;);
+        println(&quot;the number is bigger than 5&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else_ifs.rn
+the number is smaller than 5
+== Unit (227.9µs)
 </code></pre>
 <p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
 a <code>match</code>.</p>
@@ -224,16 +241,20 @@ a <code>match</code>.</p>
 
     match number {
         n if n &lt; 5 =&gt; {
-            dbg(&quot;the number is smaller than 5&quot;);
+            println(&quot;the number is smaller than 5&quot;);
         }
         5 =&gt; {
-            dbg(&quot;the number is exactly 5&quot;);
+            println(&quot;the number is exactly 5&quot;);
         }
         n =&gt; {
-            dbg(&quot;the number is bigger than 5&quot;);
+            println(&quot;the number is bigger than 5&quot;);
         }
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/first_match.rn
+the number is smaller than 5
+== Unit (124.2µs)
 </code></pre>
 
                     </main>

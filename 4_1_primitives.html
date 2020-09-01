@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Primitives - The Rune Programming Language</title>
+        <title>Primitives and References - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html" class="active"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html" class="active"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,7 +159,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#primitives" id="primitives">Primitives</a></h1>
+                        <h1><a class="header" href="#primitives-and-references" id="primitives-and-references">Primitives and References</a></h1>
 <p>Primitives are values stored immediately on the stack.
 In Rust terminology, these types are <code>Copy</code>, so reassigning them to different
 values will create distinct copies of the underlying value.</p>
@@ -172,21 +172,38 @@ values will create distinct copies of the underlying value.</p>
 <li>integers, like <code>42</code>.</li>
 <li>floats, like <code>3.1418</code>.</li>
 </ul>
-<p>Any other types are stored by reference on the stack.
-Assigning them to a different variable will copy the reference, but they point
-to the same data.</p>
+<p>You can see that these bytes are <code>Copy</code>, because assigning them to a different
+variable will cause a separate copy of the variable to be used.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let a = String::new();
-    a.push_str(&quot;Hello World&quot;);
+    let a = 1;
     let b = a;
-    dbg(a, b);
+    a = 2;
+    println(`{a}`);
+    println(`{b}`);
 }
 </code></pre>
-<p>Running this will output:</p>
-<pre><code class="language-text">0 = String(&quot;Hello World&quot;)
-1 = String(&quot;Hello World&quot;)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/copy.rn
+2
+1
+== Unit (691.3µs)
 </code></pre>
-<p>So both <code>a</code> and <code>b</code> point to the same data.</p>
+<p>In contrast, other types like <em>strings</em> are stored by reference on the stack.</p>
+<p>Assigning them to a different variable will only copy the reference and increase
+its reference count, but they point to the same underlying data.
+As shown here:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let a = String::from_str(&quot;Hello&quot;);
+    let b = a;
+    a.push_str(&quot; World&quot;);
+    println(a);
+    println(b);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/primitives.rn
+Hello World
+Hello World
+== Unit (9.7406ms)
+</code></pre>
 
                     </main>
 

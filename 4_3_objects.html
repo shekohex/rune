@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html" class="active"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html" class="active"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,17 +160,64 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
-<p>Objects are anonymous maps with arbitrary string keys.</p>
+<p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = #{};
     values[&quot;first&quot;] = &quot;bar&quot;;
     values[&quot;second&quot;] = 42;
 
-    dbg(values);
+    dbg(values[&quot;first&quot;]);
+    dbg(values.second);
 }
 </code></pre>
-<p>This would produce:</p>
-<pre><code class="language-text">0 = Object({&quot;first&quot;: StaticString(&quot;bar&quot;), &quot;second&quot;: Integer(42)})
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_3/objects.rn
+0 = StaticString(&quot;bar&quot;)
+0 = Integer(42)
+== Unit (6.1466ms)
+</code></pre>
+<p>These are useful because they allow their data to be specified dynamically,
+which is exactly the same use case as storing unknown JSON.</p>
+<p>One of the largest motivations for <em>Rune</em> to have anonymous objects is so that
+we can handle JSON with an unknown structure.</p>
+<pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
+    let limit = limit.unwrap_or(10);
+
+    let client = http::Client::new();
+    let request = client.get(`https://api.github.com/repos/{repo}/commits`).await?;
+    let response = request.header(&quot;User-Agent&quot;, &quot;Rune&quot;).send().await?;
+    let text = response.text().await?;
+    let json = json::from_string(text)?;
+
+    let commits = Vec::new();
+    let count = 0;
+
+    for entry in json {
+        commits.push(entry.sha);
+
+        if count &gt;= limit {
+            break;
+        }
+
+        count += 1;
+    }
+
+    commits
+}
+
+fn main() {
+    for commit in get_commits(&quot;rune-rs/rune&quot;, Some(5)) {
+        println(commit);
+    }
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_3/json.rn
+9c4bdaf194410d8b2f5d7f9f52eb3e64709d3414
+06419f2580e7a18838f483321055fc06c0d75c4c
+cba225dad143779a0a9543cfb05cde9710083af5
+15133745237c014ff8bae53d8ff8f3c137c732c7
+39ac97ab4ebe26118e807eb91c7656ab95b1fcac
+3f6310eeeaca22d0373cc11d8b34d346bd12a364
+== Unit (331.3324ms)
 </code></pre>
 
                     </main>

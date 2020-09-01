@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html" class="active"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html" class="active"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -180,19 +180,38 @@ currently in and continue running right after it.</p>
         value = value + 1;
     }
 
-    dbg(&quot;The value is &quot; + value); // =&gt; The value is 50
+    println(`The value is {value}`); // =&gt; The value is 50
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/while_loop.rn
+The value is 50
+== Unit (501.1µs)
 </code></pre>
 <h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
 <p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
 One that repeats unconditionally forever, until it is exited using another
 control flow operator like a <code>break</code> or a <code>return</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rust noplaypen">use time::Duration;
+
+fn main() {
     loop {
-        dbg(&quot;Hello forever!&quot;);
+        println(&quot;loop forever&quot;);
+        time::delay_for(Duration::from_secs(1)).await;
     }
 }
 </code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_forever.rn
+Hello forever!
+Hello forever!
+Hello forever!
+...
+</code></pre>
+<blockquote>
+<p>Hint: If you want this one to end, you're gonna have to kill it with <code>CTRL+C</code>.</p>
+</blockquote>
+<p>We're also using an asynchronous function called <code>delay_for</code> above to avoid
+spamming our terminals too much.
+Well talk more about these in a later section.</p>
 <p>When broken out of, loops produce the value provided as an argument to the
 <code>break</code> keyword.
 By default, this is simply a unit <code>()</code>.</p>
@@ -207,8 +226,12 @@ By default, this is simply a unit <code>()</code>.</p>
         }
     };
 
-    dbg(&quot;The final count is: &quot; + total);
+    println(`The final count is: {total}`);
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_break.rn
+The final count is: 11
+== Unit (281.5µs)
 </code></pre>
 
                     </main>

@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html" class="active"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html" class="active"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,7 +160,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are a fixed-size collection of values.</p>
+<p>Tuples in Rune are a fixed-size sequences of values.
+Like all other containers in Rune, tuples can contains any values.</p>
+<p>In fact, they can even change the <em>type</em> of the values stored in them, if
+needed.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
+    dbg(values)
+
+    values.2 = &quot;Don't&quot;;
+    values.3 = &quot;!&quot;;
+    dbg(values)
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_masquerade.rn
+0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;See&quot;), StaticString(&quot;Me&quot;)] })
+0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;Don\'t&quot;), StaticString(&quot;!&quot;)] })
+== Unit (485.6µs)
+</code></pre>
 <p>The following is a simple example of a function returning a tuple:</p>
 <pre><code class="language-rust noplaypen">fn foo() {
     (1, &quot;test&quot;)
@@ -169,6 +186,10 @@
 fn main() {
     dbg(foo());
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/basic_tuples.rn
+0 = Tuple(Shared { access: fully accessible, count: 1, data: [Integer(1), StaticString(&quot;test&quot;)] })
+== Unit (387.6µs)
 </code></pre>
 <p>Tuples can also be pattern matched:</p>
 <pre><code class="language-rust noplaypen">fn main() {
@@ -181,6 +202,11 @@ fn main() {
         }
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_patterns.rn
+0 = StaticString(&quot;the first part was a number:&quot;)
+1 = Integer(1)
+== Unit (6.7067ms)
 </code></pre>
 
                     </main>

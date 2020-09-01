@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -172,32 +172,39 @@ translate into something which feels familiar.</p>
 <p>The first thing you need to learn about in Rune is the <code>dbg</code> function.
 This is used to &quot;debug&quot; whatever values are provided to it, and can be used
 by programmers in any environment to look at values in their program.</p>
-<p>The <code>dbg</code> function <em>usually</em> outputs its arguments to stdout, but its exact
+<p>The <code>dbg</code> function output information on its arguments to stdout, but its exact
 behavior is specific to the environment in which Rune is used.</p>
 <p>When embedded into a larger application it might not be suitable to output to
 stdout, so it might for example have been configured to write to a log file
 instead.</p>
-<p>Rune doesn't provide a <code>print</code> function by default, but there are modules you
-can install that provide these for you if you want it to behave more like a
-regular programming environment.</p>
-<p>For now, lets use <code>dbg</code> to perform your typical &quot;Hello World&quot;.</p>
+<p>Rune does also provide a <code>print</code> and <code>println</code> functions which can be used to
+write directly to stdout, but these might be disabled if they're not suitable
+for the environment used.</p>
+<p>For now, lets use <code>println</code> when printing to stdout.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    dbg(&quot;Hello World&quot;);
+    println(&quot;Hello World&quot;);
 }
 </code></pre>
-<p>You can execute this with the <code>rune</code> command, which is a command-line interface
-to execute rune code.</p>
-<p>It provides the closest you can get to a standard environment of rune:</p>
-<pre><code class="language-bash">$&gt; cargo run -- scripts/hello_world.rn
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
-     Running `target/debug/rune scripts/hello_world.rn`
-0 = String(&quot;Hello World&quot;)
+<p>You can execute this with the <code>rune-cli</code>, a commandline interface to the rune
+language that comes with this project.</p>
+<p>After each code snipped there will be a terminal showing the command used, and
+its output.
+Like this:</p>
+<pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
+Hello World
 == Unit (412.2µs)
 </code></pre>
+<p>At the end of the script you see this rather odd looking line:</p>
+<pre><code class="language-text">== Unit (412.2µs)
+</code></pre>
+<p>This simply means that the script evaluated to a unit, or a <code>()</code>.
+And that the execution took <code>412</code> microseconds.</p>
+<blockquote>
+<p>Cool Hint:
+Any function that doesn't have a return value returns a unit.</p>
+</blockquote>
 <p>So now you know how to run Rune scripts. Well done!</p>
-<p>I encourage you to follow along this book by running the provided code yourself
-as with the above.</p>
-<p>It really helps if you want to get down into it.</p>
+<p>Let's move on with the rest of the book.</p>
 <h1><a class="header" href="#concepts" id="concepts">Concepts</a></h1>
 <p>This chapter covers common concepts that appear in almost all programming
 languages, and how they work in Rune.</p>
@@ -207,16 +214,79 @@ languages before.</p>
 <p>Variables in Rune are defined using the <code>let</code> keyword.
 In contrast to Rust, all variables in Rune are mutable and do not require a
 <code>mut</code> keyword to change.</p>
-<pre><code class="language-rune">fn main() {
+<pre><code class="language-rust noplaypen">fn main() {
     let x = 5;
-    dbg(`The value of x is: {x}`);
+    println(`The value of x is: {x}`);
     x = 6;
-    dbg(`The value of x is: {x}`);
+    println(`The value of x is: {x}`);
 }
 </code></pre>
-<p>This would output:</p>
-<pre><code class="language-text">0 = String(&quot;The value of x is: 5&quot;)
-0 = String(&quot;The value of x is: 6&quot;)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/variables.rn
+The value of x is: 5
+The value of x is: 6
+</code></pre>
+<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference Counting and Ownership</a></h2>
+<p>In rune, all variables are reference counted and can be shared across multiple
+variables.</p>
+<p>This means that all variables in rune have <em>shared ownership</em>.
+This means that every variable that points to an object on the stack, points to
+<em>the same instance</em> of that object.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let object = #{field: 1};
+    let object2 = object;
+    println(`{object.field}`);
+    object2.field = 2;
+    println(`{object2.field}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/shared_ownership.rn
+1
+2
+== Unit (913.4µs)
+</code></pre>
+<p>This can potentially cause issues if we call an external function that expects
+to take ownership of its arguments.</p>
+<p>We say that functions like these <em>move</em> their argument, and if we try to use a
+variable which has been moved the virtual machine will error.</p>
+<blockquote>
+<p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
+take its argument and free it.</p>
+</blockquote>
+<pre><code class="language-rust noplaypen">fn main() {
+    let object = #{field: 1};
+    let object2 = object;
+    println(`field: {object.field}`);
+    drop(object2);
+    println(`field: {object.field}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/take_argument.rn
+field: 1
+error: virtual machine error
+  ┌─ scripts/book/3_1/take_argument.rn:6:22
+  │
+6 │     println(`field: {object.field}`);
+  │                      ^^^^^^^^^^^^ failed to access value: not accessible for shared access
+
+</code></pre>
+<p>If you need to, you can test if a variable is still accessible with
+<code>is_readable</code> and <code>is_writable</code>.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let object = #{field: 1};
+    let object2 = object;
+    println(`field: {object.field}`);
+    drop(object2);
+
+    if is_readable(object) {
+        println(`field: {object.field}`);
+    } else {
+        println(&quot;object is no longer readable 😢&quot;);
+    }
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/is_readable.rn
+field: 1
+it was not readable 😢
 </code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>Rune supports your typical forms of control flow.</p>
@@ -234,9 +304,14 @@ what the function returns by default unless a <code>return</code> is specified.<
 }
 
 fn main() {
-    dbg(foo(0)); // =&gt; outputs: &quot;less than one&quot;
-    dbg(foo(10)); // =&gt; outputs: &quot;something else&quot;
+    println(foo(0)) // =&gt; outputs: &quot;less than one&quot;
+    println(foo(10)); // =&gt; outputs: &quot;something else&quot;
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/numbers_game.rn
+less than one
+something else
+== Unit (3.8608ms)
 </code></pre>
 <h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> Expressions</a></h2>
 <p>If expressions allow you to provide a condition with one or more code branches.
@@ -245,9 +320,13 @@ If the condition is <code>true</code>, the provided block of code will run.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;The number *is* smaller than 5&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional.rn
+The number *is* smaller than 5
+== Unit (5.108ms)
 </code></pre>
 <p>Optionally, we can add another branch under <code>else</code>, which will execute in case
 the condition is false.</p>
@@ -255,11 +334,15 @@ the condition is false.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;the number is smaller than 5&quot;);
     } else {
-        dbg(&quot;the number is 5 or bigger&quot;);
+        println(&quot;the number is 5 or bigger&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else.rn
+the number is smaller than 5
+== Unit (196.1µs)
 </code></pre>
 <p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
 specify many different conditions.</p>
@@ -267,13 +350,17 @@ specify many different conditions.</p>
     let number = 3;
 
     if number &lt; 5 {
-        dbg(&quot;the number is smaller than 5&quot;);
+        println(&quot;the number is smaller than 5&quot;);
     } else if number == 5 {
-        dbg(&quot;the number is exactly 5&quot;);
+        println(&quot;the number is exactly 5&quot;);
     } else {
-        dbg(&quot;the number is bigger than 5&quot;);
+        println(&quot;the number is bigger than 5&quot;);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else_ifs.rn
+the number is smaller than 5
+== Unit (227.9µs)
 </code></pre>
 <p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
 a <code>match</code>.</p>
@@ -283,16 +370,20 @@ a <code>match</code>.</p>
 
     match number {
         n if n &lt; 5 =&gt; {
-            dbg(&quot;the number is smaller than 5&quot;);
+            println(&quot;the number is smaller than 5&quot;);
         }
         5 =&gt; {
-            dbg(&quot;the number is exactly 5&quot;);
+            println(&quot;the number is exactly 5&quot;);
         }
         n =&gt; {
-            dbg(&quot;the number is bigger than 5&quot;);
+            println(&quot;the number is bigger than 5&quot;);
         }
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/first_match.rn
+the number is smaller than 5
+== Unit (124.2µs)
 </code></pre>
 <h1><a class="header" href="#loops" id="loops">Loops</a></h1>
 <p>Loops are a fundamental building block common to many programming languages.
@@ -315,19 +406,38 @@ currently in and continue running right after it.</p>
         value = value + 1;
     }
 
-    dbg(&quot;The value is &quot; + value); // =&gt; The value is 50
+    println(`The value is {value}`); // =&gt; The value is 50
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/while_loop.rn
+The value is 50
+== Unit (501.1µs)
 </code></pre>
 <h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
 <p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
 One that repeats unconditionally forever, until it is exited using another
 control flow operator like a <code>break</code> or a <code>return</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rust noplaypen">use time::Duration;
+
+fn main() {
     loop {
-        dbg(&quot;Hello forever!&quot;);
+        println(&quot;loop forever&quot;);
+        time::delay_for(Duration::from_secs(1)).await;
     }
 }
 </code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_forever.rn
+Hello forever!
+Hello forever!
+Hello forever!
+...
+</code></pre>
+<blockquote>
+<p>Hint: If you want this one to end, you're gonna have to kill it with <code>CTRL+C</code>.</p>
+</blockquote>
+<p>We're also using an asynchronous function called <code>delay_for</code> above to avoid
+spamming our terminals too much.
+Well talk more about these in a later section.</p>
 <p>When broken out of, loops produce the value provided as an argument to the
 <code>break</code> keyword.
 By default, this is simply a unit <code>()</code>.</p>
@@ -342,26 +452,44 @@ By default, this is simply a unit <code>()</code>.</p>
         }
     };
 
-    dbg(&quot;The final count is: &quot; + total);
+    println(`The final count is: {total}`);
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_break.rn
+The final count is: 11
+== Unit (281.5µs)
 </code></pre>
 <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
 <p>In this section we will be discussing <em>Pattern Matching</em>.</p>
 <p>Pattern matching is a flexible mechanism that allows for validating the
 structure and type of the argument, while also destructing it to give easy
 access to what you need.</p>
-<p>Below are some examples of its most common use to match on branch conditions:</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let x = 1;
-
-    match x {
-        1 =&gt; println!(&quot;the number one&quot;),
-        n if n is int =&gt; println!(&quot;n is a number&quot;),
-        [1, 2, ..] =&gt; println!(&quot;vector starting with one and two&quot;),
-        &quot;one&quot; =&gt; println!(&quot;one as a string&quot;),
-        _ =&gt; println!(&quot;anything&quot;),
+<p>Below are some examples of its common uses to match on branch conditions:</p>
+<pre><code class="language-rust noplaypen">fn match_input(n) {
+    match n {
+        1 =&gt; println(&quot;The number one.&quot;),
+        n if n is int =&gt; println(`Another number: {n}.`),
+        [1, 2, n, ..] =&gt; println(`A vector starting with one and two, followed by {n}.`),
+        &quot;one&quot; =&gt; println(&quot;One, but this time as a string.&quot;),
+        _ =&gt; println(&quot;Something else. Can I go eat now?&quot;),
     }
 }
+
+fn main() {
+    match_input(1);
+    match_input(2);
+    match_input([1, 2, 42, 84]);
+    match_input(&quot;one&quot;);
+    match_input(#{field: 42});
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/big_match.rn
+The number one.
+Another number: 2.
+A vector starting with one and two, followed by 42.
+One, but this time as a string.
+Something else. Can I go eat now?
+== Unit (5.691ms)
 </code></pre>
 <p>We will be covering each of these variants in detail in the coming sections.</p>
 <h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
@@ -387,16 +515,33 @@ or a binding.</p>
 the value, allowing it to have any value.</p>
 <pre><code class="language-rust noplaypen">fn test_ignore(vector) {
     match vector {
-        [_, 42] =&gt; dbg(&quot;second item in vector is 42&quot;),
+        [_, 2] =&gt; println(&quot;Second item in vector is 2.&quot;),
     }
+}
+
+fn main() {
+    test_ignore([1, 2]);
 }
 </code></pre>
-<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable:</p>
-<pre><code class="language-rust noplaypen">fn test_bind(vector) {
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/ignore.rn
+Second item in vector is 2.
+== Unit (281.3µs)
+</code></pre>
+<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
+in scope of the match arm.</p>
+<pre><code class="language-rust noplaypen">fn test_ignore(vector) {
     match vector {
-        [_, b] =&gt; dbg(`second item in vector is {b}`),
+        [_, b] =&gt; println(`Second item in vector is {b}.`),
     }
 }
+
+fn main() {
+    test_ignore([1, 2]);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/bind.rn
+Second item in vector is 2.
+== Unit (6.25ms)
 </code></pre>
 <p>Here are some more examples:</p>
 <ul>
@@ -407,17 +552,25 @@ element in the vector.</li>
 <p>Finally we can also add the sequence <code>..</code> to ask Rune to <em>ignore</em> any additional
 values in a collection that might be present when matching a vector or an
 object.</p>
-<pre><code class="language-rust noplaypen">/// Describe how fast the first car in the vector is.
-fn first_car_speed(cars) {
-    match cars {
-        [first, ..] =&gt; match first {
-            {&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: 2000, ..} =&gt; &quot;Pretty fast&quot;,
-            {&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: 1908, ..} =&gt; &quot;Could be faster&quot;,
-            _ =&gt; &quot;Unknown&quot;,
-        },
-        _ =&gt; &quot;You didn't give me a vector of cars!&quot;,
+<pre><code class="language-rust noplaypen">fn describe_car(car) {
+    match car {
+<span class="boring">        {&quot;make&quot;: year, ..} if year &lt; 1950 =&gt; &quot;What, where did you get that?&quot;,
+</span><span class="boring">        {&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: year, ..} if year &gt;= 2000 =&gt; &quot;Pretty fast!&quot;,
+</span>        _ =&gt; &quot;Can't tell 😞&quot;,
     }
 }
+
+fn main() {
+    println(describe_car(#{&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: 2000}));
+    println(describe_car(#{&quot;model&quot;: &quot;Honda&quot;, &quot;make&quot;: 1980}));
+    println(describe_car(#{&quot;model&quot;: &quot;Volvo&quot;, &quot;make&quot;: 1910}));
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_4/fast_cars.rn
+Pretty fast!
+Can't tell 😞
+What, where did you get that?
+== Unit (5.3533ms)
 </code></pre>
 <h1><a class="header" href="#types" id="types">Types</a></h1>
 <p>Types in Rune are identified uniquely by their <em>path</em>.
@@ -479,7 +632,7 @@ fn main() {
     }
 }
 </code></pre>
-<h1><a class="header" href="#primitives" id="primitives">Primitives</a></h1>
+<h1><a class="header" href="#primitives-and-references" id="primitives-and-references">Primitives and References</a></h1>
 <p>Primitives are values stored immediately on the stack.
 In Rust terminology, these types are <code>Copy</code>, so reassigning them to different
 values will create distinct copies of the underlying value.</p>
@@ -492,21 +645,38 @@ values will create distinct copies of the underlying value.</p>
 <li>integers, like <code>42</code>.</li>
 <li>floats, like <code>3.1418</code>.</li>
 </ul>
-<p>Any other types are stored by reference on the stack.
-Assigning them to a different variable will copy the reference, but they point
-to the same data.</p>
+<p>You can see that these bytes are <code>Copy</code>, because assigning them to a different
+variable will cause a separate copy of the variable to be used.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let a = String::new();
-    a.push_str(&quot;Hello World&quot;);
+    let a = 1;
     let b = a;
-    dbg(a, b);
+    a = 2;
+    println(`{a}`);
+    println(`{b}`);
 }
 </code></pre>
-<p>Running this will output:</p>
-<pre><code class="language-text">0 = String(&quot;Hello World&quot;)
-1 = String(&quot;Hello World&quot;)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/copy.rn
+2
+1
+== Unit (691.3µs)
 </code></pre>
-<p>So both <code>a</code> and <code>b</code> point to the same data.</p>
+<p>In contrast, other types like <em>strings</em> are stored by reference on the stack.</p>
+<p>Assigning them to a different variable will only copy the reference and increase
+its reference count, but they point to the same underlying data.
+As shown here:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let a = String::from_str(&quot;Hello&quot;);
+    let b = a;
+    a.push_str(&quot; World&quot;);
+    println(a);
+    println(b);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/primitives.rn
+Hello World
+Hello World
+== Unit (9.7406ms)
+</code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>A vector is a native data structure of Rune which is a dynamic list of values.
 A vector isn't typed, and can store <em>any</em> rune values.</p>
@@ -520,25 +690,90 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
     }
 }
 </code></pre>
-<p>Which would give:</p>
-<pre><code class="language-text">0 = Integer(42)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/vectors.rn
+0 = Integer(42)
 0 = StaticString(&quot;Hello&quot;)
+== Unit (7.5299ms)
 </code></pre>
 <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
-<p>Objects are anonymous maps with arbitrary string keys.</p>
+<p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = #{};
     values[&quot;first&quot;] = &quot;bar&quot;;
     values[&quot;second&quot;] = 42;
 
-    dbg(values);
+    dbg(values[&quot;first&quot;]);
+    dbg(values.second);
 }
 </code></pre>
-<p>This would produce:</p>
-<pre><code class="language-text">0 = Object({&quot;first&quot;: StaticString(&quot;bar&quot;), &quot;second&quot;: Integer(42)})
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_3/objects.rn
+0 = StaticString(&quot;bar&quot;)
+0 = Integer(42)
+== Unit (6.1466ms)
+</code></pre>
+<p>These are useful because they allow their data to be specified dynamically,
+which is exactly the same use case as storing unknown JSON.</p>
+<p>One of the largest motivations for <em>Rune</em> to have anonymous objects is so that
+we can handle JSON with an unknown structure.</p>
+<pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
+    let limit = limit.unwrap_or(10);
+
+    let client = http::Client::new();
+    let request = client.get(`https://api.github.com/repos/{repo}/commits`).await?;
+    let response = request.header(&quot;User-Agent&quot;, &quot;Rune&quot;).send().await?;
+    let text = response.text().await?;
+    let json = json::from_string(text)?;
+
+    let commits = Vec::new();
+    let count = 0;
+
+    for entry in json {
+        commits.push(entry.sha);
+
+        if count &gt;= limit {
+            break;
+        }
+
+        count += 1;
+    }
+
+    commits
+}
+
+fn main() {
+    for commit in get_commits(&quot;rune-rs/rune&quot;, Some(5)) {
+        println(commit);
+    }
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_3/json.rn
+9c4bdaf194410d8b2f5d7f9f52eb3e64709d3414
+06419f2580e7a18838f483321055fc06c0d75c4c
+cba225dad143779a0a9543cfb05cde9710083af5
+15133745237c014ff8bae53d8ff8f3c137c732c7
+39ac97ab4ebe26118e807eb91c7656ab95b1fcac
+3f6310eeeaca22d0373cc11d8b34d346bd12a364
+== Unit (331.3324ms)
 </code></pre>
 <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are a fixed-size collection of values.</p>
+<p>Tuples in Rune are a fixed-size sequences of values.
+Like all other containers in Rune, tuples can contains any values.</p>
+<p>In fact, they can even change the <em>type</em> of the values stored in them, if
+needed.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
+    dbg(values)
+
+    values.2 = &quot;Don't&quot;;
+    values.3 = &quot;!&quot;;
+    dbg(values)
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_masquerade.rn
+0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;See&quot;), StaticString(&quot;Me&quot;)] })
+0 = Tuple(Shared { access: fully accessible, count: 2, data: [StaticString(&quot;Now&quot;), StaticString(&quot;You&quot;), StaticString(&quot;Don\'t&quot;), StaticString(&quot;!&quot;)] })
+== Unit (485.6µs)
+</code></pre>
 <p>The following is a simple example of a function returning a tuple:</p>
 <pre><code class="language-rust noplaypen">fn foo() {
     (1, &quot;test&quot;)
@@ -547,6 +782,10 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
 fn main() {
     dbg(foo());
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/basic_tuples.rn
+0 = Tuple(Shared { access: fully accessible, count: 1, data: [Integer(1), StaticString(&quot;test&quot;)] })
+== Unit (387.6µs)
 </code></pre>
 <p>Tuples can also be pattern matched:</p>
 <pre><code class="language-rust noplaypen">fn main() {
@@ -559,6 +798,11 @@ fn main() {
         }
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_patterns.rn
+0 = StaticString(&quot;the first part was a number:&quot;)
+1 = Integer(1)
+== Unit (6.7067ms)
 </code></pre>
 <h1><a class="header" href="#structs" id="structs">Structs</a></h1>
 <p>Structs are like objects, except that they have a predefined structure with a
@@ -598,7 +842,7 @@ the result of those tasks.</p>
     }
 }
 </code></pre>
-<pre><code class="language-bash">$&gt; cargo run -- scripts/book/7_async_http.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http.rn
 200 OK
 200 OK
 == Unit (591.0319ms)
@@ -635,7 +879,7 @@ fn main() {
     }
 }
 </code></pre>
-<pre><code class="language-bash">$&gt; cargo run -- scripts/book/7_async_http_timeout.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_timeout.rn
 200 OK
 Request timed out!
 == Unit (3.2231404s)
@@ -674,7 +918,7 @@ fn main() {
     }
 }
 </code></pre>
-<pre><code class="language-bash">$&gt; cargo run -- scripts/book/7_async_http_concurrent.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_concurrent.rn
 Result: 200 OK
 Request timed out!
 == Unit (2.0028603s)
