@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Try operator - The Rune Programming Language</title>
+        <title>Enums - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html" class="active"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html" class="active"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,43 +159,70 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#try-operator" id="try-operator">Try operator</a></h1>
-<p>The try operator (<code>?</code>) is a control flow operator which causes a function to
-return early in case the value being tried over has a certain value.</p>
-<p>For <code>Option</code>, this causes the function to return if it has the <code>Option::None</code>
-variant.</p>
-<pre><code class="language-rust noplaypen">fn checked_div_mod(a, b) {
-    let div = a.checked_div(b)?;
-    Some((div, a % b))
+                        <h1><a class="header" href="#enums" id="enums">Enums</a></h1>
+<p>Rune has support for <em>enumerations</em>.
+These allow you to define a type with zero or more <em>variants</em>, where each
+variant can hold a distinct set of data.</p>
+<p>In a dynamic programming language enums might not seem quite as useful, but it's
+important for Rune to support them to have a level of feature parity with Rust.</p>
+<p>Even so, in this section we'll explore some cases where enums are useful.</p>
+<h2><a class="header" href="#the-option-enum" id="the-option-enum">The <code>Option</code> enum</a></h2>
+<p>Rune has native support for <code>Option</code>, the same enum available in Rust that
+allows you to represent data that can either be present with <code>Option::Some</code>, or
+absent with <code>Option::None</code>.</p>
+<pre><code class="language-rust noplaypen">use std::iter::range;
+
+fn count_numbers(limit) {
+    let limit = limit.unwrap_or(10);
+
+    for n in range(0, limit) {
+        println(`Count: {n}`);
+    }
 }
 
 fn main() {
-    if let Some((div, mod)) = checked_div_mod(5, 2) {
-        println(`Result: {div}, {mod}`);
-    }
+    println(&quot;First count!&quot;);
+    count_numbers(None);
 
-    if let Some((div, mod)) = checked_div_mod(5, 0) {
-        println(`Result: {div}, {mod}`);
-    }
+    println(&quot;Second count!&quot;);
+    count_numbers(Some(2));
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/7_1/basic_try.rn
-Result: 2, 1
-== () (7.4912ms)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5_7/count_numbers.rn
+First count!
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+Count: 6
+Count: 7
+Count: 8
+Count: 9
+Second count!
+Count: 0
+Count: 1
+== () (9.0745ms)
 </code></pre>
+<p>Using an <code>Option</code> allows us to easily model the scenario where we have an
+optional function parameter, with a default fallback value.</p>
+<p>In the next section we'll be looking into a control flow construct which gives
+<code>Option</code> superpowers.</p>
+<p>The try operator.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="7_enums.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="5_6_structs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="8_async.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="6_try_operator.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -207,13 +234,13 @@ Result: 2, 1
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="7_enums.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="5_6_structs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="8_async.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="6_try_operator.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
