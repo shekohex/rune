@@ -812,8 +812,6 @@ which creates instance functions that you can call on an instance of that
 struct.</p>
 <pre><code>struct User {
     username,
-    email,
-    sign_in_count,
     active,
 }
 
@@ -834,8 +832,6 @@ impl User {
 fn main() {
     let user = User {
         username: &quot;setbac&quot;,
-        email: &quot;not-a-mail@gmail.com&quot;,
-        sign_in_count: 0,
         active: false,
     };
 
@@ -848,6 +844,41 @@ fn main() {
 setbac is inactive
 setbac is active
 == Unit (6.2095ms)
+</code></pre>
+<p>Structs can also be pattern matches over, like most types.</p>
+<pre><code>struct User {
+    username,
+    active,
+}
+
+impl User {
+    fn describe(self) {
+        match self {
+            User { username: &quot;setbac&quot;, .. } =&gt; {
+                println(&quot;Yep, it's setbac.&quot;);
+            }
+            User { username, .. } =&gt; {
+                println(`Other user: {username}.`);
+            }
+        }
+    }
+}
+
+fn main() {
+    let user = User {
+        username: &quot;setbac&quot;,
+        active: false,
+    };
+
+    user.describe();
+    user.username = &quot;newt&quot;;
+    user.describe();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/struct_matching.rn
+Yep, it's setbac.
+Other user: newt.
+== Unit (1.0652ms)
 </code></pre>
 <h1><a class="header" href="#enums" id="enums">Enums</a></h1>
 <p>Rune has support for <em>enumerations</em>.
