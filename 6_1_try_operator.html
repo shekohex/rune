@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Types - The Rune Programming Language</title>
+        <title>Try operator - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html" class="active"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li><li class="chapter-item expanded "><a href="8_closures.html"><strong aria-hidden="true">8.</strong> Closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and References</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html" class="active"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous Programming</a></li><li class="chapter-item expanded "><a href="8_closures.html"><strong aria-hidden="true">8.</strong> Closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,65 +159,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#types" id="types">Types</a></h1>
-<p>Types in Rune are identified uniquely by their <em>path</em>.
-A path is a scope-separated identifier, like <code>std::float</code>.
-This identifies a type object.</p>
-<p>These can be used to perform basic type checking, like this:</p>
-<pre><code class="language-rune">use std::test::assert;
-
-fn main() {
-    assert(() is unit, &quot;units should be units&quot;);
-    assert(true is bool, &quot;bools should be bools&quot;);
-    assert('a' is char, &quot;chars should be chars&quot;);
-    assert(b'a' is byte, &quot;bytes should be bytes&quot;);
-    assert(42 is int, &quot;integers should be integers&quot;);
-    assert(42.1 is float, &quot;floats should be floats&quot;);
-    assert(&quot;hello&quot; is String, &quot;strings should be strings&quot;);
-    assert(#{&quot;hello&quot;: &quot;world&quot;} is Object, &quot;objects should be objects&quot;);
-    assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
-}
-</code></pre>
-<p>Conversely, the type check would fail if it's not valid:</p>
-<pre><code class="language-text">error: virtual machine error
-  ┌─ .\scripts\book\4_bad_type_check.rn:4:5
-  │
-4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
-  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  │     │
-  │     virtual machine error
-  │     assertion failed: vectors should be strings
-  │     error in user-defined function
-</code></pre>
-<p>So this allows us to determine which type is which and act accordingly:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
-    if n is String {
-        dbg(&quot;n is a String&quot;);
-    } else if n is Vec {
-        dbg(&quot;n is a vector&quot;);
-    } else {
-        dbg(&quot;n is unknown&quot;);
-    }
+                        <h1><a class="header" href="#try-operator" id="try-operator">Try operator</a></h1>
+<p>The try operator (<code>?</code>) is a control flow operator which causes a function to
+return early in case the value being tried over has a certain value.</p>
+<p>For <code>Option</code>, this causes the function to return if it has the <code>Option::None</code>
+variant.</p>
+<pre><code class="language-rust noplayground">fn checked_div_mod(a, b) {
+    let div = a.checked_div(b)?;
+    Some((div, a % b))
 }
 
 fn main() {
-    dynamic_type(&quot;Hello&quot;);
-    dynamic_type([1, 2, 3, 4]);
-    dynamic_type(42);
-}
-</code></pre>
-<pre><code class="language-text">0 = String(&quot;n is a string&quot;)
-0 = String(&quot;n is a vector&quot;)
-0 = String(&quot;I don\'t know n&quot;)
-</code></pre>
-<p>A tighter way to accomplish this would be with a type switch:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
-    switch n {
-        n if n is String =&gt; dbg(&quot;n is a String&quot;),
-        n if n is Vec =&gt; dbg(&quot;n is an Vec&quot;),
-        _ =&gt; dbg(&quot;n is unknown&quot;),
+    if let Some((div, mod)) = checked_div_mod(5, 2) {
+        println(`Result: {div}, {mod}`);
+    }
+
+    if let Some((div, mod)) = checked_div_mod(5, 0) {
+        println(`Result: {div}, {mod}`);
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/6_1/basic_try.rn
+Result: 2, 1
+== Unit (7.4912ms)
 </code></pre>
 
                     </main>
@@ -225,13 +189,13 @@ fn main() {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_4_pattern_matching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="6_enums.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="4_1_primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="7_async.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -243,13 +207,13 @@ fn main() {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_4_pattern_matching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="6_enums.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="4_1_primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="7_async.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
