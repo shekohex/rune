@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Types - The Rune Programming Language</title>
+        <title>Foreword - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html" class="active"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html" class="active"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,98 +159,99 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#types" id="types">Types</a></h1>
-<p>Types in Rune are identified uniquely by their <em>path</em>.
-A path is a scope-separated identifier, like <code>std::float</code>.
-This identifies a type object.</p>
-<p>These can be used to perform basic type checking, like this:</p>
-<pre><code class="language-rust noplaypen">use std::test::assert;
-
-fn main() {
-    assert(() is unit, &quot;units should be units&quot;);
-    assert(true is bool, &quot;bools should be bools&quot;);
-    assert('a' is char, &quot;chars should be chars&quot;);
-    assert(b'a' is byte, &quot;bytes should be bytes&quot;);
-    assert(42 is int, &quot;integers should be integers&quot;);
-    assert(42.1 is float, &quot;floats should be floats&quot;);
-    assert(&quot;hello&quot; is String, &quot;strings should be strings&quot;);
-    assert(#{&quot;hello&quot;: &quot;world&quot;} is Object, &quot;objects should be objects&quot;);
-    assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
-}
-</code></pre>
-<p>Conversely, the type check would fail if it's not valid.</p>
-<pre><code class="language-rust noplaypen">use std::test::assert;
-
-fn main() {
-    assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/bad_type_check.rn
-error: virtual machine error
-  ┌─ scripts/book/4/bad_type_check.rn:4:5
-  │
-4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
-  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ panicked `assertion failed `vectors should be strings``
-</code></pre>
-<p>So this allows us to determine which type is which and act accordingly:</p>
-<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
-    if n is String {
-        &quot;n is a String&quot;
-    } else if n is Vec {
-        &quot;n is a vector&quot;
-    } else {
-        &quot;n is unknown&quot;
-    }
-}
-
-fn main() {
-    println(dynamic_type(&quot;Hello&quot;));
-    println(dynamic_type([1, 2, 3, 4]));
-    println(dynamic_type(42));
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/type_check.rn
-n is a String
-n is a vector
-n is unknown
-== () (1.0544ms)
-</code></pre>
-<p>A tighter way to accomplish this could be by using pattern matching:</p>
-<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
-    if n is String {
-        &quot;n is a String&quot;
-    } else if n is Vec {
-        &quot;n is a vector&quot;
-    } else {
-        &quot;n is unknown&quot;
-    }
-}
-
-fn main() {
-    println(dynamic_type(&quot;Hello&quot;));
-    println(dynamic_type([1, 2, 3, 4]));
-    println(dynamic_type(42));
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/type_check.rn
-n is a String
-n is a vector
-n is unknown
-== () (1.0544ms)
-</code></pre>
+                        <h1><a class="header" href="#foreword" id="foreword">Foreword</a></h1>
+<blockquote>
+<p>&quot;Why am I building a programming language? Is it even possible?&quot;</p>
+</blockquote>
+<p>This question keeps rolling around in my head as I'm typing out the code that is
+slowly becoming a new <em>thing</em>.
+Programming itself is like magic, you imagine it in your mind, write it out, and
+there it is.
+Doing <em>stuff</em> which wasn't being done before.</p>
+<p>Truth be told, I'm scared that people will tell me that I'm wasting my time.
+This has already been done, or &quot;Why not just use X?&quot;.
+Something so glaringly obvious that all of my efforts are in vain.</p>
+<p>You actually don't need a reason.
+It can simply be for The Joy of Creating Something, and then it's just you
+spending your own time as a hobby.
+No harm done.</p>
+<p>Anyway, here's why im making Rune.</p>
+<h2><a class="header" href="#the-other-project" id="the-other-project">The other project</a></h2>
+<p>Another project I've spent a lot of effort working on is <a href="https://github.com/udoprog/OxidizeBot">OxidizeBot</a>, a Twitch
+bot that a streamer can use to add commands and other interactive things in
+their chat.
+Originally I just built it for myself, while streaming, but I'm also an
+aggressive generaliser.
+When I add features I always think about how it can be as generic as possible to
+suit potentially many needs.</p>
+<p>And when it's a personal project, the propensity in me is to the detriment of
+keeping it simple.</p>
+<p>...</p>
+<p>Ok, confession. I <em>sometimes</em> do that professionally as well.
+But I'm much less critical when doing personal projects.</p>
+<p>Anyway, that meant the bot could actually be used by others.
+It's starting to see a little bit of use now.
+Which is actually <em>a lot</em> of fun.</p>
+<p>So all the commands in the bot are written in <a href="https://rust-lang.org">Rust</a>, and compiled straight into
+the bot.
+This is nice, because Rust is an incredible language.
+But Rust is also complex.
+Not nedlessly, it's complex because it decided to tackle <em>really hard problems</em>.
+To my best understanding, it's about as complex as it has to be.
+<em>Most of the time</em>.</p>
+<p>But it's complex enough that streamers who have very little programming
+experience struggle getting up and running*.
+Because of this I wanted to provide a way for them to write their own dynamic
+command handlers.
+Once they could just drop into a folder and <em>presto</em> - you're up and running.</p>
+<blockquote>
+<p>I've actually personally tutored at least two of these streamers who were
+interested in learning Rust, but then you're getting further away from writing
+chat commands.</p>
+</blockquote>
+<p>For this reason I started looking into dynamic programming languages.
+Once that could be embedded into an existing Rust application with little to no
+effort.</p>
+<p>If you're one of those thinking that type systems are the best thing since
+sliced bread. Then I'm just gonna say <strong>yes</strong>, you are right.
+But type systems are also one of these complexities which can get in the way of
+being productive.
+And not everyone wants to learn how to climb before they can walk.</p>
+<p>A number of candidates came up, but this isn't a review, so I'm just gonna jump
+to the one I chose and not dwell too much on the reasons: <a href="https://github.com/jonathandturner/rhai">Rhai</a>.</p>
+<p>So why is Rhai awesome:</p>
+<ul>
+<li>It has Rust-like syntax.</li>
+<li>The runtime is fully written in mostly safe Rust, and can be embedded.</li>
+</ul>
+<p>Initially I wasn't going to write my own programming language.
+I added support for rhai, and things worked really well.</p>
+<p>But there were a few things that I wanted out of Rhai, and I was gearing up to
+<a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">contribute those to the project</a>.</p>
+<p>So the things I wanted, beyond what was already provided by Rhai was:</p>
+<ul>
+<li>A stack-based virtual machine that you could write low-complexity C-ffi
+bindings for, <a href="https://www.lua.org/pil/26.1.html">like Lua</a>.</li>
+<li>Opinionated support for asynchronous programming.</li>
+<li>A future cranelift backend.</li>
+</ul>
+<p>And while I believe that these are feasible in Rhai, I also think the project
+would emerge as a different one on the other side.
+And I wanted a fresh slate of design constraints to find my own compromises.
+To discover freely what works and doesn't work well.</p>
+<p>That being said, Rhai has been a huge inspiration for Rune.
+If you need an embedded scripting engine that is more mature right now than
+Rune, please go check it out!</p>
+<p>— John-John Tedro</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_5_template_strings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                        
 
                         
-                            <a rel="next" href="4_1_primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="2_introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -262,13 +263,9 @@ n is unknown
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_5_template_strings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
 
                 
-                    <a rel="next" href="4_1_primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="2_introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

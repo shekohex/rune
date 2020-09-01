@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Try operator - The Rune Programming Language</title>
+        <title>Objects - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html" class="active"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html" class="active"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,29 +159,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#try-operator" id="try-operator">Try operator</a></h1>
-<p>The try operator (<code>?</code>) is a control flow operator which causes a function to
-return early in case the value being tried over has a certain value.</p>
-<p>For <code>Option</code>, this causes the function to return if it has the <code>Option::None</code>
-variant.</p>
-<pre><code class="language-rust noplaypen">fn checked_div_mod(a, b) {
-    let div = a.checked_div(b)?;
-    Some((div, a % b))
+                        <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
+<p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let values = #{};
+    values[&quot;first&quot;] = &quot;bar&quot;;
+    values[&quot;second&quot;] = 42;
+
+    dbg(values[&quot;first&quot;]);
+    dbg(values.second);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5_3/objects.rn
+&quot;bar&quot;
+42
+== () (7.9265ms)
+</code></pre>
+<p>These are useful because they allow their data to be specified dynamically,
+which is exactly the same use case as storing unknown JSON.</p>
+<p>One of the largest motivations for <em>Rune</em> to have anonymous objects is so that
+we can handle JSON with an unknown structure.</p>
+<pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
+    let limit = limit.unwrap_or(10);
+
+    let client = http::Client::new();
+    let request = client.get(`https://api.github.com/repos/{repo}/commits`).await?;
+    let response = request.header(&quot;User-Agent&quot;, &quot;Rune&quot;).send().await?;
+    let text = response.text().await?;
+    let json = json::from_string(text)?;
+
+    let commits = Vec::new();
+    let count = 0;
+
+    for entry in json {
+        commits.push(entry.sha);
+
+        if count &gt;= limit {
+            break;
+        }
+
+        count += 1;
+    }
+
+    commits
 }
 
 fn main() {
-    if let Some((div, mod)) = checked_div_mod(5, 2) {
-        println(`Result: {div}, {mod}`);
-    }
-
-    if let Some((div, mod)) = checked_div_mod(5, 0) {
-        println(`Result: {div}, {mod}`);
+    for commit in get_commits(&quot;rune-rs/rune&quot;, Some(5)) {
+        println(commit);
     }
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/6_1/basic_try.rn
-Result: 2, 1
-== () (7.4912ms)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5_3/json.rn
+9c4bdaf194410d8b2f5d7f9f52eb3e64709d3414
+06419f2580e7a18838f483321055fc06c0d75c4c
+cba225dad143779a0a9543cfb05cde9710083af5
+15133745237c014ff8bae53d8ff8f3c137c732c7
+39ac97ab4ebe26118e807eb91c7656ab95b1fcac
+3f6310eeeaca22d0373cc11d8b34d346bd12a364
+== () (331.3324ms)
 </code></pre>
 
                     </main>
@@ -189,13 +225,13 @@ Result: 2, 1
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="6_enums.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="5_2_vectors.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="7_async.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="5_4_tuples.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -207,13 +243,13 @@ Result: 2, 1
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="6_enums.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="5_2_vectors.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="7_async.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="5_4_tuples.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

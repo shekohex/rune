@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Tuples - The Rune Programming Language</title>
+        <title>Primitives and references - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html" class="active"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html" class="active"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,54 +159,50 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are a fixed-size sequences of values.
-Like all other containers in Rune, tuples can contains any values.</p>
-<p>In fact, they can even change the <em>type</em> of the values stored in them, if
-needed.</p>
+                        <h1><a class="header" href="#primitives-and-references" id="primitives-and-references">Primitives and References</a></h1>
+<p>Primitives are values stored immediately on the stack.
+In Rust terminology, these types are <code>Copy</code>, so reassigning them to different
+values will create distinct copies of the underlying value.</p>
+<p>The primitives available in rune are:</p>
+<ul>
+<li>the unit <code>()</code>.</li>
+<li>booleans, <code>true</code> and <code>false</code>.</li>
+<li>bytes, like <code>b'\xff'</code>.</li>
+<li>characters, like <code>'今'</code>.</li>
+<li>integers, like <code>42</code>.</li>
+<li>floats, like <code>3.1418</code>.</li>
+</ul>
+<p>You can see that these bytes are <code>Copy</code>, because assigning them to a different
+variable will cause a separate copy of the variable to be used.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
-    dbg(values)
-
-    values.2 = &quot;Don't&quot;;
-    values.3 = &quot;!&quot;;
-    dbg(values)
+    let a = 1;
+    let b = a;
+    a = 2;
+    println(`{a}`);
+    println(`{b}`);
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_masquerade.rn
-(&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;)
-(&quot;Now&quot;, &quot;You&quot;, &quot;Don\'t&quot;, &quot;!&quot;)
-== () (38.3136ms)
-</code></pre>
-<p>The following is a simple example of a function returning a tuple:</p>
-<pre><code class="language-rust noplaypen">fn foo() {
-    (1, &quot;test&quot;)
-}
-
-fn main() {
-    dbg(foo());
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/basic_tuples.rn
-(1, &quot;test&quot;)
-== () (387.6µs)
-</code></pre>
-<p>Tuples can also be pattern matched:</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    match (&quot;test&quot;, 1) {
-        (&quot;test&quot;, n) =&gt; {
-            dbg(&quot;the first part was a number:&quot;, n);
-        }
-        _ =&gt; {
-            dbg(&quot;matched something we did not understand&quot;);
-        }
-    }
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/tuple_patterns.rn
-&quot;the first part was a number:&quot;
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5_1/copy.rn
+2
 1
-== () (7.7892ms)
+== () (691.3µs)
+</code></pre>
+<p>In contrast, other types like <em>strings</em> are stored by reference on the stack.</p>
+<p>Assigning them to a different variable will only copy the reference and increase
+its reference count, but they point to the same underlying data.
+As shown here:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let a = String::from_str(&quot;Hello&quot;);
+    let b = a;
+    a.push_str(&quot; World&quot;);
+    println(a);
+    println(b);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5_1/primitives.rn
+Hello World
+Hello World
+== () (9.7406ms)
 </code></pre>
 
                     </main>
@@ -214,13 +210,13 @@ fn main() {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="4_3_objects.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="5_types.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="4_5_functions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="5_2_vectors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -232,13 +228,13 @@ fn main() {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="4_3_objects.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="5_types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="4_5_functions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="5_2_vectors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

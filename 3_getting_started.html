@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Control Flow - The Rune Programming Language</title>
+        <title>Getting Started - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html" class="active"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html" class="active"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,116 +159,56 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
-<p>Rune supports your typical forms of control flow.</p>
-<h2><a class="header" href="#return-keyword" id="return-keyword"><code>return</code> Keyword</a></h2>
-<p>The <code>return</code> keyword allows for returning from the current function.
-If specified without an argument, the function will return a unit <code>()</code>.</p>
-<p>The last statement in a function is known as an <em>implicit return</em>, and will be
-what the function returns by default unless a <code>return</code> is specified.</p>
-<pre><code class="language-rust noplaypen">fn foo(n) {
-    if n &lt; 1 {
-        return &quot;less than one&quot;;
-    }
-
-    &quot;something else&quot;
-}
-
-fn main() {
-    println(foo(0)) // =&gt; outputs: &quot;less than one&quot;
-    println(foo(10)); // =&gt; outputs: &quot;something else&quot;
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/numbers_game.rn
-less than one
-something else
-== () (3.8608ms)
-</code></pre>
-<h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> Expressions</a></h2>
-<p>If expressions allow you to provide a condition with one or more code branches.
-If the condition is <code>true</code>, the provided block of code will run.</p>
+                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>The first thing you need to learn about in Rune is the <code>dbg</code> function.
+This is used to &quot;debug&quot; whatever values are provided to it, and can be used
+by programmers in any environment to look at values in their program.</p>
+<p>The <code>dbg</code> function output information on its arguments to stdout, but its exact
+behavior is specific to the environment in which Rune is used.</p>
+<p>When embedded into a larger application it might not be suitable to output to
+stdout, so it might for example have been configured to write to a log file
+instead.</p>
+<p>Rune does also provide a <code>print</code> and <code>println</code> functions which can be used to
+write directly to stdout, but these might be disabled if they're not suitable
+for the environment used.</p>
+<p>For now, lets use <code>println</code> when printing to stdout.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let number = 3;
-
-    if number &lt; 5 {
-        println(&quot;The number *is* smaller than 5&quot;);
-    }
+    println(&quot;Hello World&quot;);
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional.rn
-The number *is* smaller than 5
-== () (5.108ms)
+<p>You can execute this with the <code>rune-cli</code>, a commandline interface to the rune
+language that comes with this project.</p>
+<p>After each code snipped there will be a terminal showing the command used, and
+its output.
+Like this:</p>
+<pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
+Hello World
+== () (412.2µs)
 </code></pre>
-<p>Optionally, we can add another branch under <code>else</code>, which will execute in case
-the condition is false.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let number = 3;
-
-    if number &lt; 5 {
-        println(&quot;the number is smaller than 5&quot;);
-    } else {
-        println(&quot;the number is 5 or bigger&quot;);
-    }
-}
+<p>At the end of the script you see this rather odd looking line:</p>
+<pre><code class="language-text">== () (412.2µs)
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else.rn
-the number is smaller than 5
-== () (196.1µs)
-</code></pre>
-<p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
-specify many different conditions.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let number = 3;
-
-    if number &lt; 5 {
-        println(&quot;the number is smaller than 5&quot;);
-    } else if number == 5 {
-        println(&quot;the number is exactly 5&quot;);
-    } else {
-        println(&quot;the number is bigger than 5&quot;);
-    }
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/conditional_else_ifs.rn
-the number is smaller than 5
-== () (227.9µs)
-</code></pre>
-<p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
-a <code>match</code>.</p>
-<p>This will be covered in a later section, but here is a sneak peek:</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let number = 3;
-
-    match number {
-        n if n &lt; 5 =&gt; {
-            println(&quot;the number is smaller than 5&quot;);
-        }
-        5 =&gt; {
-            println(&quot;the number is exactly 5&quot;);
-        }
-        n =&gt; {
-            println(&quot;the number is bigger than 5&quot;);
-        }
-    }
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_2/first_match.rn
-the number is smaller than 5
-== () (124.2µs)
-</code></pre>
+<p>This simply means that the script evaluated to a unit, or a <code>()</code>.
+And that the execution took <code>412</code> microseconds.</p>
+<blockquote>
+<p>Cool Hint:
+Any function that doesn't have a return value returns a unit.</p>
+</blockquote>
+<p>So now you know how to run Rune scripts. Well done!</p>
+<p>Let's move on with the rest of the book.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_1_variables.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="2_introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="3_3_loops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="4_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -280,13 +220,13 @@ the number is smaller than 5
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_1_variables.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="2_introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="3_3_loops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="4_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Asynchronous programming - The Rune Programming Language</title>
+        <title>Template strings - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html" class="active"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html" class="active"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,134 +159,76 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#asynchronous-programming" id="asynchronous-programming">Asynchronous programming</a></h1>
-<p>Rune has first class support for Rust-like asynchronous programming.
-In this section we'll be briefly covering what asynchronous programming is, and
-how it applies to Rune as a dynamic programming language.</p>
-<h2><a class="header" href="#what-is-it" id="what-is-it">What is it?</a></h2>
-<p>Asynchronous code allows us to run multiple tasks concurrently, and work with
-the result of those tasks.</p>
-<p>A typical example would be if we want to perform multiple HTTP requests at once:</p>
+                        <h1><a class="header" href="#template-strings" id="template-strings">Template strings</a></h1>
+<p>If you've been paying attention on previous sections you might have seen a
+rather odd looking syntax like <code>`Hello {name}`</code>.</p>
+<p>These are called <em>template strings</em>, and allow the programmer to conveniently
+build strings using variables from the environment.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    let a = http::get(&quot;https://google.com&quot;);
-    let b = http::get(&quot;https://amazon.com&quot;);
+    let age = 30;
+    println(`I am {age} years old!`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/basic_template.rn
+I am 30 years old!
+== () (4.5678ms)
+</code></pre>
+<p>Template strings are accelerated by the Vm, each argument uses a <em>display
+protocol</em> and it can be a very efficient to build complex strings out of it.</p>
+<h2><a class="header" href="#the-display-protocol" id="the-display-protocol">The display protocol</a></h2>
+<p>The display protocol is a function that can be implemented by any <em>external</em>
+type which allows it to be used in a template string.</p>
+<p>It expects a function with the signature <code>fn(&amp;self, buf: &amp;mut String) -&gt; fmt::Result</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt::Write as _;
 
-    loop {
-        let res = select {
-            res = a =&gt; res?,
-            res = b =&gt; res?,
-        };
+#[derive(Debug)]
+pub struct StatusCode {
+    inner: u32,
+}
 
-        match res {
-            () =&gt; break,
-            result =&gt; {
-                println(`{result.status()}`);
-            }
-        }
+impl StatusCode {
+    fn display(&amp;self, buf: &amp;mut String) -&gt; fmt::Result {
+        write!(buf, &quot;{}&quot;, self.inner)
     }
 }
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http.rn
-200 OK
-200 OK
-== () (591.0319ms)
-</code></pre>
-<p>In the above code we send two requests <em>concurrently</em>. They are both processed
-at the same time and we collect the result.</p>
-<h2><a class="header" href="#select-blocks" id="select-blocks"><code>select</code> blocks</a></h2>
-<p>A fundamental construct of async programming in Rune is the <code>select</code> block.
-It enables us to wait on a set of futures at the same time.</p>
-<p>A simple example of this is if we were to implement a simple request with a
-timeout:</p>
-<pre><code class="language-rust noplaypen">struct Timeout;
 
-fn request(timeout) {
-    let request = http::get(`http://httpstat.us/200?sleep={timeout}`);
-    let timeout = time::delay_for(time::Duration::from_secs(2));
-
-    let result = select {
-        _ = timeout =&gt; Err(Timeout),
-        res = request =&gt; res,
-    }?;
-
-    println(`{result.status()}`);
-    Ok(())
+pub fn module() -&gt; Result&lt;runestick::Module, runestick::ContextError&gt; {
+    let mut module = runestick::Module::new(&amp;[&quot;http&quot;]);
+    module.inst_fn(runestick::STRING_DISPLAY, StatusCode::display)?;
+    Ok(module)
 }
-
-fn main() {
-    if let Err(Timeout) = request(1000) {
-        println(&quot;Request timed out!&quot;);
-    }
-
-    if let Err(Timeout) = request(4000) {
-        println(&quot;Request timed out!&quot;);
-    }
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is what allows status codes to be formatted into template strings, any
+types which do not implement this protocol will fail to run.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let vec = [1, 2, 3];
+    println(`{vec}`);
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_timeout.rn
-200 OK
-Request timed out!
-== () (3.2231404s)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/not_a_template.rn
+error: virtual machine error
+  ┌─ scripts/book/4_5/not_a_template.rn:3:13
+  │
+3 │     println(`{vec}`);
+  │             ^^^^^^^ `vector` does not implement the `string_display` protocol
 </code></pre>
-<p>But wait, this is taking three seconds. We're not running the requests
-concurrently any longer!</p>
-<p>Well, while the request and the <em>timeout</em> is run concurrently, the <code>request</code>
-function is run one at-a-time.</p>
-<p>To fix this we need two new things: <code>async</code> functions and <code>.await</code>.</p>
-<h2><a class="header" href="#async-functions" id="async-functions"><code>async</code> functions</a></h2>
-<p><code>async</code> functions are just like regular functions, except that when called they
-produce a <code>Future</code>.</p>
-<p>In order to get the result of this <code>Future</code> it must be <code>.await</code>-ed.</p>
-<pre><code class="language-rust noplaypen">use std::future;
-
-struct Timeout;
-
-async fn request(timeout) {
-    let request = http::get(`http://httpstat.us/200?sleep={timeout}`);
-    let timeout = time::delay_for(time::Duration::from_secs(2));
-
-    let result = select {
-        _ = timeout =&gt; Err(Timeout),
-        res = request =&gt; res,
-    }?;
-
-    Ok(result)
-}
-
-fn main() {
-    for result in future::join([request(1000), request(4000)]).await {
-        match result {
-            Ok(result) =&gt; println(`Result: {result.status()}`),
-            Err(Timeout) =&gt; println(&quot;Request timed out!&quot;),
-        }
-    }
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/async_http_concurrent.rn
-Result: 200 OK
-Request timed out!
-== () (2.0028603s)
-</code></pre>
-<p>If you've been using future in Rust, one thing immediately pops out to you.</p>
-<p>We're using <code>.await</code> in a non-<code>async</code> function!</p>
-<p>Well, in Rune the virtual machine already comes with a Runtime. Every function
-therefore has the ability to <code>.await</code> a future, regardless of if the function
-itself is async or not.</p>
-<p>In fact, the whole Runtime is asynchronous, but that is for a future, much much
-more advanced chapter!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="6_1_try_operator.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="4_4_pattern_matching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="8_functions_closures.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="5_types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -298,13 +240,13 @@ more advanced chapter!</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="6_1_try_operator.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="4_4_pattern_matching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="8_functions_closures.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="5_types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

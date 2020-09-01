@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Functions and closures - The Rune Programming Language</title>
+        <title>Enums - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html" class="active"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html" class="active"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,99 +159,72 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#functions-and-closures" id="functions-and-closures">Functions and closures</a></h1>
-<p>We've gone over functions before, and while incredibly useful there's a few more
-tricks worth mentioning.</p>
-<p>We'll also be talking about closures, an anonymous function with the ability to
-<em>close over</em> its environment, allowing the function to use and manipulate things
-from its environment.</p>
-<h2><a class="header" href="#function-pointers" id="function-pointers">Function pointers</a></h2>
-<p>Every function can be converted into a function pointer simply by referencing
-its name without calling it.</p>
-<p>This allows for some really neat tricks, like passing in a function which
-represents the operation you want another function to use.</p>
-<pre><code class="language-rust noplaypen">fn do_thing(op) {
-    op(1, 2)
-}
+                        <h1><a class="header" href="#enums" id="enums">Enums</a></h1>
+<p>Rune has support for <em>enumerations</em>.
+These allow you to define a type with zero or more <em>variants</em>, where each
+variant can hold a distinct set of data.</p>
+<p>In a dynamic programming language enums might not seem quite as useful, but it's
+important for Rune to support them to have a level of feature parity with Rust.</p>
+<p>Even so, in this section we'll explore some cases where enums are useful.</p>
+<h2><a class="header" href="#the-option-enum" id="the-option-enum">The <code>Option</code> enum</a></h2>
+<p>Rune has native support for <code>Option</code>, the same enum available in Rust that
+allows you to represent data that can either be present with <code>Option::Some</code>, or
+absent with <code>Option::None</code>.</p>
+<pre><code class="language-rust noplaypen">use std::iter::range;
 
-fn add(a, b) {
-    a + b
-}
+fn count_numbers(limit) {
+    let limit = limit.unwrap_or(10);
 
-fn sub(a, b) {
-    a - b
+    for n in range(0, limit) {
+        println(`Count: {n}`);
+    }
 }
 
 fn main() {
-    println(`{do_thing(add)}`);
-    println(`{do_thing(sub)}`);
+    println(&quot;First count!&quot;);
+    count_numbers(None);
+
+    println(&quot;Second count!&quot;);
+    count_numbers(Some(2));
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/8/function_pointers.rn
-Result: 3
-Result: -1
-== () (5.4354ms)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/count_numbers.rn
+First count!
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+Count: 6
+Count: 7
+Count: 8
+Count: 9
+Second count!
+Count: 0
+Count: 1
+== () (9.0745ms)
 </code></pre>
-<h2><a class="header" href="#closures" id="closures">Closures</a></h2>
-<p>Closures are anonymous functions which closes over their environment.
-This means that they capture any variables used inside of the closure, allowing
-them to be used when the function is being called.</p>
-<pre><code class="language-rust noplaypen">{{#include ../../scripts/book/8/basic_closure.rn}}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/8/basic_closure.rn
-Result: 4
-Result: 3
-== () (5.4354ms)
-</code></pre>
-<blockquote>
-<p>Hint: Closures which do not capture their environment are <em>identical</em> in
-representation to a function.</p>
-</blockquote>
-<h1><a class="header" href="#functions-outside-of-the-vm" id="functions-outside-of-the-vm">Functions outside of the Vm</a></h1>
-<p>Now things get <em>really</em> interesting.
-Runestick, the virtual machine driving Rune, has support for passing function
-pointers out of the virtual machine using the <code>FnPtr</code> type.</p>
-<p>This allows you to write code that takes a function constructed in Rune, and use
-it for something else.</p>
-<p>Below we showcase this, with the help of the <code>rune!</code> macro from <code>rune-testing</code>.</p>
-<pre><code class="language-rust noplaypen">use rune_testing::*;
-
-fn main() -&gt; runestick::Result&lt;()&gt; {
-    let fn_ptr: FnPtr = rune! {
-        FnPtr =&gt; r#&quot;
-        fn foo(a, b) {
-            a + b
-        }
-
-        fn main() {
-            foo
-        }
-        &quot;#
-    };
-
-    println!(&quot;{}&quot;, block_on(fn_ptr.call::&lt;(i64, i64), i64&gt;((1, 3)))?);
-    println!(&quot;{}&quot;, block_on(fn_ptr.call::&lt;(i64, i64), i64&gt;((2, 6)))?);
-    Ok(())
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run --example call_rune_fn
-4
-8
-</code></pre>
-<p>Note that these functions by necessity have to capture their entire context and
-can take up quite a bit of space if you keep them around while cycling many
-contexts or units.</p>
+<p>Using an <code>Option</code> allows us to easily model the scenario where we have an
+optional function parameter, with a default fallback value.</p>
+<p>In the next section we'll be looking into a control flow construct which gives
+<code>Option</code> superpowers.</p>
+<p>The try operator.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="7_async.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="6_structs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="7_1_try_operator.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -261,11 +234,15 @@ contexts or units.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="7_async.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="6_structs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
+                
+                    <a rel="next" href="7_1_try_operator.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 

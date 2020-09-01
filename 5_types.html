@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Loops - The Rune Programming Language</title>
+        <title>Types - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html" class="active"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html" class="active"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,79 +159,84 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#loops" id="loops">Loops</a></h1>
-<p>Loops are a fundamental building block common to many programming languages.
-This is no exception in Rune.
-Loops allow you to execute a block of code until a specific condition is
-reached, which can be a powerful tool for accomplishing programming tasks.</p>
-<h2><a class="header" href="#break-keyword" id="break-keyword"><code>break</code> Keyword</a></h2>
-<p>Every loop documented in this section can be <em>terminated early</em> using the
-<code>break</code> keyword.</p>
-<p>When Rune encounters a break, it will immediately jump out of the loop it is
-currently in and continue running right after it.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let value = 0;
-
-    while value &lt; 100 {
-        if value &gt;= 50 {
-            break;
-        }
-
-        value = value + 1;
-    }
-
-    println(`The value is {value}`); // =&gt; The value is 50
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/while_loop.rn
-The value is 50
-== () (501.1µs)
-</code></pre>
-<h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
-<p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
-One that repeats unconditionally forever, until it is exited using another
-control flow operator like a <code>break</code> or a <code>return</code>.</p>
-<pre><code class="language-rust noplaypen">use time::Duration;
+                        <h1><a class="header" href="#types" id="types">Types</a></h1>
+<p>Types in Rune are identified uniquely by their <em>path</em>.
+A path is a scope-separated identifier, like <code>std::float</code>.
+This identifies a type object.</p>
+<p>These can be used to perform basic type checking, like this:</p>
+<pre><code class="language-rust noplaypen">use std::test::assert;
 
 fn main() {
-    loop {
-        println(&quot;loop forever&quot;);
-        time::delay_for(Duration::from_secs(1)).await;
+    assert(() is unit, &quot;units should be units&quot;);
+    assert(true is bool, &quot;bools should be bools&quot;);
+    assert('a' is char, &quot;chars should be chars&quot;);
+    assert(b'a' is byte, &quot;bytes should be bytes&quot;);
+    assert(42 is int, &quot;integers should be integers&quot;);
+    assert(42.1 is float, &quot;floats should be floats&quot;);
+    assert(&quot;hello&quot; is String, &quot;strings should be strings&quot;);
+    assert(#{&quot;hello&quot;: &quot;world&quot;} is Object, &quot;objects should be objects&quot;);
+    assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
+}
+</code></pre>
+<p>Conversely, the type check would fail if it's not valid.</p>
+<pre><code class="language-rust noplaypen">use std::test::assert;
+
+fn main() {
+    assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/bad_type_check.rn
+error: virtual machine error
+  ┌─ scripts/book/5/bad_type_check.rn:4:5
+  │
+4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
+  │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ panicked `assertion failed `vectors should be strings``
+</code></pre>
+<p>So this allows us to determine which type is which and act accordingly:</p>
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
+    if n is String {
+        &quot;n is a String&quot;
+    } else if n is Vec {
+        &quot;n is a vector&quot;
+    } else {
+        &quot;n is unknown&quot;
     }
 }
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_forever.rn
-Hello forever!
-Hello forever!
-Hello forever!
-...
-</code></pre>
-<blockquote>
-<p>Hint: If you want this one to end, you're gonna have to kill it with <code>CTRL+C</code>.</p>
-</blockquote>
-<p>We're also using an asynchronous function called <code>delay_for</code> above to avoid
-spamming our terminals too much.
-Well talk more about these in a later section.</p>
-<p>When broken out of, loops produce the value provided as an argument to the
-<code>break</code> keyword.
-By default, this is simply a unit <code>()</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let counter = 0;
 
-    let total = loop {
-        counter = counter + 1;
-
-        if counter &gt; 10 {
-            break counter;
-        }
-    };
-
-    println(`The final count is: {total}`);
+fn main() {
+    println(dynamic_type(&quot;Hello&quot;));
+    println(dynamic_type([1, 2, 3, 4]));
+    println(dynamic_type(42));
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_3/loop_break.rn
-The final count is: 11
-== () (281.5µs)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/type_check.rn
+n is a String
+n is a vector
+n is unknown
+== () (1.0544ms)
+</code></pre>
+<p>A tighter way to accomplish this could be by using pattern matching:</p>
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
+    if n is String {
+        &quot;n is a String&quot;
+    } else if n is Vec {
+        &quot;n is a vector&quot;
+    } else {
+        &quot;n is unknown&quot;
+    }
+}
+
+fn main() {
+    println(dynamic_type(&quot;Hello&quot;));
+    println(dynamic_type([1, 2, 3, 4]));
+    println(dynamic_type(42));
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/type_check.rn
+n is a String
+n is a vector
+n is unknown
+== () (1.0544ms)
 </code></pre>
 
                     </main>
@@ -239,13 +244,13 @@ The final count is: 11
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_2_control_flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="4_5_template_strings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="3_4_pattern_matching.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="5_1_primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -257,13 +262,13 @@ The final count is: 11
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_2_control_flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="4_5_template_strings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="3_4_pattern_matching.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="5_1_primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

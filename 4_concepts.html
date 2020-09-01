@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Variables - The Rune Programming Language</title>
+        <title>Concepts - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html" class="active"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html" class="active"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,97 +159,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#variables" id="variables">Variables</a></h1>
-<p>Variables in Rune are defined using the <code>let</code> keyword.
-In contrast to Rust, all variables in Rune are mutable and do not require a
-<code>mut</code> keyword to change.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let x = 5;
-    println(`The value of x is: {x}`);
-    x = 6;
-    println(`The value of x is: {x}`);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/variables.rn
-The value of x is: 5
-The value of x is: 6
-</code></pre>
-<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference Counting and Ownership</a></h2>
-<p>In rune, all variables are reference counted and can be shared across multiple
-variables.</p>
-<p>This means that all variables in rune have <em>shared ownership</em>.
-This means that every variable that points to an object on the stack, points to
-<em>the same instance</em> of that object.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let object = #{field: 1};
-    let object2 = object;
-    println(`{object.field}`);
-    object2.field = 2;
-    println(`{object2.field}`);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/shared_ownership.rn
-1
-2
-== () (913.4µs)
-</code></pre>
-<p>This can potentially cause issues if we call an external function that expects
-to take ownership of its arguments.</p>
-<p>We say that functions like these <em>move</em> their argument, and if we try to use a
-variable which has been moved the virtual machine will error.</p>
-<blockquote>
-<p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
-take its argument and free it.</p>
-</blockquote>
-<pre><code class="language-rust noplaypen">fn main() {
-    let object = #{field: 1};
-    let object2 = object;
-    println(`field: {object.field}`);
-    drop(object2);
-    println(`field: {object.field}`);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/take_argument.rn
-field: 1
-error: virtual machine error
-  ┌─ scripts/book/3_1/take_argument.rn:6:22
-  │
-6 │     println(`field: {object.field}`);
-  │                      ^^^^^^^^^^^^ failed to access value: not accessible for shared access
-
-</code></pre>
-<p>If you need to, you can test if a variable is still accessible with
-<code>is_readable</code> and <code>is_writable</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let object = #{field: 1};
-    let object2 = object;
-    println(`field: {object.field}`);
-    drop(object2);
-
-    if is_readable(object) {
-        println(`field: {object.field}`);
-    } else {
-        println(&quot;object is no longer readable 😢&quot;);
-    }
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_1/is_readable.rn
-field: 1
-object is no longer readable 😢
-</code></pre>
+                        <h1><a class="header" href="#concepts" id="concepts">Concepts</a></h1>
+<p>This chapter covers common concepts that appear in almost all programming
+languages, and how they work in Rune.</p>
+<p>These should be familiar to anyone who's used an imperative programming
+languages before.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="3_getting_started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="3_2_control_flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="4_1_variables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -261,13 +188,13 @@ object is no longer readable 😢
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="3_getting_started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="3_2_control_flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="4_1_variables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

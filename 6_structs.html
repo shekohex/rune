@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Template strings - The Rune Programming Language</title>
+        <title>Structs - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="3_5_template_strings.html" class="active"><strong aria-hidden="true">3.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="6_structs.html" class="active"><strong aria-hidden="true">6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="7_enums.html"><strong aria-hidden="true">7.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="7_1_try_operator.html"><strong aria-hidden="true">7.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,62 +159,83 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#template-strings" id="template-strings">Template strings</a></h1>
-<p>If you've been paying attention on previous sections you might have seen a
-rather odd looking syntax like <code>`Hello {name}`</code>.</p>
-<p>These are called <em>template strings</em>, and allow the programmer to conveniently
-build strings using variables from the environment.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let age = 30;
-    println(`I am {age} years old!`);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_5/basic_template.rn
-I am 30 years old!
-== () (4.5678ms)
-</code></pre>
-<p>Template strings are accelerated by the Vm, each argument uses a <em>display
-protocol</em> and it can be a very efficient to build complex strings out of it.</p>
-<h2><a class="header" href="#the-display-protocol" id="the-display-protocol">The display protocol</a></h2>
-<p>The display protocol is a function that can be implemented by any <em>external</em>
-type which allows it to be used in a template string.</p>
-<p>It expects a function with the signature <code>fn(&amp;self, buf: &amp;mut String) -&gt; fmt::Result</code>.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use std::fmt::Write as _;
-
-#[derive(Debug)]
-pub struct StatusCode {
-    inner: u32,
+                        <h1><a class="header" href="#structs" id="structs">Structs</a></h1>
+<p>Structs are like objects, except that they have a predefined structure with a
+set of keys that are known at compile time and guaranteed to be defined.</p>
+<p>Structs can also, like most types, have an <code>impl</code> block associated with them
+which creates instance functions that you can call on an instance of that
+struct.</p>
+<pre><code class="language-rust noplaypen">struct User {
+    username,
+    active,
 }
 
-impl StatusCode {
-    fn display(&amp;self, buf: &amp;mut String) -&gt; fmt::Result {
-        write!(buf, &quot;{}&quot;, self.inner)
+impl User {
+    fn set_active(self, active) {
+        self.active = active;
+    }
+
+    fn describe(self) {
+        if self.active {
+            println(`{self.username} is active`);
+        } else {
+            println(`{self.username} is inactive`);
+        }
     }
 }
 
-pub fn module() -&gt; Result&lt;runestick::Module, runestick::ContextError&gt; {
-    let mut module = runestick::Module::new(&amp;[&quot;http&quot;]);
-    module.inst_fn(runestick::STRING_DISPLAY, StatusCode::display)?;
-    Ok(module)
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>This is what allows status codes to be formatted into template strings, any
-types which do not implement this protocol will fail to run.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    let vec = [1, 2, 3];
-    println(`{vec}`);
+fn main() {
+    let user = User {
+        username: &quot;setbac&quot;,
+        active: false,
+    };
+
+    user.describe();
+    user.set_active(true);
+    user.describe();
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/3_5/not_a_template.rn
-error: virtual machine error
-  ┌─ scripts/book/3_5/not_a_template.rn:3:13
-  │
-3 │     println(`{vec}`);
-  │             ^^^^^^^ `vector` does not implement the `string_display` protocol
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/6/user_database.rn
+setbac is inactive
+setbac is active
+== () (6.2095ms)
+</code></pre>
+<p>Structs can also be pattern matched, like most types.</p>
+<p>But since the fields of a struct are known at compile time, the compiler can
+ensure that you're only using fields which are defined.</p>
+<pre><code class="language-rust noplaypen">struct User {
+    username,
+    active,
+}
+
+impl User {
+    fn describe(self) {
+        match self {
+            User { username: &quot;setbac&quot;, .. } =&gt; {
+                println(&quot;Yep, it's setbac.&quot;);
+            }
+            User { username, .. } =&gt; {
+                println(`Other user: {username}.`);
+            }
+        }
+    }
+}
+
+fn main() {
+    let user = User {
+        username: &quot;setbac&quot;,
+        active: false,
+    };
+
+    user.describe();
+    user.username = &quot;newt&quot;;
+    user.describe();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/6/struct_matching.rn
+Yep, it's setbac.
+Other user: newt.
+== () (1.0652ms)
 </code></pre>
 
                     </main>
@@ -222,13 +243,13 @@ error: virtual machine error
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="3_4_pattern_matching.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="5_5_functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="4_types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="7_enums.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -240,13 +261,13 @@ error: virtual machine error
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="3_4_pattern_matching.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="5_5_functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="4_types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="7_enums.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
