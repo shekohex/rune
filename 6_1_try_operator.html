@@ -164,7 +164,7 @@
 return early in case the value being tried over has a certain value.</p>
 <p>For <code>Option</code>, this causes the function to return if it has the <code>Option::None</code>
 variant.</p>
-<pre><code class="language-rust noplayground">fn checked_div_mod(a, b) {
+<pre><code class="language-rust noplaypen">fn checked_div_mod(a, b) {
     let div = a.checked_div(b)?;
     Some((div, a % b))
 }

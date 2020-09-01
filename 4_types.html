@@ -164,7 +164,7 @@
 A path is a scope-separated identifier, like <code>std::float</code>.
 This identifies a type object.</p>
 <p>These can be used to perform basic type checking, like this:</p>
-<pre><code class="language-rune">use std::test::assert;
+<pre><code class="language-rust noplaypen">use std::test::assert;
 
 fn main() {
     assert(() is unit, &quot;units should be units&quot;);
@@ -190,7 +190,7 @@ fn main() {
   │     error in user-defined function
 </code></pre>
 <p>So this allows us to determine which type is which and act accordingly:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
     if n is String {
         dbg(&quot;n is a String&quot;);
     } else if n is Vec {
@@ -211,7 +211,7 @@ fn main() {
 0 = String(&quot;I don\'t know n&quot;)
 </code></pre>
 <p>A tighter way to accomplish this would be with a type switch:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
     switch n {
         n if n is String =&gt; dbg(&quot;n is a String&quot;),
         n if n is Vec =&gt; dbg(&quot;n is an Vec&quot;),

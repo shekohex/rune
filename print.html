@@ -577,7 +577,7 @@ What, where did you get that?
 A path is a scope-separated identifier, like <code>std::float</code>.
 This identifies a type object.</p>
 <p>These can be used to perform basic type checking, like this:</p>
-<pre><code class="language-rune">use std::test::assert;
+<pre><code class="language-rust noplaypen">use std::test::assert;
 
 fn main() {
     assert(() is unit, &quot;units should be units&quot;);
@@ -603,7 +603,7 @@ fn main() {
   │     error in user-defined function
 </code></pre>
 <p>So this allows us to determine which type is which and act accordingly:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
     if n is String {
         dbg(&quot;n is a String&quot;);
     } else if n is Vec {
@@ -624,7 +624,7 @@ fn main() {
 0 = String(&quot;I don\'t know n&quot;)
 </code></pre>
 <p>A tighter way to accomplish this would be with a type switch:</p>
-<pre><code class="language-rune">fn dynamic_type(n) {
+<pre><code class="language-rust noplaypen">fn dynamic_type(n) {
     switch n {
         n if n is String =&gt; dbg(&quot;n is a String&quot;),
         n if n is Vec =&gt; dbg(&quot;n is an Vec&quot;),
@@ -810,7 +810,7 @@ set of keys that are known at compile time and guaranteed to be defined.</p>
 <p>Structs can also, like most types, have an <code>impl</code> block associated with them
 which creates instance functions that you can call on an instance of that
 struct.</p>
-<pre><code>struct User {
+<pre><code class="language-rust noplaypen">struct User {
     username,
     active,
 }
@@ -846,7 +846,7 @@ setbac is active
 == Unit (6.2095ms)
 </code></pre>
 <p>Structs can also be pattern matches over, like most types.</p>
-<pre><code>struct User {
+<pre><code class="language-rust noplaypen">struct User {
     username,
     active,
 }
@@ -891,7 +891,7 @@ important for Rune to support them to have a level of feature parity with Rust.<
 <p>Rune has native support for <code>Option</code>, the same enum available in Rust that
 allows you to represent data that can either be present with <code>Option::Some</code>, or
 absent with <code>Option::None</code>.</p>
-<pre><code class="language-rust noplayground">use std::iter::range;
+<pre><code class="language-rust noplaypen">use std::iter::range;
 
 fn count_numbers(limit) {
     let limit = limit.unwrap_or(10);
@@ -936,7 +936,7 @@ optional function parameter, with a default fallback value.</p>
 return early in case the value being tried over has a certain value.</p>
 <p>For <code>Option</code>, this causes the function to return if it has the <code>Option::None</code>
 variant.</p>
-<pre><code class="language-rust noplayground">fn checked_div_mod(a, b) {
+<pre><code class="language-rust noplaypen">fn checked_div_mod(a, b) {
     let div = a.checked_div(b)?;
     Some((div, a % b))
 }
@@ -1074,7 +1074,7 @@ more advanced chapter!</p>
 <p>Closures are anonymous functions which closes over their environment.
 This means that they capture any variables used inside of the closure, allowing
 them to be used when the function is being called.</p>
-<pre><code class="language-rust noplayground">{{#include ../../scripts/8/basic_closure.rn}}
+<pre><code class="language-rust noplaypen">{{#include ../../scripts/8/basic_closure.rn}}
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/8/basic_closure.rn
 Result: 4
