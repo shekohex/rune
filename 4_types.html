@@ -192,32 +192,48 @@ fn main() {
 <p>So this allows us to determine which type is which and act accordingly:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
     if n is String {
-        dbg(&quot;n is a String&quot;);
+        &quot;n is a String&quot;
     } else if n is Vec {
-        dbg(&quot;n is a vector&quot;);
+        &quot;n is a vector&quot;
     } else {
-        dbg(&quot;n is unknown&quot;);
+        &quot;n is unknown&quot;
     }
 }
 
 fn main() {
-    dynamic_type(&quot;Hello&quot;);
-    dynamic_type([1, 2, 3, 4]);
-    dynamic_type(42);
+    println(dynamic_type(&quot;Hello&quot;));
+    println(dynamic_type([1, 2, 3, 4]));
+    println(dynamic_type(42));
 }
 </code></pre>
-<pre><code class="language-text">0 = String(&quot;n is a string&quot;)
-0 = String(&quot;n is a vector&quot;)
-0 = String(&quot;I don\'t know n&quot;)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/type_check.rn
+n is a String
+n is a vector
+n is unknown
+== Unit (1.0544ms)
 </code></pre>
-<p>A tighter way to accomplish this would be with a type switch:</p>
+<p>A tighter way to accomplish this could be by using pattern matching:</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
-    switch n {
-        n if n is String =&gt; dbg(&quot;n is a String&quot;),
-        n if n is Vec =&gt; dbg(&quot;n is an Vec&quot;),
-        _ =&gt; dbg(&quot;n is unknown&quot;),
+    if n is String {
+        &quot;n is a String&quot;
+    } else if n is Vec {
+        &quot;n is a vector&quot;
+    } else {
+        &quot;n is unknown&quot;
     }
 }
+
+fn main() {
+    println(dynamic_type(&quot;Hello&quot;));
+    println(dynamic_type([1, 2, 3, 4]));
+    println(dynamic_type(42));
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4/type_check.rn
+n is a String
+n is a vector
+n is unknown
+== Unit (1.0544ms)
 </code></pre>
 
                     </main>
