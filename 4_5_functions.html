@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Getting Started - The Rune Programming Language</title>
+        <title>Functions - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html" class="active"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html"><strong aria-hidden="true">4.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="4_6_template_strings.html"><strong aria-hidden="true">4.6.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="8_1_closures.html"><strong aria-hidden="true">8.1.</strong> Closures</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="2_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="3_concepts.html"><strong aria-hidden="true">3.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3_1_variables.html"><strong aria-hidden="true">3.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="3_2_control_flow.html"><strong aria-hidden="true">3.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="3_3_loops.html"><strong aria-hidden="true">3.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="3_4_pattern_matching.html"><strong aria-hidden="true">3.4.</strong> Pattern Matching</a></li></ol></li><li class="chapter-item expanded "><a href="4_types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_primitives.html"><strong aria-hidden="true">4.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="4_2_vectors.html"><strong aria-hidden="true">4.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="4_3_objects.html"><strong aria-hidden="true">4.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="4_4_tuples.html"><strong aria-hidden="true">4.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="4_5_functions.html" class="active"><strong aria-hidden="true">4.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="4_6_template_strings.html"><strong aria-hidden="true">4.6.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_structs.html"><strong aria-hidden="true">5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="6_enums.html"><strong aria-hidden="true">6.</strong> Enums</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="6_1_try_operator.html"><strong aria-hidden="true">6.1.</strong> Try operator</a></li></ol></li><li class="chapter-item expanded "><a href="7_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="8_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="8_1_closures.html"><strong aria-hidden="true">8.1.</strong> Closures</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,56 +159,61 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
-<p>The first thing you need to learn about in Rune is the <code>dbg</code> function.
-This is used to &quot;debug&quot; whatever values are provided to it, and can be used
-by programmers in any environment to look at values in their program.</p>
-<p>The <code>dbg</code> function output information on its arguments to stdout, but its exact
-behavior is specific to the environment in which Rune is used.</p>
-<p>When embedded into a larger application it might not be suitable to output to
-stdout, so it might for example have been configured to write to a log file
-instead.</p>
-<p>Rune does also provide a <code>print</code> and <code>println</code> functions which can be used to
-write directly to stdout, but these might be disabled if they're not suitable
-for the environment used.</p>
-<p>For now, lets use <code>println</code> when printing to stdout.</p>
+                        <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Functions are truly pervasive when it comes to programming.
+They encapsulate a piece of functionality and provides a contract of how they
+work that can be relied on to build more complex programs.</p>
+<p>In Rune, functions are declared with the <code>fn</code> keyword.
+You've already seen one which is used in every example, <code>main</code>.
+This is not a special function, but is simply what the Rune cli looks for when
+deciding what to execute.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     println(&quot;Hello World&quot;);
 }
 </code></pre>
-<p>You can execute this with the <code>rune-cli</code>, a commandline interface to the rune
-language that comes with this project.</p>
-<p>After each code snipped there will be a terminal showing the command used, and
-its output.
-Like this:</p>
-<pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/main_function.rn
 Hello World
-== Unit (412.2µs)
+== Unit (277.8µs)
 </code></pre>
-<p>At the end of the script you see this rather odd looking line:</p>
-<pre><code class="language-text">== Unit (412.2µs)
+<p>In Rune, you don't have to specify the return type of a function.
+Given that Rune is a dynamic programming language, this allows a function to
+return anything.
+Every completely distinct types.</p>
+<pre><code class="language-rust noplaypen">fn foo(condition) {
+    if condition {
+        &quot;Hello&quot;
+    } else {
+        1
+    }
+}
+
+fn main() {
+    println(`{foo(true)}`);
+    println(`{foo(false)}`);
+}
 </code></pre>
-<p>This simply means that the script evaluated to a unit, or a <code>()</code>.
-And that the execution took <code>412</code> microseconds.</p>
-<blockquote>
-<p>Cool Hint:
-Any function that doesn't have a return value returns a unit.</p>
-</blockquote>
-<p>So now you know how to run Rune scripts. Well done!</p>
-<p>Let's move on with the rest of the book.</p>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/return_value.rn
+Hello
+1
+== Unit (8.437ms)
+</code></pre>
+<p>Depending on who you talk to, this is either the best things since sliced bread
+or quite scary.
+It allows for a larger ability to express a program, but at the same time it can
+be harder to reason on what your program will do.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="1_introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="4_4_tuples.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="3_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="4_6_template_strings.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -220,13 +225,13 @@ Any function that doesn't have a return value returns a unit.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="1_introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="4_4_tuples.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="3_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="4_6_template_strings.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
