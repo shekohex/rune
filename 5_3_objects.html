@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html" class="active"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html" class="active"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,7 +160,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
-<p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
+<p>Objects are anonymous maps, which support defining and using arbitrary string
+keys.</p>
 <pre><code class="language-rust noplaypen">use std::test::assert;
 
 fn main() {
@@ -192,8 +193,8 @@ key did not exist
 </code></pre>
 <p>These are useful because they allow their data to be specified dynamically,
 which is exactly the same use case as storing unknown JSON.</p>
-<p>One of the largest motivations for <em>Rune</em> to have anonymous objects is so that
-we can handle JSON with an unknown structure.</p>
+<p>One of the biggest motivations for <em>Rune</em> to have anonymous objects is so that
+we can natively data with unknown structure.</p>
 <pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
     let limit = limit.unwrap_or(10);
 
@@ -233,6 +234,37 @@ cba225dad143779a0a9543cfb05cde9710083af5
 39ac97ab4ebe26118e807eb91c7656ab95b1fcac
 3f6310eeeaca22d0373cc11d8b34d346bd12a364
 == () (331.3324ms)
+</code></pre>
+<h2><a class="header" href="#using-objects-from-rust" id="using-objects-from-rust">Using objects from Rust</a></h2>
+<p>Objects are represented externally as the <a href="https://docs.rs/runestick/0/runestick/type.Object.html"><code>Object</code></a> type alias. The keys are
+always strings, but its value must be specified as the sole type parameter.
+Note that the dynamic <a href="https://docs.rs/runestick/0/runestick/enum.Value.html"><code>Value</code></a> can be used if the type is unknown.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+use runestick::{Object, Value};
+
+fn main() -&gt; Result&lt;()&gt; {
+    let mut object = Object::&lt;Value&gt;::new();
+    object.insert(String::from(&quot;Hello&quot;), Value::from(42i64));
+
+    let object: Object&lt;String&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (object,),
+        r#&quot;
+        fn calc(input) {
+            dbg(input[&quot;Hello&quot;]);
+            input[&quot;Hello&quot;] = &quot;World&quot;;
+            input
+        }
+        &quot;#,
+    )?;
+
+    println!(&quot;{:?}&quot;, object.get(&quot;Hello&quot;));
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example object
+42
+Some(&quot;World&quot;)
 </code></pre>
 
                     </main>

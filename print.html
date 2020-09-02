@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -796,10 +796,10 @@ n is a vector
 n is unknown
 == () (1.0544ms)
 </code></pre>
-<h1><a class="header" href="#primitives-and-references" id="primitives-and-references">Primitives and References</a></h1>
-<p>Primitives are values stored immediately on the stack.
-In Rust terminology, these types are <code>Copy</code>, so reassigning them to different
-values will create distinct copies of the underlying value.</p>
+<h1><a class="header" href="#primitive-and-reference-types" id="primitive-and-reference-types">Primitive and reference types</a></h1>
+<p>Primitives are values stored immediately on the stack. In Rust terminology,
+these types are <code>Copy</code>, so reassigning them to different values will create
+distinct copies of the underlying value.</p>
 <p>The primitives available in rune are:</p>
 <ul>
 <li>the unit <code>()</code>.</li>
@@ -808,6 +808,8 @@ values will create distinct copies of the underlying value.</p>
 <li>characters, like <code>'今'</code>.</li>
 <li>integers, like <code>42</code>.</li>
 <li>floats, like <code>3.1418</code>.</li>
+<li>static strings.</li>
+<li>types.</li>
 </ul>
 <p>You can see that these bytes are <code>Copy</code>, because assigning them to a different
 variable will cause a separate copy of the variable to be used.</p>
@@ -826,8 +828,7 @@ variable will cause a separate copy of the variable to be used.</p>
 </code></pre>
 <p>In contrast, other types like <em>strings</em> are stored by reference on the stack.</p>
 <p>Assigning them to a different variable will only copy the reference and increase
-its reference count, but they point to the same underlying data.
-As shown here:</p>
+its count, but they point to the same underlying data. As shown here.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let a = String::from_str(&quot;Hello&quot;);
     let b = a;
@@ -842,8 +843,8 @@ Hello World
 == () (9.7406ms)
 </code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
-<p>A vector is a native data structure of Rune which is a dynamic list of values.
-A vector isn't typed, and can store <em>any</em> rune values.</p>
+<p>A vector is a native data structure of Rune which is a dynamic list of values. A
+vector isn't typed, and can store <em>any</em> rune values.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
@@ -863,9 +864,8 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
 == () (5.0674ms)
 </code></pre>
 <p>As you can see, you can iterate over a vector because it implements the iterator
-protocol.</p>
-<p>It is also possible to create and use an iterator manually using <code>Vec::iter</code>,
-giving you more control over it.</p>
+protocol. It is also possible to create and use an iterator manually using
+<code>Vec::iter</code>, giving you more control over it.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
@@ -879,8 +879,67 @@ giving you more control over it.</p>
 &quot;Hello&quot;
 == () (2.9116ms)
 </code></pre>
+<h2><a class="header" href="#using-vectors-from-rust" id="using-vectors-from-rust">Using vectors from Rust</a></h2>
+<p>Vectors are represented externally as the standard <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+
+fn main() -&gt; Result&lt;()&gt; {
+    let input: Vec&lt;i64&gt; = vec![1, 2, 3, 4];
+
+    let output: Vec&lt;i64&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (input,),
+        r#&quot;
+        fn calc(input) {
+            let output = 0;
+
+            for value in input {
+                output += value;
+            }
+
+            [output]
+        }
+        &quot;#,
+    )?;
+
+    println!(&quot;{:?}&quot;, output);
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example vector
+[10]
+</code></pre>
+<p>If you have a vector which have values of non-uniform types, you can use 
+<a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+use runestick::VecTuple;
+
+fn main() -&gt; Result&lt;()&gt; {
+    let input: VecTuple&lt;(i64, String)&gt; = VecTuple::new((1, String::from(&quot;Hello&quot;)));
+
+    let output: VecTuple&lt;(i64, String)&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (input,),
+        r#&quot;
+        fn calc(input) {
+            let a = input[0] + 1;
+            let b = `{input[1]} World`;
+            [a, b]
+        }
+        &quot;#,
+    )?;
+
+    let VecTuple((a, b)) = output;
+    println!(&quot;({:?}, {:?})&quot;, a, b);
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example vec_tuple
+(2, &quot;Hello World&quot;)
+</code></pre>
 <h1><a class="header" href="#objects" id="objects">Objects</a></h1>
-<p>Objects are anonymous hash maps, which support defining arbitrary string keys.</p>
+<p>Objects are anonymous maps, which support defining and using arbitrary string
+keys.</p>
 <pre><code class="language-rust noplaypen">use std::test::assert;
 
 fn main() {
@@ -912,8 +971,8 @@ key did not exist
 </code></pre>
 <p>These are useful because they allow their data to be specified dynamically,
 which is exactly the same use case as storing unknown JSON.</p>
-<p>One of the largest motivations for <em>Rune</em> to have anonymous objects is so that
-we can handle JSON with an unknown structure.</p>
+<p>One of the biggest motivations for <em>Rune</em> to have anonymous objects is so that
+we can natively data with unknown structure.</p>
 <pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
     let limit = limit.unwrap_or(10);
 
@@ -954,11 +1013,42 @@ cba225dad143779a0a9543cfb05cde9710083af5
 3f6310eeeaca22d0373cc11d8b34d346bd12a364
 == () (331.3324ms)
 </code></pre>
+<h2><a class="header" href="#using-objects-from-rust" id="using-objects-from-rust">Using objects from Rust</a></h2>
+<p>Objects are represented externally as the <a href="https://docs.rs/runestick/0/runestick/type.Object.html"><code>Object</code></a> type alias. The keys are
+always strings, but its value must be specified as the sole type parameter.
+Note that the dynamic <a href="https://docs.rs/runestick/0/runestick/enum.Value.html"><code>Value</code></a> can be used if the type is unknown.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+use runestick::{Object, Value};
+
+fn main() -&gt; Result&lt;()&gt; {
+    let mut object = Object::&lt;Value&gt;::new();
+    object.insert(String::from(&quot;Hello&quot;), Value::from(42i64));
+
+    let object: Object&lt;String&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (object,),
+        r#&quot;
+        fn calc(input) {
+            dbg(input[&quot;Hello&quot;]);
+            input[&quot;Hello&quot;] = &quot;World&quot;;
+            input
+        }
+        &quot;#,
+    )?;
+
+    println!(&quot;{:?}&quot;, object.get(&quot;Hello&quot;));
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example object
+42
+Some(&quot;World&quot;)
+</code></pre>
 <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are a fixed-size sequences of values.
-Like all other containers in Rune, tuples can contains any values.</p>
-<p>In fact, they can even change the <em>type</em> of the values stored in them, if
-needed.</p>
+<p>Tuples in Rune are a fixed-size sequences of values. Similarly to a vector
+tuples can contains any sequence of values. But there's no way to change the
+size of a tuple.</p>
+<p>Tuples are represented externally using the <a href="https://docs.rs/runestick/0/runestick/struct.Tuple.html"><code>Tuple</code></a> type.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
     dbg(values)
@@ -1004,13 +1094,12 @@ fn main() {
 == () (7.7892ms)
 </code></pre>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
-<p>Functions are truly pervasive when it comes to programming.
-They encapsulate a piece of functionality and provides a contract of how they
-work that can be relied on to build more complex programs.</p>
-<p>In Rune, functions are declared with the <code>fn</code> keyword.
-You've already seen one which is used in every example, <code>main</code>.
-This is not a special function, but is simply what the Rune cli looks for when
-deciding what to execute.</p>
+<p>Functions are truly pervasive when it comes to programming. They encapsulate a
+piece of functionality and provides a contract of how they work that can be
+relied on to build more complex programs.</p>
+<p>In Rune, functions are declared with the <code>fn</code> keyword. You've already seen one
+which is used in every example, <code>main</code>. This is not a special function, but is
+simply what the Rune cli looks for when deciding what to execute.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     println(&quot;Hello World&quot;);
 }
@@ -1019,10 +1108,9 @@ deciding what to execute.</p>
 Hello World
 == () (277.8µs)
 </code></pre>
-<p>In Rune, you don't have to specify the return type of a function.
-Given that Rune is a dynamic programming language, this allows a function to
-return anything.
-Every completely distinct types.</p>
+<p>In Rune, you don't have to specify the return type of a function. Given that
+Rune is a dynamic programming language, this allows a function to return
+anything. Every completely distinct types.</p>
 <pre><code class="language-rust noplaypen">fn foo(condition) {
     if condition {
         &quot;Hello&quot;
@@ -1042,9 +1130,8 @@ Hello
 == () (8.437ms)
 </code></pre>
 <p>Depending on who you talk to, this is either the best things since sliced bread
-or quite scary.
-It allows for a larger ability to express a program, but at the same time it can
-be harder to reason on what your program will do.</p>
+or quite scary. It allows for a larger ability to express a program, but at the
+same time it can be harder to reason on what your program will do.</p>
 <h1><a class="header" href="#structs" id="structs">Structs</a></h1>
 <p>Structs are like objects, except that they have a predefined structure with a
 set of keys that are known at compile time and guaranteed to be defined.</p>
@@ -1124,9 +1211,8 @@ Other user: newt.
 == () (1.0652ms)
 </code></pre>
 <h1><a class="header" href="#enums" id="enums">Enums</a></h1>
-<p>Rune has support for <em>enumerations</em>.
-These allow you to define a type with zero or more <em>variants</em>, where each
-variant can hold a distinct set of data.</p>
+<p>Rune has support for <em>enumerations</em>. These allow you to define a type with zero
+or more <em>variants</em>, where each variant can hold a distinct set of data.</p>
 <p>In a dynamic programming language enums might not seem quite as useful, but it's
 important for Rune to support them to have a level of feature parity with Rust.</p>
 <p>Even so, in this section we'll explore some cases where enums are useful.</p>

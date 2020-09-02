@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html" class="active"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html" class="active"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,13 +160,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
-<p>Functions are truly pervasive when it comes to programming.
-They encapsulate a piece of functionality and provides a contract of how they
-work that can be relied on to build more complex programs.</p>
-<p>In Rune, functions are declared with the <code>fn</code> keyword.
-You've already seen one which is used in every example, <code>main</code>.
-This is not a special function, but is simply what the Rune cli looks for when
-deciding what to execute.</p>
+<p>Functions are truly pervasive when it comes to programming. They encapsulate a
+piece of functionality and provides a contract of how they work that can be
+relied on to build more complex programs.</p>
+<p>In Rune, functions are declared with the <code>fn</code> keyword. You've already seen one
+which is used in every example, <code>main</code>. This is not a special function, but is
+simply what the Rune cli looks for when deciding what to execute.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     println(&quot;Hello World&quot;);
 }
@@ -175,10 +174,9 @@ deciding what to execute.</p>
 Hello World
 == () (277.8µs)
 </code></pre>
-<p>In Rune, you don't have to specify the return type of a function.
-Given that Rune is a dynamic programming language, this allows a function to
-return anything.
-Every completely distinct types.</p>
+<p>In Rune, you don't have to specify the return type of a function. Given that
+Rune is a dynamic programming language, this allows a function to return
+anything. Every completely distinct types.</p>
 <pre><code class="language-rust noplaypen">fn foo(condition) {
     if condition {
         &quot;Hello&quot;
@@ -198,9 +196,8 @@ Hello
 == () (8.437ms)
 </code></pre>
 <p>Depending on who you talk to, this is either the best things since sliced bread
-or quite scary.
-It allows for a larger ability to express a program, but at the same time it can
-be harder to reason on what your program will do.</p>
+or quite scary. It allows for a larger ability to express a program, but at the
+same time it can be harder to reason on what your program will do.</p>
 
                     </main>
 

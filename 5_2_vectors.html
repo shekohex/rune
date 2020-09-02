@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html" class="active"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html" class="active"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,8 +160,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
-<p>A vector is a native data structure of Rune which is a dynamic list of values.
-A vector isn't typed, and can store <em>any</em> rune values.</p>
+<p>A vector is a native data structure of Rune which is a dynamic list of values. A
+vector isn't typed, and can store <em>any</em> rune values.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
@@ -181,9 +181,8 @@ A vector isn't typed, and can store <em>any</em> rune values.</p>
 == () (5.0674ms)
 </code></pre>
 <p>As you can see, you can iterate over a vector because it implements the iterator
-protocol.</p>
-<p>It is also possible to create and use an iterator manually using <code>Vec::iter</code>,
-giving you more control over it.</p>
+protocol. It is also possible to create and use an iterator manually using
+<code>Vec::iter</code>, giving you more control over it.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
@@ -196,6 +195,64 @@ giving you more control over it.</p>
 42
 &quot;Hello&quot;
 == () (2.9116ms)
+</code></pre>
+<h2><a class="header" href="#using-vectors-from-rust" id="using-vectors-from-rust">Using vectors from Rust</a></h2>
+<p>Vectors are represented externally as the standard <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+
+fn main() -&gt; Result&lt;()&gt; {
+    let input: Vec&lt;i64&gt; = vec![1, 2, 3, 4];
+
+    let output: Vec&lt;i64&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (input,),
+        r#&quot;
+        fn calc(input) {
+            let output = 0;
+
+            for value in input {
+                output += value;
+            }
+
+            [output]
+        }
+        &quot;#,
+    )?;
+
+    println!(&quot;{:?}&quot;, output);
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example vector
+[10]
+</code></pre>
+<p>If you have a vector which have values of non-uniform types, you can use 
+<a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+use runestick::VecTuple;
+
+fn main() -&gt; Result&lt;()&gt; {
+    let input: VecTuple&lt;(i64, String)&gt; = VecTuple::new((1, String::from(&quot;Hello&quot;)));
+
+    let output: VecTuple&lt;(i64, String)&gt; = run(
+        &amp;[&quot;calc&quot;],
+        (input,),
+        r#&quot;
+        fn calc(input) {
+            let a = input[0] + 1;
+            let b = `{input[1]} World`;
+            [a, b]
+        }
+        &quot;#,
+    )?;
+
+    let VecTuple((a, b)) = output;
+    println!(&quot;({:?}, {:?})&quot;, a, b);
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example vec_tuple
+(2, &quot;Hello World&quot;)
 </code></pre>
 
                     </main>
