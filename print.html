@@ -163,7 +163,7 @@
                     <main>
                         <h1><a class="header" href="#foreword" id="foreword">Foreword</a></h1>
 <blockquote>
-<p>&quot;Why am I building a programming language? Is it even possible?&quot;</p>
+<p>&quot;Why am I making a programming language?&quot;</p>
 </blockquote>
 <p>This question keeps rolling around in my head as I'm typing out the code that is
 slowly shaping into <em>Rune</em>. Programming is like magic. You imagine it in your
@@ -172,86 +172,83 @@ before.</p>
 <p>Truth be told, I'm scared that people will tell me that I'm wasting my time.
 This has already been done, or &quot;Why not just use X?&quot;. An X so glaringly obvious
 that all of my efforts are wasted.</p>
-<p>But you actually don't need a reason. It can simply be for The Joy of Creating,
-and then it's just you spending your own time as a hobby. No harm done.</p>
-<p>Anyway, here's why im making Rune.</p>
+<p>But you actually don't need a reason. It can simply be for The <a href="https://en.wikipedia.org/wiki/The_Joy_of_Painting">Joy of
+Creating</a>, and then it's just you spending your own time as a hobby. No harm
+done. But I want to talk about why I'm making Rune beyond just for fun. So I'm
+dedicating this foreword to it. Because I want others to benefit from this I'm
+obligated to describe why it might matter to them.</p>
+<p>So here's why I started making a new programming language.</p>
 <h2><a class="header" href="#the-other-project" id="the-other-project">The other project</a></h2>
-<p>I've spent a lot of effort working on is <a href="https://github.com/udoprog/OxidizeBot">OxidizeBot</a>, a Twitch bot that
-streamers can use to add commands and other interactive things in their chat.
-I built it for myself while streaming, but I'm also an aggressive generaliser.
-When adding features I always spend way to much time tinkering with it.
-Making it as generic as possible, so it can solve more than just one problem.</p>
-<p>And when it's a personal project, I just don't care about being efficient.
-I care much more deeply about doing things the right way.</p>
+<p>I've spent a lot of effort working on <a href="https://github.com/udoprog/OxidizeBot">OxidizeBot</a>, a Twitch bot that streamers
+can use to add commands and other interactive things in their chat. I built it
+for myself while streaming, but I'm also a generaliser. When adding features I
+always spend way to much time tinkering with it. Making it as generic as
+possible, so it can solve more than just one problem. And when it's a personal
+project, I just don't care about being efficient. I care much more deeply about
+doing things the right way.</p>
 <p>...</p>
-<p>Ok, I <em>sometimes</em> do that professionally as well.</p>
-<p>Anyway, that means the bot isn't incredibly specialized to my needs and could
-be used by others. It's starting to see a little bit of that use now, which is a
-lot of fun. I made something which helps people to something cool.</p>
-<p>All the commands in the bot are written in <a href="https://rust-lang.org">Rust</a>, and compiled straight into
-the bot. This is nice because Rust is an incredible language. But Rust is also
+<p>Ok, I <em>sometimes</em> do that professionally as well. But a working environment is
+much more constrained.</p>
+<p>Anyway, that means the bot isn't incredibly specialized to my needs and can be
+used by others. It's starting to see a little bit of that use now, which is a
+lot of fun. I made something which helps people do something cool.</p>
+<p>All the commands in the bot are written in <a href="https://rust-lang.org">Rust</a>, and <a href="https://github.com/udoprog/OxidizeBot/tree/master/bot/src/module">compiled straight into
+the bot</a>. This is nice because Rust is an incredible language. But Rust is also
 complex. Not nedlessly mind you. In my view it's complex because it decided to
-tackle <em>really hard problems</em>, so it's about as complex as it has to be.</p>
-<p>But it's tricky enough that streamers who have very little programming
-experience struggle getting up and running*. Because of this I wanted to provide
-a way for these users to write their own dynamic command handlers. Ones they
-could just drop into a folder and <em>presto</em> - you're up and running.</p>
+tackle <em>really hard problems</em>. And that usually comes with a <a href="https://en.wikipedia.org/wiki/Waterbed_theory">base level of
+complexity</a> that it's very hard to get rid of.</p>
+<p>But it's still tricky enough that streamers who have very little programming
+experience struggle getting up and running*. I wanted them to be able to write
+their own commands. Ones they could just drop into a folder and <em>presto</em> -
+you're up and running.</p>
 <blockquote>
-<p>I've personally tutored at least two of these streamers who were interested in
-learning Rust, but then you're getting further away from writing chat
-commands.</p>
+<p>*: To this day I've tutored two of these streamers who were interested in
+learning Rust to write their own commands.</p>
 </blockquote>
 <p>For this reason I started looking into dynamic programming languages. Ones that
 could be embedded into an existing Rust application with little to no effort.
-That seemlessly integrates with the Rust environment.</p>
-<p>If you're one of those thinking that type systems are the best thing since
-sliced bread. Then I'm just gonna say <strong>yes</strong>, you're right. But type systems
-are also one of these complexities which can get in the way of being productive
-if you're not familiar with them. Not everyone wants to learn how to climb
-before they can walk.</p>
-<p>So number of candidates came up, and the one that stood out the most to me was
+That seemlessly integrates with its environment.</p>
+<p>Type systems are the best thing since sliced bread. But type systems are also
+one of these complexities which can get in the way of being productive if you're
+not familiar with them. Not everyone wants to learn how to climb before they can
+walk.</p>
+<p>So a number of candidates came up, and the one that stood out the most to me was
 <a href="https://github.com/jonathandturner/rhai">Rhai</a>.</p>
 <p>So why is Rhai awesome? It has Rust-like syntax. The runtime is fully written in
 mostly safe Rust, and can be easily embedded. Hooking up Rust functions is a
 piece of cake.</p>
-<p>But of course Rhai has a set of features and design constraints which didn't
-exactly scratch my itch. And the more I used it, the more I thought about things
-that could be changed or added.
-I <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">contributes a bit to the project</a>.
-But it also started to dawn on my that Rhai's particular set of constraints
-weren't entirely in line with what I wanted to use.</p>
-<p>In no particular order. I want a stack-based virtual machine that you could
-write low-complexity C-ffi bindings for by interacting solely with a stack
-<a href="https://www.lua.org/pil/26.1.html">like Lua</a>. Compiling the language down closer to machine
-instructions would hopefully make it feasible to generate native code through
-<a href="https://github.com/bytecodealliance/wasmtime/tree/main/cranelift">cranelift</a> through the same. And finally opinionated first-class support for
-asynchronous programming.</p>
-<p>While I believe that these are feasible in Rhai, I also think the project would
-emerge looking much differently on the other side. So I want a fresh slate of
-design constraints to find my own compromises. To discover more freely what
+<p>But Rhai has a set of features and design constraints which didn't <em>exactly</em>
+scratch my itch. And the more I used it, the more I thought about things that
+could be changed or added. <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">I contributed a bit to the project</a>. But it started
+to dawn on me that Rhai's approach wasn't exactly what I wanted. There's nothing
+wrong with this. The authors of Rhai have specific ideas of what they wanted to
+accomplish which lends itself to one design.</p>
+<p>While I believe that it's feasible to push Rhai in a different direction, I also
+think the project would emerge looking much different on the other side. So I
+wanted a fresh slate to find my own compromises. To discover more freely what
 works and doesn't work well.</p>
-<p>So I set out to make Rune. When I started I had the following goals in mind:</p>
+<p>When I started I had the following rough goals in mind:</p>
 <ul>
-<li>Performance should be comparable to Lua (Not LuaJIT).</li>
+<li>Performance should be comparable to Lua and Python (And eventually LuaJIT when we have cranelift).</li>
 <li>Scripts should compile quickly.</li>
-<li>What would Rust look like if it was a dynamic programming language without
-type annotations? Rune should feel like taking a Rust program and removing
-type annotations.</li>
-<li>Be as good or better than Rhai when it comes to integrating with native Rust.</li>
-<li>Make sure Rune's internals will work well through future C bindings.</li>
-<li>A lightweight runtime that is strictly singlethreaded. Concurrency can be
-accomplished by using async functions (who might themselves use threads).</li>
+<li>Rune should feel like Rust without types.</li>
+<li>Be as good as Rhai when it comes to integrating with native Rust.</li>
+<li>Make sure Rune's internals will work well through C bindings.</li>
+<li>A lightweight runtime that is strictly singlethreaded*.</li>
 </ul>
-<p>That's it.</p>
+<blockquote>
+<p>*: If this feels like a step backwards, don't worry too much. We can still
+have concurrency and threads using async code.</p>
+</blockquote>
 <p>Rune is now in a state where I want people to poke at it. Not <em>too</em> hard mind
-you, because it's still very early days. So please don't use it in anything
-user-facing or security critical. A miscompilation will cause the wrong closure
-to be called. You know, the one which <em>doesn't</em> perform your security checks 😅.</p>
+you, because it's still very early days. So don't use it in anything user-facing
+or security critical. A miscompilation will cause the wrong closure to be
+called. You know, the one which <em>doesn't</em> do all your fancy security checks 😅.</p>
 <p>But the more poking and prodding people do, the more issues will be found. Every
 solved issue brings Rune one step close to being production ready.</p>
 <p>I really want to thank Jonathan Turner and the Rhai project. They have been a
-hugely inspirational to me. If you need an embedded scripting engine that is
-more mature right now than <em>Rune</em>, please take <em>Rhai</em> for a spin!</p>
+huge inspirationa to me. If you need an embedded scripting engine that is more
+mature right now than <em>Rune</em>, please take <em>Rhai</em> for a spin.</p>
 <p>— John-John Tedro</p>
 <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
 <p>Welcome the <em>The Rune Programming Language</em>, a reference guide about Rune.</p>
