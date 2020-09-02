@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">7.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">8.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators and yield</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1190,9 +1190,160 @@ fn main() {
     }
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/7_1/basic_try.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/6/basic_try.rn
 Result: 2, 1
 == () (7.4912ms)
+</code></pre>
+<h1><a class="header" href="#generators-and-yield" id="generators-and-yield">Generators and <code>yield</code></a></h1>
+<p>Generators are a convenient method for constructing functions which are capable
+of suspending themselves and their state.</p>
+<p>The simplest use case for generators is to create a kind of iterator, whose
+state is stored in the generator function.</p>
+<p>With this, we can create a fairly efficient generator to build fibonacci
+numbers.</p>
+<pre><code class="language-rust noplaypen">fn fib() {
+    let a = 0;
+    let b = 1;
+
+    loop {
+        yield a;
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+}
+
+fn main() {
+    let g = fib();
+
+    while let Some(n) = g.next().await {
+        dbg(n);
+
+        if n &gt; 100 {
+            break;
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/fib_generator.rn
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+== () (14.9441ms)
+</code></pre>
+<h2><a class="header" href="#advanced-generators" id="advanced-generators">Advanced generators</a></h2>
+<p>Generators internally are a bit more complex than that.
+The <code>next</code> function simply slates over some of that complexity to make simple
+things easier to do.</p>
+<p>The first thing to know is that <code>yield</code> itself can actually <em>produce</em> a value,
+allowing the calling procedure to send values to the generator.</p>
+<pre><code class="language-rust noplaypen">fn printer() {
+    loop {
+        let out = yield;
+        dbg(out);
+    }
+}
+
+fn main() {
+    let printer = printer();
+    printer.resume(1).await;
+    printer.resume(&quot;John&quot;).await;
+    printer.resume((1, 2, 3)).await;
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/send_values.rn
+&quot;John&quot;
+(1, 2, 3)
+== () (883.2µs)
+</code></pre>
+<p>But wait, what happened to the first value we sent, <code>1</code>?</p>
+<p>Well, generators don't run immediately, they need to be &quot;warmed up&quot; by calling
+resume once.
+At that point it runs the block prior to the first yield, we can see this by
+instrumenting our code a little.</p>
+<pre><code class="language-rust noplaypen">fn printer() {
+    loop {
+        println(&quot;waiting for value...&quot;);
+        let out = yield;
+        dbg(out);
+    }
+}
+
+fn main() {
+    let printer = printer();
+
+    println(&quot;firing off the printer...&quot;);
+    printer.resume(()).await;
+    println(&quot;ready to go!&quot;);
+
+    printer.resume(&quot;John&quot;).await;
+    printer.resume((1, 2, 3)).await;
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/bootup.rn
+</code></pre>
+<p>Ok, so we understand how to <em>send</em> values into a generator.
+But how do we <em>receive</em> them?</p>
+<p>This adds a bit of complexity, since we need to pull out <code>GeneratorState</code>.
+This enum has two variants: <code>Yielded</code> and <code>Complete</code>, and represents all the
+possible states a generator can suspend itself into.</p>
+<pre><code class="language-rust noplaypen">fn print_once() {
+    let out = yield 1;
+    dbg(out);
+    2
+}
+
+fn main() {
+    let printer = print_once();
+    dbg(printer.resume(()).await);
+    dbg(printer.resume(&quot;John&quot;).await);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/states.rn
+Yielded(1)
+&quot;John&quot;
+Complete(2)
+== () (712.7µs)
+</code></pre>
+<p>After the first call to resume, we see that the generator produced <code>Yielded(1)</code>.
+This corresponds to the <code>yield 1</code> statement in the generator.</p>
+<p>The second value we get is <code>Complete(2)</code>.
+This corresponds to the <em>return value</em> of the generator.</p>
+<p>Trying to resume the generator after this will cause the virtual machine to
+error.</p>
+<pre><code class="language-rust noplaypen">fn print_once() {
+    yield 1
+}
+
+fn main() {
+    let printer = print_once();
+    dbg(printer);
+    dbg(printer.resume(()).await);
+    dbg(printer.resume(&quot;John&quot;).await);
+    dbg(printer);
+    dbg(printer.resume(()).await);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/7/error.rn
+Generator { completed: false }
+Yielded(1)
+Complete(&quot;John&quot;)
+Generator { completed: true }
+error: virtual machine error
+   ┌─ scripts/book/7/error.rn:11:9
+   │
+11 │     dbg(printer.resume(()).await);
+   │         ^^^^^^^^^^^^^^^^^^^^^^^^ cannot resume generator that has completed
 </code></pre>
 <h1><a class="header" href="#asynchronous-programming" id="asynchronous-programming">Asynchronous programming</a></h1>
 <p>Rune has first class support for Rust-like asynchronous programming.
