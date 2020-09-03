@@ -193,7 +193,7 @@ One that repeats unconditionally forever, until it is exited using another
 control flow operator like a <code>break</code> or a <code>return</code>.</p>
 <pre><code class="language-rust noplaypen">use time::Duration;
 
-fn main() {
+async fn main() {
     loop {
         println(&quot;loop forever&quot;);
         time::delay_for(Duration::from_secs(1)).await;

@@ -195,7 +195,7 @@ key did not exist
 which is exactly the same use case as storing unknown JSON.</p>
 <p>One of the biggest motivations for <em>Rune</em> to have anonymous objects is so that
 we can natively data with unknown structure.</p>
-<pre><code class="language-rust noplaypen">fn get_commits(repo, limit) {
+<pre><code class="language-rust noplaypen">async fn get_commits(repo, limit) {
     let limit = limit.unwrap_or(10);
 
     let client = http::Client::new();
@@ -220,8 +220,8 @@ we can natively data with unknown structure.</p>
     commits
 }
 
-fn main() {
-    for commit in get_commits(&quot;rune-rs/rune&quot;, Some(5)) {
+async fn main() {
+    for commit in get_commits(&quot;rune-rs/rune&quot;, Some(5)).await {
         println(commit);
     }
 }

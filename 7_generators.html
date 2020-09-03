@@ -181,7 +181,7 @@ numbers.</p>
 fn main() {
     let g = fib();
 
-    while let Some(n) = g.next().await {
+    while let Some(n) = g.next() {
         dbg(n);
 
         if n &gt; 100 {
@@ -221,9 +221,9 @@ allowing the calling procedure to send values to the generator.</p>
 
 fn main() {
     let printer = printer();
-    printer.resume(1).await;
-    printer.resume(&quot;John&quot;).await;
-    printer.resume((1, 2, 3)).await;
+    printer.resume(1);
+    printer.resume(&quot;John&quot;);
+    printer.resume((1, 2, 3));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/send_values.rn
@@ -248,11 +248,11 @@ fn main() {
     let printer = printer();
 
     println(&quot;firing off the printer...&quot;);
-    printer.resume(()).await;
+    printer.resume(());
     println(&quot;ready to go!&quot;);
 
-    printer.resume(&quot;John&quot;).await;
-    printer.resume((1, 2, 3)).await;
+    printer.resume(&quot;John&quot;);
+    printer.resume((1, 2, 3));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/bootup.rn
@@ -278,8 +278,8 @@ possible states a generator can suspend itself into.</p>
 
 fn main() {
     let printer = print_once();
-    dbg(printer.resume(()).await);
-    dbg(printer.resume(&quot;John&quot;).await);
+    dbg(printer.resume(()));
+    dbg(printer.resume(&quot;John&quot;));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/states.rn
@@ -301,10 +301,10 @@ error.</p>
 fn main() {
     let printer = print_once();
     dbg(printer);
-    dbg(printer.resume(()).await);
-    dbg(printer.resume(&quot;John&quot;).await);
+    dbg(printer.resume(()));
+    dbg(printer.resume(&quot;John&quot;));
     dbg(printer);
-    dbg(printer.resume(()).await);
+    dbg(printer.resume(()));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/7/error.rn
@@ -315,8 +315,8 @@ Generator { completed: true }
 error: virtual machine error
    ┌─ scripts/book/7/error.rn:11:9
    │
-11 │     dbg(printer.resume(()).await);
-   │         ^^^^^^^^^^^^^^^^^^^^^^^^ cannot resume generator that has completed
+11 │     dbg(printer.resume(()));
+   │         ^^^^^^^^^^^^^^^^^^ cannot resume a generator that has completed
 </code></pre>
 
                     </main>

@@ -167,7 +167,7 @@ how it applies to Rune as a dynamic programming language.</p>
 <p>Asynchronous code allows us to run multiple tasks concurrently, and work with
 the result of those tasks.</p>
 <p>A typical example would be if we want to perform multiple HTTP requests at once:</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rust noplaypen">async fn main() {
     let a = http::get(&quot;https://google.com&quot;);
     let b = http::get(&quot;https://amazon.com&quot;);
 
@@ -200,7 +200,7 @@ It enables us to wait on a set of futures at the same time.</p>
 timeout:</p>
 <pre><code class="language-rust noplaypen">struct Timeout;
 
-fn request(timeout) {
+async fn request(timeout) {
     let request = http::get(`http://httpstat.us/200?sleep={timeout}`);
     let timeout = time::delay_for(time::Duration::from_secs(2));
 
@@ -213,12 +213,12 @@ fn request(timeout) {
     Ok(())
 }
 
-fn main() {
-    if let Err(Timeout) = request(1000) {
+async fn main() {
+    if let Err(Timeout) = request(1000).await {
         println(&quot;Request timed out!&quot;);
     }
 
-    if let Err(Timeout) = request(4000) {
+    if let Err(Timeout) = request(4000).await {
         println(&quot;Request timed out!&quot;);
     }
 }
@@ -236,7 +236,8 @@ function is run one at-a-time.</p>
 <h2><a class="header" href="#async-functions" id="async-functions"><code>async</code> functions</a></h2>
 <p><code>async</code> functions are just like regular functions, except that when called they
 produce a <code>Future</code>.</p>
-<p>In order to get the result of this <code>Future</code> it must be <code>.await</code>-ed.</p>
+<p>In order to get the result of this <code>Future</code> it must be <code>.await</code>ed. And <code>.await</code>
+is only permitted inside of <code>async</code> functions and closures.</p>
 <pre><code class="language-rust noplaypen">use std::future;
 
 struct Timeout;
@@ -253,7 +254,7 @@ async fn request(timeout) {
     Ok(result)
 }
 
-fn main() {
+async fn main() {
     for result in future::join([request(1000), request(4000)]).await {
         match result {
             Ok(result) =&gt; println(`Result: {result.status()}`),
@@ -267,13 +268,6 @@ Result: 200 OK
 Request timed out!
 == () (2.0028603s)
 </code></pre>
-<p>If you've been using future in Rust, one thing immediately pops out to you.</p>
-<p>We're using <code>.await</code> in a non-<code>async</code> function!</p>
-<p>Well, in Rune the virtual machine already comes with a Runtime. Every function
-therefore has the ability to <code>.await</code> a future, regardless of if the function
-itself is async or not.</p>
-<p>In fact, the whole Runtime is asynchronous, but that is for a future, much much
-more advanced chapter!</p>
 
                     </main>
 
