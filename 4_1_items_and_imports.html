@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Pattern Matching - The Rune Programming Language</title>
+        <title>Items and imports - The Rune Programming Language</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_0_items_and_imports.html"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.2.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.4.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html" class="active"><strong aria-hidden="true">4.5.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.6.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_items_and_imports.html" class="active"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="4_2_variables.html"><strong aria-hidden="true">4.2.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_3_control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_4_loops.html"><strong aria-hidden="true">4.4.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_5_pattern_matching.html"><strong aria-hidden="true">4.5.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_6_template_strings.html"><strong aria-hidden="true">4.6.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Rune types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,132 +159,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
-<p>In this section we will be discussing <em>Pattern Matching</em>.</p>
-<p>Pattern matching is a flexible mechanism that allows for validating the
-structure and type of the argument, while also destructing it to give easy
-access to what you need.</p>
-<p>Below are some examples of its common uses to match on branch conditions:</p>
-<pre><code class="language-rust noplaypen">fn match_input(n) {
-    match n {
-        1 =&gt; println(&quot;The number one.&quot;),
-        n if n is int =&gt; println(`Another number: {n}.`),
-        [1, 2, n, ..] =&gt; println(`A vector starting with one and two, followed by {n}.`),
-        &quot;one&quot; =&gt; println(&quot;One, but this time as a string.&quot;),
-        _ =&gt; println(&quot;Something else. Can I go eat now?&quot;),
-    }
-}
-
-fn main() {
-    match_input(1);
-    match_input(2);
-    match_input([1, 2, 42, 84]);
-    match_input(&quot;one&quot;);
-    match_input(#{field: 42});
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/big_match.rn
-The number one.
-Another number: 2.
-A vector starting with one and two, followed by 42.
-One, but this time as a string.
-Something else. Can I go eat now?
-== () (5.691ms)
-</code></pre>
-<p>We will be covering each of these variants in detail in the coming sections.</p>
-<h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
-<p>Literals are the simplest form of matching. Where we test if the branch is
-exactly equal to a literal.</p>
-<p>Literals take a number of form:</p>
-<ul>
-<li>A literal unit, simply <code>()</code>.</li>
-<li>A literal boolean, like <code>true</code> or <code>false</code>.</li>
-<li>A literal character, like <code>'a'</code> or <code>'あ'</code>.</li>
-<li>A literal integer, like <code>42</code>.</li>
-<li>A string, like <code>&quot;Steven Universe&quot;</code>.</li>
-<li>A vector, like the numbers <code>[4, 8, 15, 16, 23, 42]</code> or the empty vector <code>[]</code>.</li>
-<li>A tuple, like <code>(&quot;Steven Universe&quot;, 42)</code>.</li>
-<li>An object, like the numbers <code>{&quot;name&quot;: &quot;Steven Universe&quot;}</code> or the empty <code>{}</code>.</li>
-</ul>
-<p>Finally, literals can be <em>any</em> combination of the above.
-Even <code>{&quot;items&quot;: [&quot;Sword&quot;, &quot;Bow&quot;, &quot;Axe&quot;]}</code> is a literal that can be matched over.</p>
-<h2><a class="header" href="#match-bindings" id="match-bindings">Match Bindings</a></h2>
-<p>In a pattern, every literal value can also be replaced with an ignore directive
-or a binding.</p>
-<p>The ignore directive looks like an underscore <code>_</code>, which tells rune to <em>ignore</em>
-the value, allowing it to have any value.</p>
-<pre><code class="language-rust noplaypen">fn test_ignore(vector) {
-    match vector {
-        [_, 2] =&gt; println(&quot;Second item in vector is 2.&quot;),
-    }
-}
-
-fn main() {
-    test_ignore([1, 2]);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/ignore.rn
-Second item in vector is 2.
-== () (281.3µs)
-</code></pre>
-<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
-in scope of the match arm.</p>
-<pre><code class="language-rust noplaypen">fn test_ignore(vector) {
-    match vector {
-        [_, b] =&gt; println(`Second item in vector is {b}.`),
-    }
-}
-
-fn main() {
-    test_ignore([1, 2]);
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/bind.rn
-Second item in vector is 2.
-== () (6.25ms)
-</code></pre>
-<p>Here are some more examples:</p>
-<ul>
-<li><code>[_, a, b]</code> which will ignore the first, but then capture the second and third
-element in the vector.</li>
-<li><code>{&quot;name&quot;: name}</code> will capture the <code>name</code> value out of the specified object.</li>
-</ul>
-<p>Finally we can also add the sequence <code>..</code> to ask Rune to <em>ignore</em> any additional
-values in a collection that might be present when matching a vector or an
-object.</p>
-<pre><code class="language-rust noplaypen">fn describe_car(car) {
-    match car {
-<span class="boring">        {&quot;make&quot;: year, ..} if year &lt; 1950 =&gt; &quot;What, where did you get that?&quot;,
-</span><span class="boring">        {&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: year, ..} if year &gt;= 2000 =&gt; &quot;Pretty fast!&quot;,
-</span>        _ =&gt; &quot;Can't tell 😞&quot;,
-    }
-}
-
-fn main() {
-    println(describe_car(#{&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: 2000}));
-    println(describe_car(#{&quot;model&quot;: &quot;Honda&quot;, &quot;make&quot;: 1980}));
-    println(describe_car(#{&quot;model&quot;: &quot;Volvo&quot;, &quot;make&quot;: 1910}));
-}
-</code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/fast_cars.rn
-Pretty fast!
-Can't tell 😞
-What, where did you get that?
-== () (5.3533ms)
-</code></pre>
+                        <h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="4_3_loops.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="4_concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="4_5_template_strings.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="4_2_variables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -296,13 +184,13 @@ What, where did you get that?
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="4_3_loops.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="4_concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="4_5_template_strings.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="4_2_variables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
