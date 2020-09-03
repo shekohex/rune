@@ -160,6 +160,64 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
+<p>Rune preforms compile time checks to make sure that every <em>item</em> in use is
+defined at compile time.</p>
+<p>An item is the fully qualified name of something, like <code>std::result::Result</code>.</p>
+<p>Trying to use an item which doesn't exist will result in a compile time error.</p>
+<pre><code class="language-rust noplayground">fn main() {
+    let foo = Foo::new();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/missing_item.rn
+error: compile error
+  ┌─ scripts/book/4_1/missing_item.rn:2:15
+  │
+2 │     let foo = Foo::new();
+  │               ^^^^^^^^^^ `Foo::new` is not a function
+</code></pre>
+<p>Instance functions are an exception to this, because Rune doesn't know the type
+the instance function is being called on.</p>
+<p>This is instead checked at runtime.</p>
+<pre><code class="language-rust noplayground">struct Foo;
+
+impl Foo {
+    fn new() {
+        Foo
+    }
+}
+
+fn main() {
+    let foo = Foo::new();
+    foo.bar();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/missing_instance_fn.rn
+error: virtual machine error
+   ┌─ scripts/book/4_1/missing_instance_fn.rn:11:5
+   │
+11 │     foo.bar();
+   │     ^^^^^^^^^ missing instance function `0xfb67fa086988a22d` for `type(0xc153807c3ddc98d7)``
+</code></pre>
+<blockquote>
+<p>Note: Unfortunately the error is currently a bit nondescript. But in the
+future we will provide the ability to provide debug information to the virtual
+machine with better diagnostics.</p>
+</blockquote>
+<p>What you're seeing above are type and function hashes. These uniquely identify
+the function or type in the virtual machine. The hash is deterministic, so the
+hash for the item <code>Foo::new</code> will always be the same.</p>
+<p>This is covered more in a future chapter.</p>
+<h2><a class="header" href="#imports" id="imports">Imports</a></h2>
+<p>Like in Rust, we can import items into our scope using a <code>use</code> statement.</p>
+<pre><code class="language-rust noplayground">use std::test::assert;
+
+fn main() {
+    assert(true, &quot;this is all good&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/use.rn
+== () (60.7µs)
+</code></pre>
 
                     </main>
 

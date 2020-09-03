@@ -160,6 +160,79 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#loops" id="loops">Loops</a></h1>
+<p>Loops are a fundamental building block common to many programming languages.
+This is no exception in Rune.
+Loops allow you to execute a block of code until a specific condition is
+reached, which can be a powerful tool for accomplishing programming tasks.</p>
+<h2><a class="header" href="#break-keyword" id="break-keyword"><code>break</code> Keyword</a></h2>
+<p>Every loop documented in this section can be <em>terminated early</em> using the
+<code>break</code> keyword.</p>
+<p>When Rune encounters a break, it will immediately jump out of the loop it is
+currently in and continue running right after it.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let value = 0;
+
+    while value &lt; 100 {
+        if value &gt;= 50 {
+            break;
+        }
+
+        value = value + 1;
+    }
+
+    println(`The value is {value}`); // =&gt; The value is 50
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/while_loop.rn
+The value is 50
+== () (501.1µs)
+</code></pre>
+<h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
+<p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
+One that repeats unconditionally forever, until it is exited using another
+control flow operator like a <code>break</code> or a <code>return</code>.</p>
+<pre><code class="language-rust noplaypen">use time::Duration;
+
+fn main() {
+    loop {
+        println(&quot;loop forever&quot;);
+        time::delay_for(Duration::from_secs(1)).await;
+    }
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/loop_forever.rn
+Hello forever!
+Hello forever!
+Hello forever!
+...
+</code></pre>
+<blockquote>
+<p>Hint: If you want this one to end, you're gonna have to kill it with <code>CTRL+C</code>.</p>
+</blockquote>
+<p>We're also using an asynchronous function called <code>delay_for</code> above to avoid
+spamming our terminals too much.
+Well talk more about these in a later section.</p>
+<p>When broken out of, loops produce the value provided as an argument to the
+<code>break</code> keyword.
+By default, this is simply a unit <code>()</code>.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let counter = 0;
+
+    let total = loop {
+        counter = counter + 1;
+
+        if counter &gt; 10 {
+            break counter;
+        }
+    };
+
+    println(`The final count is: {total}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_4/loop_break.rn
+The final count is: 11
+== () (281.5µs)
+</code></pre>
 
                     </main>
 

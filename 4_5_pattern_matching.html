@@ -160,6 +160,118 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
+<p>In this section we will be discussing <em>Pattern Matching</em>.</p>
+<p>Pattern matching is a flexible mechanism that allows for validating the
+structure and type of the argument, while also destructing it to give easy
+access to what you need.</p>
+<p>Below are some examples of its common uses to match on branch conditions:</p>
+<pre><code class="language-rust noplaypen">fn match_input(n) {
+    match n {
+        1 =&gt; println(&quot;The number one.&quot;),
+        n if n is int =&gt; println(`Another number: {n}.`),
+        [1, 2, n, ..] =&gt; println(`A vector starting with one and two, followed by {n}.`),
+        &quot;one&quot; =&gt; println(&quot;One, but this time as a string.&quot;),
+        _ =&gt; println(&quot;Something else. Can I go eat now?&quot;),
+    }
+}
+
+fn main() {
+    match_input(1);
+    match_input(2);
+    match_input([1, 2, 42, 84]);
+    match_input(&quot;one&quot;);
+    match_input(#{field: 42});
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/big_match.rn
+The number one.
+Another number: 2.
+A vector starting with one and two, followed by 42.
+One, but this time as a string.
+Something else. Can I go eat now?
+== () (5.691ms)
+</code></pre>
+<p>We will be covering each of these variants in detail in the coming sections.</p>
+<h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
+<p>Literals are the simplest form of matching. Where we test if the branch is
+exactly equal to a literal.</p>
+<p>Literals take a number of form:</p>
+<ul>
+<li>A literal unit, simply <code>()</code>.</li>
+<li>A literal boolean, like <code>true</code> or <code>false</code>.</li>
+<li>A literal character, like <code>'a'</code> or <code>'あ'</code>.</li>
+<li>A literal integer, like <code>42</code>.</li>
+<li>A string, like <code>&quot;Steven Universe&quot;</code>.</li>
+<li>A vector, like the numbers <code>[4, 8, 15, 16, 23, 42]</code> or the empty vector <code>[]</code>.</li>
+<li>A tuple, like <code>(&quot;Steven Universe&quot;, 42)</code>.</li>
+<li>An object, like the numbers <code>{&quot;name&quot;: &quot;Steven Universe&quot;}</code> or the empty <code>{}</code>.</li>
+</ul>
+<p>Finally, literals can be <em>any</em> combination of the above.
+Even <code>{&quot;items&quot;: [&quot;Sword&quot;, &quot;Bow&quot;, &quot;Axe&quot;]}</code> is a literal that can be matched over.</p>
+<h2><a class="header" href="#match-bindings" id="match-bindings">Match Bindings</a></h2>
+<p>In a pattern, every literal value can also be replaced with an ignore directive
+or a binding.</p>
+<p>The ignore directive looks like an underscore <code>_</code>, which tells rune to <em>ignore</em>
+the value, allowing it to have any value.</p>
+<pre><code class="language-rust noplaypen">fn test_ignore(vector) {
+    match vector {
+        [_, 2] =&gt; println(&quot;Second item in vector is 2.&quot;),
+    }
+}
+
+fn main() {
+    test_ignore([1, 2]);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/ignore.rn
+Second item in vector is 2.
+== () (281.3µs)
+</code></pre>
+<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
+in scope of the match arm.</p>
+<pre><code class="language-rust noplaypen">fn test_ignore(vector) {
+    match vector {
+        [_, b] =&gt; println(`Second item in vector is {b}.`),
+    }
+}
+
+fn main() {
+    test_ignore([1, 2]);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/bind.rn
+Second item in vector is 2.
+== () (6.25ms)
+</code></pre>
+<p>Here are some more examples:</p>
+<ul>
+<li><code>[_, a, b]</code> which will ignore the first, but then capture the second and third
+element in the vector.</li>
+<li><code>{&quot;name&quot;: name}</code> will capture the <code>name</code> value out of the specified object.</li>
+</ul>
+<p>Finally we can also add the sequence <code>..</code> to ask Rune to <em>ignore</em> any additional
+values in a collection that might be present when matching a vector or an
+object.</p>
+<pre><code class="language-rust noplaypen">fn describe_car(car) {
+    match car {
+<span class="boring">        {&quot;make&quot;: year, ..} if year &lt; 1950 =&gt; &quot;What, where did you get that?&quot;,
+</span><span class="boring">        {&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: year, ..} if year &gt;= 2000 =&gt; &quot;Pretty fast!&quot;,
+</span>        _ =&gt; &quot;Can't tell 😞&quot;,
+    }
+}
+
+fn main() {
+    println(describe_car(#{&quot;model&quot;: &quot;Ford&quot;, &quot;make&quot;: 2000}));
+    println(describe_car(#{&quot;model&quot;: &quot;Honda&quot;, &quot;make&quot;: 1980}));
+    println(describe_car(#{&quot;model&quot;: &quot;Volvo&quot;, &quot;make&quot;: 1910}));
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_5/fast_cars.rn
+Pretty fast!
+Can't tell 😞
+What, where did you get that?
+== () (5.3533ms)
+</code></pre>
 
                     </main>
 

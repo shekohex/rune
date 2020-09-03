@@ -160,6 +160,62 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#template-strings" id="template-strings">Template strings</a></h1>
+<p>If you've been paying attention on previous sections you might have seen a
+rather odd looking syntax like <code>`Hello {name}`</code>.</p>
+<p>These are called <em>template strings</em>, and allow the programmer to conveniently
+build strings using variables from the environment.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let age = 30;
+    println(`I am {age} years old!`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_6/basic_template.rn
+I am 30 years old!
+== () (4.5678ms)
+</code></pre>
+<p>Template strings are accelerated by the Vm, each argument uses a <em>display
+protocol</em> and it can be a very efficient to build complex strings out of it.</p>
+<h2><a class="header" href="#the-display-protocol" id="the-display-protocol">The display protocol</a></h2>
+<p>The display protocol is a function that can be implemented by any <em>external</em>
+type which allows it to be used in a template string.</p>
+<p>It expects a function with the signature <code>fn(&amp;self, buf: &amp;mut String) -&gt; fmt::Result</code>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt::Write as _;
+
+#[derive(Debug)]
+pub struct StatusCode {
+    inner: u32,
+}
+
+impl StatusCode {
+    fn display(&amp;self, buf: &amp;mut String) -&gt; fmt::Result {
+        write!(buf, &quot;{}&quot;, self.inner)
+    }
+}
+
+pub fn module() -&gt; Result&lt;runestick::Module, runestick::ContextError&gt; {
+    let mut module = runestick::Module::new(&amp;[&quot;http&quot;]);
+    module.inst_fn(runestick::STRING_DISPLAY, StatusCode::display)?;
+    Ok(module)
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is what allows status codes to be formatted into template strings, any
+types which do not implement this protocol will fail to run.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let vec = [1, 2, 3];
+    println(`{vec}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_6/not_a_template.rn
+error: virtual machine error
+  ┌─ scripts/book/4_6/not_a_template.rn:3:13
+  │
+3 │     println(`{vec}`);
+  │             ^^^^^^^ `vector` does not implement the `string_display` protocol
+</code></pre>
 
                     </main>
 
