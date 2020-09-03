@@ -224,12 +224,10 @@ n is unknown
 especially suited for many conditional branches. Especially when the branches
 are different types or variants in an enum.</p>
 <pre><code class="language-rust noplaypen">fn dynamic_type(n) {
-    if n is String {
-        &quot;n is a String&quot;
-    } else if n is Vec {
-        &quot;n is a vector&quot;
-    } else {
-        &quot;n is unknown&quot;
+    match n {
+        n if n is String =&gt; &quot;n is a String&quot;,
+        n if n is Vec =&gt; &quot;n is a vector&quot;,
+        _ =&gt; &quot;n is unknown&quot;,
     }
 }
 
@@ -239,11 +237,11 @@ fn main() {
     println(dynamic_type(42));
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/type_check.rn
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/5/type_check_patterns.rn
 n is a String
 n is a vector
 n is unknown
-== () (1.0544ms)
+== () (1.0341ms)
 </code></pre>
 
                     </main>
