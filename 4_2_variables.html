@@ -160,9 +160,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#variables-and-memory" id="variables-and-memory">Variables and memory</a></h1>
-<p>Variables in Rune are defined using the <code>let</code> keyword.
-In contrast to Rust, all variables in Rune are mutable and do not require a
-<code>mut</code> keyword to change.</p>
+<p>Variables in Rune are defined using the <code>let</code> keyword. In contrast to Rust, all
+variables in Rune are mutable.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let x = 5;
     println(`The value of x is: {x}`);
@@ -174,18 +173,22 @@ In contrast to Rust, all variables in Rune are mutable and do not require a
 The value of x is: 5
 The value of x is: 6
 </code></pre>
-<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference Counting and Ownership</a></h2>
+<p>Rune is a memory safe language, so regardless of what you do we maintain the
+same safety guarantees as safe Rust. This is accomplished in Rune through
+reference counting.</p>
+<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference counting and ownership</a></h2>
 <p>In rune, all variables are reference counted and can be shared across multiple
-variables.</p>
-<p>This means that all variables in rune have <em>shared ownership</em>.
-This means that every variable that points to an object on the stack, points to
-<em>the same instance</em> of that object.</p>
+variables. This means that every variable in rune that does not point to a value
+which is <code>Copy</code> have <em>shared ownership</em>. Every variable that points to that
+value therefore points to the same instance on the heap of that value.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;
     println(`{object.field}`);
     object2.field = 2;
-    println(`{object2.field}`);
+
+    // Note: we changed `object2`, but read out `object`
+    println(`{object.field}`);
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/shared_ownership.rn
@@ -193,10 +196,10 @@ This means that every variable that points to an object on the stack, points to
 2
 == () (913.4µs)
 </code></pre>
-<p>This can potentially cause issues if we call an external function that expects
-to take ownership of its arguments.</p>
-<p>We say that functions like these <em>move</em> their argument, and if we try to use a
-variable which has been moved the virtual machine will error.</p>
+<p>This can cause issues if we call an external function expects to take ownership
+of its arguments. We say that functions like these <em>move</em> their argument, and if
+we try to use a variable which has been moved an error will be raised in the
+virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
 take its argument and free it.</p>
@@ -215,8 +218,7 @@ error: virtual machine error
   ┌─ scripts/book/4_2/take_argument.rn:6:22
   │
 6 │     println(`field: {object.field}`);
-  │                      ^^^^^^^^^^^^ failed to access value: not accessible for shared access
-
+  │                      ^^^^^^^^^^^^ failed to access value: cannot read, value is moved
 </code></pre>
 <p>If you need to, you can test if a variable is still accessible with
 <code>is_readable</code> and <code>is_writable</code>.</p>
@@ -236,6 +238,7 @@ error: virtual machine error
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/is_readable.rn
 field: 1
 object is no longer readable 😢
+== () (943.8µs)
 </code></pre>
 
                     </main>

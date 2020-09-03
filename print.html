@@ -299,10 +299,30 @@ languages, and how they work in Rune.</p>
 <p>These should be familiar to anyone who's used an imperative programming
 languages before.</p>
 <h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
-<p>Rune preforms compile time checks to make sure that every <em>item</em> in use is
-defined at compile time.</p>
-<p>An item is the fully qualified name of something, like <code>std::result::Result</code>.</p>
-<p>Trying to use an item which doesn't exist will result in a compile time error.</p>
+<p>Everything in Rune has a unique name. Every function and type. This name is what
+identifies that thing, and is called its <em>item</em>. Rune performs compile time
+checks to make sure that every item we try to use is actually defined.</p>
+<p>The following are examples of items:</p>
+<ul>
+<li><code>std::result::Result</code></li>
+<li><code>std::test::assert</code></li>
+</ul>
+<p>The first refers to the <code>Result</code> enum, and the second is the <code>assert</code> function.
+They both live within their corresponding <code>std</code> module. <code>Result</code> is a bit
+special even, since it's part of the <em>prelude</em>, allowing us to use it without
+importing it. But what about <code>assert</code>?</p>
+<p>If we wanted to use <code>assert</code> we would have to import it first with a <code>use</code>
+declaration:</p>
+<pre><code class="language-rust noplayground">use std::test::assert;
+
+fn main() {
+    assert(1 &lt; 2, &quot;one is less than two&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/example_import.rn
+== () (34.6µs)
+</code></pre>
+<p>Trying to use an item which doesn't exist will result in a compile error:</p>
 <pre><code class="language-rust noplayground">fn main() {
     let foo = Foo::new();
 }
@@ -314,6 +334,8 @@ error: compile error
 2 │     let foo = Foo::new();
   │               ^^^^^^^^^^ `Foo::new` is not a function
 </code></pre>
+<h2><a class="header" href="#instance-functions" id="instance-functions">Instance functions</a></h2>
+<p>Rune has something </p>
 <p>Instance functions are an exception to this, because Rune doesn't know the type
 the instance function is being called on.</p>
 <p>This is instead checked at runtime.</p>
@@ -338,29 +360,23 @@ error: virtual machine error
    │     ^^^^^^^^^ missing instance function `0xfb67fa086988a22d` for `type(0xc153807c3ddc98d7)``
 </code></pre>
 <blockquote>
-<p>Note: Unfortunately the error is currently a bit nondescript. But in the
-future we will provide the ability to provide debug information to the virtual
-machine with better diagnostics.</p>
+<p>Note: The error is currently a bit nondescript. But in the future we will be
+able to provide better diagnostics by adding debug information.</p>
 </blockquote>
 <p>What you're seeing above are type and function hashes. These uniquely identify
-the function or type in the virtual machine. The hash is deterministic, so the
-hash for the item <code>Foo::new</code> will always be the same.</p>
-<p>This is covered more in a future chapter.</p>
-<h2><a class="header" href="#imports" id="imports">Imports</a></h2>
-<p>Like in Rust, we can import items into our scope using a <code>use</code> statement.</p>
-<pre><code class="language-rust noplayground">use std::test::assert;
-
-fn main() {
-    assert(true, &quot;this is all good&quot;);
-}
+the item in the virtual machine and is the result of a deterministic computation
+based on its item. So the hash for the item <code>Foo::new</code> will always be the same.</p>
+<p>In Rust, we can calculate this hash using <code>Item</code> and <code>Hash::function</code> method:</p>
+<pre><code class="language-rust noplayground">{{#include ../../crates/rune-testing/examples/function_hash}}
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/use.rn
-== () (60.7µs)
+<pre><code class="language-text">$&gt; cargo run --example function_hash
+0xb5dc92ab43cb37d9
 </code></pre>
+<p>The exact implementation of the hash function is currently not defined, but will
+be stabilized and documented in a future release.</p>
 <h1><a class="header" href="#variables-and-memory" id="variables-and-memory">Variables and memory</a></h1>
-<p>Variables in Rune are defined using the <code>let</code> keyword.
-In contrast to Rust, all variables in Rune are mutable and do not require a
-<code>mut</code> keyword to change.</p>
+<p>Variables in Rune are defined using the <code>let</code> keyword. In contrast to Rust, all
+variables in Rune are mutable.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let x = 5;
     println(`The value of x is: {x}`);
@@ -372,18 +388,22 @@ In contrast to Rust, all variables in Rune are mutable and do not require a
 The value of x is: 5
 The value of x is: 6
 </code></pre>
-<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference Counting and Ownership</a></h2>
+<p>Rune is a memory safe language, so regardless of what you do we maintain the
+same safety guarantees as safe Rust. This is accomplished in Rune through
+reference counting.</p>
+<h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference counting and ownership</a></h2>
 <p>In rune, all variables are reference counted and can be shared across multiple
-variables.</p>
-<p>This means that all variables in rune have <em>shared ownership</em>.
-This means that every variable that points to an object on the stack, points to
-<em>the same instance</em> of that object.</p>
+variables. This means that every variable in rune that does not point to a value
+which is <code>Copy</code> have <em>shared ownership</em>. Every variable that points to that
+value therefore points to the same instance on the heap of that value.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;
     println(`{object.field}`);
     object2.field = 2;
-    println(`{object2.field}`);
+
+    // Note: we changed `object2`, but read out `object`
+    println(`{object.field}`);
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/shared_ownership.rn
@@ -391,10 +411,10 @@ This means that every variable that points to an object on the stack, points to
 2
 == () (913.4µs)
 </code></pre>
-<p>This can potentially cause issues if we call an external function that expects
-to take ownership of its arguments.</p>
-<p>We say that functions like these <em>move</em> their argument, and if we try to use a
-variable which has been moved the virtual machine will error.</p>
+<p>This can cause issues if we call an external function expects to take ownership
+of its arguments. We say that functions like these <em>move</em> their argument, and if
+we try to use a variable which has been moved an error will be raised in the
+virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
 take its argument and free it.</p>
@@ -413,8 +433,7 @@ error: virtual machine error
   ┌─ scripts/book/4_2/take_argument.rn:6:22
   │
 6 │     println(`field: {object.field}`);
-  │                      ^^^^^^^^^^^^ failed to access value: not accessible for shared access
-
+  │                      ^^^^^^^^^^^^ failed to access value: cannot read, value is moved
 </code></pre>
 <p>If you need to, you can test if a variable is still accessible with
 <code>is_readable</code> and <code>is_writable</code>.</p>
@@ -434,6 +453,7 @@ error: virtual machine error
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_2/is_readable.rn
 field: 1
 object is no longer readable 😢
+== () (943.8µs)
 </code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>Rune supports your typical forms of control flow.</p>
