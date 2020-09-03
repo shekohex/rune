@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.1.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.2.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.3.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.5.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="2_introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="3_getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="4_concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="4_0_items_and_imports.html"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="4_1_variables.html"><strong aria-hidden="true">4.2.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="4_2_control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="4_3_loops.html"><strong aria-hidden="true">4.4.</strong> Loops</a></li><li class="chapter-item expanded "><a href="4_4_pattern_matching.html"><strong aria-hidden="true">4.5.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="4_5_template_strings.html"><strong aria-hidden="true">4.6.</strong> Template strings</a></li></ol></li><li class="chapter-item expanded "><a href="5_types.html"><strong aria-hidden="true">5.</strong> Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="5_1_primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="5_2_vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="5_3_objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="5_4_tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="5_5_functions.html"><strong aria-hidden="true">5.5.</strong> Functions</a></li><li class="chapter-item expanded "><a href="5_6_structs.html"><strong aria-hidden="true">5.6.</strong> Structs</a></li><li class="chapter-item expanded "><a href="5_7_enums.html"><strong aria-hidden="true">5.7.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="6_try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="7_generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="8_async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="9_functions_closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -298,6 +298,65 @@ Any function that doesn't have a return value returns a unit.</p>
 languages, and how they work in Rune.</p>
 <p>These should be familiar to anyone who's used an imperative programming
 languages before.</p>
+<h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
+<p>Rune preforms compile time checks to make sure that every <em>item</em> in use is
+defined at compile time.</p>
+<p>An item is the fully qualified name of something, like <code>std::result::Result</code>.</p>
+<p>Trying to use an item which doesn't exist will result in a compile time error.</p>
+<pre><code class="language-rust noplayground">fn main() {
+    let foo = Foo::new();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_0/missing_item.rn
+error: compile error
+  ┌─ scripts/book/4_0/missing_item.rn:2:15
+  │
+2 │     let foo = Foo::new();
+  │               ^^^^^^^^^^ `Foo::new` is not a function
+</code></pre>
+<p>Instance functions are an exception to this, because Rune doesn't know the type
+the instance function is being called on.</p>
+<p>This is instead checked at runtime.</p>
+<pre><code class="language-rust noplayground">struct Foo;
+
+impl Foo {
+    fn new() {
+        Foo
+    }
+}
+
+fn main() {
+    let foo = Foo::new();
+    foo.bar();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_0/missing_instance_fn.rn
+error: virtual machine error
+   ┌─ scripts/book/4_0/missing_instance_fn.rn:11:5
+   │
+11 │     foo.bar();
+   │     ^^^^^^^^^ missing instance function `0xfb67fa086988a22d` for `type(0xc153807c3ddc98d7)``
+</code></pre>
+<blockquote>
+<p>Note: Unfortunately the error is currently a bit nondescript. But in the
+future we will provide the ability to provide debug information to the virtual
+machine with better diagnostics.</p>
+</blockquote>
+<p>What you're seeing above are type and function hashes. These uniquely identify
+the function or type in the virtual machine. The hash is deterministic, so the
+hash for the item <code>Foo::new</code> will always be the same.</p>
+<p>This is covered more in a future chapter.</p>
+<h2><a class="header" href="#imports" id="imports">Imports</a></h2>
+<p>Like in Rust, we can import items into our scope using a <code>use</code> statement.</p>
+<pre><code class="language-rust noplayground">use std::test::assert;
+
+fn main() {
+    assert(true, &quot;this is all good&quot;);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/4_0/use.rn
+== () (60.7µs)
+</code></pre>
 <h1><a class="header" href="#variables" id="variables">Variables</a></h1>
 <p>Variables in Rune are defined using the <code>let</code> keyword.
 In contrast to Rust, all variables in Rune are mutable and do not require a
