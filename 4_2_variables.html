@@ -161,7 +161,7 @@
                     <main>
                         <h1><a class="header" href="#variables-and-memory" id="variables-and-memory">Variables and memory</a></h1>
 <p>Variables in Rune are defined using the <code>let</code> keyword. In contrast to Rust, all
-variables in Rune are mutable.</p>
+variables in Rune are mutable and can be changed at any time.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let x = 5;
     println(`The value of x is: {x}`);
@@ -173,14 +173,16 @@ variables in Rune are mutable.</p>
 The value of x is: 5
 The value of x is: 6
 </code></pre>
-<p>Rune is a memory safe language, so regardless of what you do we maintain the
-same safety guarantees as safe Rust. This is accomplished in Rune through
-reference counting.</p>
+<p>Rune is a memory safe language. Regardless of what you write in a Rune scripts,
+we maintain the same memory safety guarantees as safe Rust. This is accomplished
+in Rune through reference counting.</p>
 <h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference counting and ownership</a></h2>
 <p>In Rune, <a href="5_1_primitives.html">unless a value is <code>Copy</code></a>, they are reference
-counted and can be used simultaneously by multiple variables. In other words
+counted and can be used simultaneously at multiple locations. In other words
 this means that they have <em>shared ownership</em>. Every variable that points to that
-value therefore points to <em>the same instance</em> on the heap of that value.</p>
+value therefore points to <em>the same instance</em> of that value.</p>
+<p>We can see how this works by sharing and mutating one object across two
+variables:</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;
@@ -196,10 +198,10 @@ value therefore points to <em>the same instance</em> on the heap of that value.<
 2
 == () (913.4µs)
 </code></pre>
-<p>This can cause issues if we call an external function expects to take ownership
-of its arguments. We say that functions like these <em>move</em> their argument, and if
-we try to use a variable which has been moved an error will be raised in the
-virtual machine.</p>
+<p>This can cause issues if we call an external function which expects to take
+ownership of its arguments. We say that functions like these <em>move</em> their
+argument, and if we try to use a variable which has been move,d an error will be
+raised in the virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
 take its argument and free it.</p>
@@ -220,8 +222,10 @@ error: virtual machine error
 6 │     println(`field: {object.field}`);
   │                      ^^^^^^^^^^^^ failed to access value: cannot read, value is moved
 </code></pre>
-<p>If you need to, you can test if a variable is still accessible with
-<code>is_readable</code> and <code>is_writable</code>.</p>
+<p>If you need to, you can test if a variable is still accessible for reading with
+<code>is_readable</code>, and for writing with <code>is_writable</code>. These are both imported in
+the prelude. An object which is writable is also <em>movable</em>, and can be provided
+to functions which needs to move the value (like <code>drop</code>).</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;

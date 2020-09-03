@@ -162,8 +162,8 @@
                         <h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
 <p>Everything in Rune has a unique name. Every function and type. This name is what
 identifies that thing, and is called its <em>item</em>. Rune performs compile time
-checks to make sure that every item we try to use is actually defined.</p>
-<p>The following are examples of items:</p>
+checks to make sure that every item we try to use actually exists.</p>
+<p>The following are examples of items in Rune:</p>
 <ul>
 <li><code>std::result::Result</code></li>
 <li><code>std::test::assert</code></li>
@@ -173,7 +173,7 @@ They both live within their corresponding <code>std</code> module. <code>Result<
 special even, since it's part of the <em>prelude</em>, allowing us to use it without
 importing it. But what about <code>assert</code>?</p>
 <p>If we wanted to use <code>assert</code> we would have to import it first with a <code>use</code>
-declaration:</p>
+statement:</p>
 <pre><code class="language-rust noplayground">use std::test::assert;
 
 fn main() {
@@ -183,7 +183,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/example_import.rn
 == () (34.6µs)
 </code></pre>
-<p>Trying to use an item which doesn't exist will result in a compile error:</p>
+<p>Trying to use an item which doesn't exist results in a compile error:</p>
 <pre><code class="language-rust noplayground">fn main() {
     let foo = Foo::new();
 }
@@ -195,6 +195,11 @@ error: compile error
 2 │     let foo = Foo::new();
   │               ^^^^^^^^^^ `Foo::new` is not a function
 </code></pre>
+<p>Every item used in a Rune program must be known at compile time. This is one of
+the guarantees a Rune scripts are required to fulfill. It's otherwise typical
+for dynamic programming languages not to require this. But while Rune is also a
+dynamic language, it tries to be as helpful as possible and avoid patterns which
+might be a source for bugs.</p>
 
                     </main>
 

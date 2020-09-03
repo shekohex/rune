@@ -251,36 +251,42 @@ huge inspirationa to me. If you need an embedded scripting engine that is more
 mature right now than <em>Rune</em>, please take <em>Rhai</em> for a spin.</p>
 <p>— John-John Tedro</p>
 <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
-<p>Welcome the <em>The Rune Programming Language</em>, a reference guide about Rune.</p>
+<p>Welcome the <em>The Rune Programming Language</em>, a reference guide to Rune.</p>
 <p>Rune is an embeddable dynamic programming language that runs on a stack machine.</p>
 <p>The goal of Rune is to reimagine Rust as a dynamic programming language.
-Trying to copy as many concepts as possible, and remixing ones which do not
-translate into something which feels familiar.</p>
+Trying to mimic as many concepts as possible, and remixing ones which do not
+translate into something which works well and feels familiar.</p>
 <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
-<p>The first thing you need to learn about in Rune is the <code>dbg</code> function.
-This is used to &quot;debug&quot; whatever values are provided to it, and can be used
-by programmers in any environment to look at values in their program.</p>
-<p>The <code>dbg</code> function output information on its arguments to stdout, but its exact
-behavior is specific to the environment in which Rune is used.</p>
-<p>When embedded into a larger application it might not be suitable to output to
-stdout, so it might for example have been configured to write to a log file
-instead.</p>
-<p>Rune does also provide a <code>print</code> and <code>println</code> functions which can be used to
-write directly to stdout, but these might be disabled if they're not suitable
-for the environment used.</p>
-<p>For now, lets use <code>println</code> when printing to stdout.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    println(&quot;Hello World&quot;);
+<p>The first thing you need to learn about in Rune is the <code>dbg</code> function. This is
+used to &quot;debug&quot; the values provided to it, and can be used to understand what
+values variables have.</p>
+<pre><code class="language-rust noplayground">fn main() {
+    let a = [1, 2, 3];
+    let b = '今';
+
+    dbg(a);
+    dbg(b);
 }
 </code></pre>
-<p>You can execute this with the <code>rune-cli</code>, a commandline interface to the rune
-language that comes with this project.</p>
-<p>After each code snipped there will be a terminal showing the command used, and
-its output.
-Like this:</p>
-<pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
-Hello World
-== () (412.2µs)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3/dbg.rn
+[1, 2, 3]
+&quot;Hello World&quot;
+== () (1.0864ms)
+</code></pre>
+<p>The default <code>dbg</code> implementation outputs information on its arguments to stdout.
+But its exact behavior can differ depending on how the environment is
+configured. When Rune is embedded into a larger application it might for example
+be more suitable to output to a log file.</p>
+<p>Rune also provides <code>print</code> and <code>println</code> functions which can be used to write
+directly to stdout, but these cannot be relied on to be present to the same
+degree as <code>dbg</code>. But for our purposes we will be using <code>rune-cli</code>, which has all
+of these modules installed. This is also what was used to run the above code.</p>
+<p>So for a more format introduction, here is <code>&quot;Hello World&quot;</code> in Rune:</p>
+<pre><code class="language-rust noplaypen">
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3/hello_world.rn
+&quot;Hello World&quot;
+== () (1.0864ms)
 </code></pre>
 <p>At the end of the script you see this rather odd looking line:</p>
 <pre><code class="language-text">== () (412.2µs)
@@ -292,18 +298,18 @@ And that the execution took <code>412</code> microseconds.</p>
 Any function that doesn't have a return value returns a unit.</p>
 </blockquote>
 <p>So now you know how to run Rune scripts. Well done!</p>
-<p>Let's move on with the rest of the book.</p>
+<p>Let's move on to the next chapter.</p>
 <h1><a class="header" href="#concepts" id="concepts">Concepts</a></h1>
 <p>This chapter covers common concepts that appear in almost all programming
 languages, and how they work in Rune.</p>
 <p>Hopefully these should be familiar to anyone who's used imperative programming
-languages before. We'll try to take each concept and describe how they work in
-Rune.</p>
+languages before. We'll try to take each concept and describe how they work with
+examples, one at a time.</p>
 <h1><a class="header" href="#items-and-imports" id="items-and-imports">Items and imports</a></h1>
 <p>Everything in Rune has a unique name. Every function and type. This name is what
 identifies that thing, and is called its <em>item</em>. Rune performs compile time
-checks to make sure that every item we try to use is actually defined.</p>
-<p>The following are examples of items:</p>
+checks to make sure that every item we try to use actually exists.</p>
+<p>The following are examples of items in Rune:</p>
 <ul>
 <li><code>std::result::Result</code></li>
 <li><code>std::test::assert</code></li>
@@ -313,7 +319,7 @@ They both live within their corresponding <code>std</code> module. <code>Result<
 special even, since it's part of the <em>prelude</em>, allowing us to use it without
 importing it. But what about <code>assert</code>?</p>
 <p>If we wanted to use <code>assert</code> we would have to import it first with a <code>use</code>
-declaration:</p>
+statement:</p>
 <pre><code class="language-rust noplayground">use std::test::assert;
 
 fn main() {
@@ -323,7 +329,7 @@ fn main() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/4_1/example_import.rn
 == () (34.6µs)
 </code></pre>
-<p>Trying to use an item which doesn't exist will result in a compile error:</p>
+<p>Trying to use an item which doesn't exist results in a compile error:</p>
 <pre><code class="language-rust noplayground">fn main() {
     let foo = Foo::new();
 }
@@ -335,9 +341,14 @@ error: compile error
 2 │     let foo = Foo::new();
   │               ^^^^^^^^^^ `Foo::new` is not a function
 </code></pre>
+<p>Every item used in a Rune program must be known at compile time. This is one of
+the guarantees a Rune scripts are required to fulfill. It's otherwise typical
+for dynamic programming languages not to require this. But while Rune is also a
+dynamic language, it tries to be as helpful as possible and avoid patterns which
+might be a source for bugs.</p>
 <h1><a class="header" href="#variables-and-memory" id="variables-and-memory">Variables and memory</a></h1>
 <p>Variables in Rune are defined using the <code>let</code> keyword. In contrast to Rust, all
-variables in Rune are mutable.</p>
+variables in Rune are mutable and can be changed at any time.</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let x = 5;
     println(`The value of x is: {x}`);
@@ -349,14 +360,16 @@ variables in Rune are mutable.</p>
 The value of x is: 5
 The value of x is: 6
 </code></pre>
-<p>Rune is a memory safe language, so regardless of what you do we maintain the
-same safety guarantees as safe Rust. This is accomplished in Rune through
-reference counting.</p>
+<p>Rune is a memory safe language. Regardless of what you write in a Rune scripts,
+we maintain the same memory safety guarantees as safe Rust. This is accomplished
+in Rune through reference counting.</p>
 <h2><a class="header" href="#reference-counting-and-ownership" id="reference-counting-and-ownership">Reference counting and ownership</a></h2>
 <p>In Rune, <a href="5_1_primitives.html">unless a value is <code>Copy</code></a>, they are reference
-counted and can be used simultaneously by multiple variables. In other words
+counted and can be used simultaneously at multiple locations. In other words
 this means that they have <em>shared ownership</em>. Every variable that points to that
-value therefore points to <em>the same instance</em> on the heap of that value.</p>
+value therefore points to <em>the same instance</em> of that value.</p>
+<p>We can see how this works by sharing and mutating one object across two
+variables:</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;
@@ -372,10 +385,10 @@ value therefore points to <em>the same instance</em> on the heap of that value.<
 2
 == () (913.4µs)
 </code></pre>
-<p>This can cause issues if we call an external function expects to take ownership
-of its arguments. We say that functions like these <em>move</em> their argument, and if
-we try to use a variable which has been moved an error will be raised in the
-virtual machine.</p>
+<p>This can cause issues if we call an external function which expects to take
+ownership of its arguments. We say that functions like these <em>move</em> their
+argument, and if we try to use a variable which has been move,d an error will be
+raised in the virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
 take its argument and free it.</p>
@@ -396,8 +409,10 @@ error: virtual machine error
 6 │     println(`field: {object.field}`);
   │                      ^^^^^^^^^^^^ failed to access value: cannot read, value is moved
 </code></pre>
-<p>If you need to, you can test if a variable is still accessible with
-<code>is_readable</code> and <code>is_writable</code>.</p>
+<p>If you need to, you can test if a variable is still accessible for reading with
+<code>is_readable</code>, and for writing with <code>is_writable</code>. These are both imported in
+the prelude. An object which is writable is also <em>movable</em>, and can be provided
+to functions which needs to move the value (like <code>drop</code>).</p>
 <pre><code class="language-rust noplaypen">fn main() {
     let object = #{field: 1};
     let object2 = object;

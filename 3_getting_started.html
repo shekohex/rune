@@ -160,30 +160,36 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
-<p>The first thing you need to learn about in Rune is the <code>dbg</code> function.
-This is used to &quot;debug&quot; whatever values are provided to it, and can be used
-by programmers in any environment to look at values in their program.</p>
-<p>The <code>dbg</code> function output information on its arguments to stdout, but its exact
-behavior is specific to the environment in which Rune is used.</p>
-<p>When embedded into a larger application it might not be suitable to output to
-stdout, so it might for example have been configured to write to a log file
-instead.</p>
-<p>Rune does also provide a <code>print</code> and <code>println</code> functions which can be used to
-write directly to stdout, but these might be disabled if they're not suitable
-for the environment used.</p>
-<p>For now, lets use <code>println</code> when printing to stdout.</p>
-<pre><code class="language-rust noplaypen">fn main() {
-    println(&quot;Hello World&quot;);
+<p>The first thing you need to learn about in Rune is the <code>dbg</code> function. This is
+used to &quot;debug&quot; the values provided to it, and can be used to understand what
+values variables have.</p>
+<pre><code class="language-rust noplayground">fn main() {
+    let a = [1, 2, 3];
+    let b = '今';
+
+    dbg(a);
+    dbg(b);
 }
 </code></pre>
-<p>You can execute this with the <code>rune-cli</code>, a commandline interface to the rune
-language that comes with this project.</p>
-<p>After each code snipped there will be a terminal showing the command used, and
-its output.
-Like this:</p>
-<pre><code class="language-text">$&gt; cargo run -- scripts/hello_world.rn
-Hello World
-== () (412.2µs)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3/dbg.rn
+[1, 2, 3]
+&quot;Hello World&quot;
+== () (1.0864ms)
+</code></pre>
+<p>The default <code>dbg</code> implementation outputs information on its arguments to stdout.
+But its exact behavior can differ depending on how the environment is
+configured. When Rune is embedded into a larger application it might for example
+be more suitable to output to a log file.</p>
+<p>Rune also provides <code>print</code> and <code>println</code> functions which can be used to write
+directly to stdout, but these cannot be relied on to be present to the same
+degree as <code>dbg</code>. But for our purposes we will be using <code>rune-cli</code>, which has all
+of these modules installed. This is also what was used to run the above code.</p>
+<p>So for a more format introduction, here is <code>&quot;Hello World&quot;</code> in Rune:</p>
+<pre><code class="language-rust noplaypen">
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/3/hello_world.rn
+&quot;Hello World&quot;
+== () (1.0864ms)
 </code></pre>
 <p>At the end of the script you see this rather odd looking line:</p>
 <pre><code class="language-text">== () (412.2µs)
@@ -195,7 +201,7 @@ And that the execution took <code>412</code> microseconds.</p>
 Any function that doesn't have a return value returns a unit.</p>
 </blockquote>
 <p>So now you know how to run Rune scripts. Well done!</p>
-<p>Let's move on with the rest of the book.</p>
+<p>Let's move on to the next chapter.</p>
 
                     </main>
 
