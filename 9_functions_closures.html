@@ -218,15 +218,15 @@ representation to a function.</p>
 <h1><a class="header" href="#functions-outside-of-the-vm" id="functions-outside-of-the-vm">Functions outside of the Vm</a></h1>
 <p>Now things get <em>really</em> interesting.
 Runestick, the virtual machine driving Rune, has support for passing function
-pointers out of the virtual machine using the <code>FnPtr</code> type.</p>
+pointers out of the virtual machine using the <code>Function</code> type.</p>
 <p>This allows you to write code that takes a function constructed in Rune, and use
 it for something else.</p>
 <p>Below we showcase this, with the help of the <code>rune!</code> macro from <code>rune-testing</code>.</p>
 <pre><code class="language-rust noplaypen">use rune_testing::*;
 
 fn main() -&gt; runestick::Result&lt;()&gt; {
-    let fn_ptr: FnPtr = rune! {
-        FnPtr =&gt; r#&quot;
+    let function: Function = rune! {
+        Function =&gt; r#&quot;
         fn foo(a, b) {
             a + b
         }
@@ -237,8 +237,8 @@ fn main() -&gt; runestick::Result&lt;()&gt; {
         &quot;#
     };
 
-    println!(&quot;{}&quot;, fn_ptr.call::&lt;(i64, i64), i64&gt;((1, 3))?);
-    println!(&quot;{}&quot;, fn_ptr.call::&lt;(i64, i64), i64&gt;((2, 6))?);
+    println!(&quot;{}&quot;, function.call::&lt;(i64, i64), i64&gt;((1, 3))?);
+    println!(&quot;{}&quot;, function.call::&lt;(i64, i64), i64&gt;((2, 6))?);
     Ok(())
 }
 </code></pre>

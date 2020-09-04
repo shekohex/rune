@@ -161,20 +161,31 @@
                     <main>
                         <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
 <p>The first thing you need to learn about in Rune is the <code>dbg</code> function. This is
-used to &quot;debug&quot; the values provided to it, and can be used to understand what
-values variables have.</p>
+used to &quot;debug&quot; values provided to it in order to understand them. Anything can
+be provided to it, and it will do its best to describe it.</p>
 <pre><code class="language-rust noplayground">fn main() {
     let a = [1, 2, 3];
     let b = '今';
+    let closure = || println(&quot;Hello&quot;);
 
     dbg(a);
     dbg(b);
+    dbg(function);
+    dbg(drop);
+    dbg(closure);
+}
+
+fn function() {
+    42
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3/dbg.rn
 [1, 2, 3]
-&quot;Hello World&quot;
-== () (1.0864ms)
+'今'
+dynamic function (at: 0x17)
+native function (0x2959efc1c70)
+Type(0x9aa62663879132fb)
+== () (8.3679ms)
 </code></pre>
 <p>The default <code>dbg</code> implementation outputs information on its arguments to stdout.
 But its exact behavior can differ depending on how the environment is
@@ -184,13 +195,19 @@ be more suitable to output to a log file.</p>
 directly to stdout, but these cannot be relied on to be present to the same
 degree as <code>dbg</code>. But for our purposes we will be using <code>rune-cli</code>, which has all
 of these modules installed. This is also what was used to run the above code.</p>
-<p>So for a more format introduction, here is <code>&quot;Hello World&quot;</code> in Rune:</p>
-<pre><code class="language-rust noplaypen">
+<p>So for a more formal introduction, here is the officla Rune <code>&quot;Hello World&quot;</code>:</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    println(&quot;Hello World&quot;);
+}
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/3/hello_world.rn
-&quot;Hello World&quot;
+Hello World
 == () (1.0864ms)
 </code></pre>
+<blockquote>
+<p>Note: Something which might trip up Rust users is that the <code>println</code> is not a
+macro-like function as <code>println!</code>.</p>
+</blockquote>
 <p>At the end of the script you see this rather odd looking line:</p>
 <pre><code class="language-text">== () (412.2µs)
 </code></pre>
@@ -200,8 +217,8 @@ And that the execution took <code>412</code> microseconds.</p>
 <p>Cool Hint:
 Any function that doesn't have a return value returns a unit.</p>
 </blockquote>
-<p>So now you know how to run Rune scripts. Well done!</p>
-<p>Let's move on to the next chapter.</p>
+<p>So now you know how to run Rune scripts. Well done! Let's move on to the next
+chapter.</p>
 
                     </main>
 
