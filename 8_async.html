@@ -268,6 +268,44 @@ Result: 200 OK
 Request timed out!
 == () (2.0028603s)
 </code></pre>
+<h2><a class="header" href="#async-closures" id="async-closures"><code>async</code> closures</a></h2>
+<p>Closures can be prefixed with the <code>async</code> keyword, meaning calling them will
+produce a future.</p>
+<pre><code class="language-rust noplaypen">fn do_request(url) {
+    async || {
+        Ok(http::get(url).await?.status())
+    }
+}
+
+async fn main() {
+    let future = do_request(&quot;https://google.com&quot;);
+    let status = future().await?;
+    println(`Status: {status}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/8/async_closure.rn
+Status: 200 OK
+== () (165.4817ms)
+</code></pre>
+<h2><a class="header" href="#async-blocks" id="async-blocks"><code>async</code> blocks</a></h2>
+<p>Blocks can be marked with <code>async</code> to produce on-the-fly futures. These blocks
+can capture variables the same way as closures do, but take no arguments.</p>
+<pre><code class="language-rust noplaypen">fn do_request(url) {
+    async {
+        Ok(http::get(url).await?.status())
+    }
+}
+
+async fn main() {
+    let future = do_request(&quot;https://google.com&quot;);
+    let status = future.await?;
+    println(`Status: {status}`);
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/8/async_blocks.rn
+Status: 200 OK
+== () (179.9381ms)
+</code></pre>
 
                     </main>
 
