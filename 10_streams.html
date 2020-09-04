@@ -183,8 +183,8 @@ async fn main() {
         &quot;https://amazon.com&quot;,
     ]);
 
-    while let Some(status) = requests.next().await {
-        println(`{status?}`);
+    while let Some(status) = requests.next().await.transpose()? {
+        println(`{status}`);
     }
 }
 </code></pre>
