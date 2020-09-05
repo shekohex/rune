@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="items_imports.html"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">4.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">4.4.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">4.5.</strong> Loops</a></li><li class="chapter-item expanded "><a href="pattern_matching.html"><strong aria-hidden="true">4.6.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="template_strings.html"><strong aria-hidden="true">4.7.</strong> Template strings</a></li><li class="chapter-item expanded "><a href="instance_functions.html"><strong aria-hidden="true">4.8.</strong> Instance functions</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">5.</strong> Rune types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">5.5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="enums.html"><strong aria-hidden="true">5.6.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="closures.html"><strong aria-hidden="true">9.</strong> Functions and closures</a></li><li class="chapter-item expanded "><a href="streams.html"><strong aria-hidden="true">10.</strong> Streams</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="items_imports.html"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">4.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">4.4.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="loops.html"><strong aria-hidden="true">4.5.</strong> Loops</a></li><li class="chapter-item expanded "><a href="pattern_matching.html"><strong aria-hidden="true">4.6.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="template_strings.html"><strong aria-hidden="true">4.7.</strong> Template strings</a></li><li class="chapter-item expanded "><a href="instance_functions.html"><strong aria-hidden="true">4.8.</strong> Instance functions</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">5.</strong> Rune types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitives.html"><strong aria-hidden="true">5.1.</strong> Primitive and reference types</a></li><li class="chapter-item expanded "><a href="vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">5.5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="enums.html"><strong aria-hidden="true">5.6.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="try_operator.html"><strong aria-hidden="true">6.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="generators.html"><strong aria-hidden="true">7.</strong> Generators</a></li><li class="chapter-item expanded "><a href="async.html"><strong aria-hidden="true">8.</strong> Asynchronous programming</a></li><li class="chapter-item expanded "><a href="closures.html"><strong aria-hidden="true">9.</strong> Closures</a></li><li class="chapter-item expanded "><a href="streams.html"><strong aria-hidden="true">10.</strong> Streams</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -607,51 +607,80 @@ field: 1
 object is no longer readable 😢
 == () (943.8µs)
 </code></pre>
-<h1><a class="header" href="#functions-1" id="functions-1">Functions</a></h1>
-<p>One of the most common things in all of programming are functions. These are
-stored procedures which take a arguments, do some work, and then return.
-Functions are used because they encapsulate what they do so that the programmer
-only needs to concern itself with the protocol of the function.</p>
-<p>What does it do? What kind of arguments does it take? The alternative would be
-to copy the code around and that wouldn't be very modular. Functions instead
-provide a modular piece of code that can be called and re-used. Over and over
-again.</p>
-<h2><a class="header" href="#fn-keyword-1" id="fn-keyword-1"><code>fn</code> keyword</a></h2>
-<p>In Rune, functions are declared with the <code>fn</code> keyword. You've already seen one
-which is used in every example, <code>main</code>. This is not a special function, but is
-simply what the Rune cli looks for when deciding what to execute.</p>
+<h1><a class="header" href="#loops" id="loops">Loops</a></h1>
+<p>Loops are a fundamental building block common to many programming languages.
+This is no exception in Rune.
+Loops allow you to execute a block of code until a specific condition is
+reached, which can be a powerful tool for accomplishing programming tasks.</p>
+<h2><a class="header" href="#break-keyword" id="break-keyword"><code>break</code> Keyword</a></h2>
+<p>Every loop documented in this section can be <em>terminated early</em> using the
+<code>break</code> keyword.</p>
+<p>When Rune encounters a break, it will immediately jump out of the loop it is
+currently in and continue running right after it.</p>
 <pre><code class="language-rust noplaypen">fn main() {
-    println(&quot;Hello World&quot;);
+    let value = 0;
+
+    while value &lt; 100 {
+        if value &gt;= 50 {
+            break;
+        }
+
+        value = value + 1;
+    }
+
+    println(`The value is {value}`); // =&gt; The value is 50
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/functions/main_function.rn
-Hello World
-== () (277.8µs)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/loops/while_loop.rn
+The value is 50
+== () (501.1µs)
 </code></pre>
-<p>In Rune, you don't have to specify the return type of a function. Given that
-Rune is a dynamic programming language, this allows a function to return
-anything. Every completely distinct types.</p>
-<pre><code class="language-rust noplaypen">fn foo(condition) {
-    if condition {
-        &quot;Hello&quot;
-    } else {
-        1
+<h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
+<p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
+One that repeats unconditionally forever, until it is exited using another
+control flow operator like a <code>break</code> or a <code>return</code>.</p>
+<pre><code class="language-rust noplaypen">use time::Duration;
+
+async fn main() {
+    loop {
+        println(&quot;loop forever&quot;);
+        time::delay_for(Duration::from_secs(1)).await;
     }
 }
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/loops/loop_forever.rn
+Hello forever!
+Hello forever!
+Hello forever!
+...
+</code></pre>
+<blockquote>
+<p>Hint: If you want this one to end, you're gonna have to kill it with <code>CTRL+C</code>.</p>
+</blockquote>
+<p>We're also using an asynchronous function called <code>delay_for</code> above to avoid
+spamming our terminals too much.
+Well talk more about these in a later section.</p>
+<p>When broken out of, loops produce the value provided as an argument to the
+<code>break</code> keyword.
+By default, this is simply a unit <code>()</code>.</p>
+<pre><code class="language-rust noplaypen">fn main() {
+    let counter = 0;
 
-fn main() {
-    println(`{foo(true)}`);
-    println(`{foo(false)}`);
+    let total = loop {
+        counter = counter + 1;
+
+        if counter &gt; 10 {
+            break counter;
+        }
+    };
+
+    println(`The final count is: {total}`);
 }
 </code></pre>
-<pre><code class="language-text">$&gt; cargo run -- scripts/book/functions/return_value.rn
-Hello
-1
-== () (8.437ms)
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/loops/loop_break.rn
+The final count is: 11
+== () (281.5µs)
 </code></pre>
-<p>Depending on who you talk to, this is either the best things since sliced bread
-or quite scary. It allows for a larger ability to express a program, but at the
-same time it can be harder to reason on what your program will do.</p>
 <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
 <p>In this section we will be discussing <em>Pattern Matching</em>.</p>
 <p>Pattern matching is a flexible mechanism that allows for validating the
@@ -1792,7 +1821,7 @@ async fn main() {
 Status: 200 OK
 == () (179.9381ms)
 </code></pre>
-<h1><a class="header" href="#functions-and-closures" id="functions-and-closures">Functions and closures</a></h1>
+<h1><a class="header" href="#closures" id="closures">Closures</a></h1>
 <p>We've gone over functions before, and while incredibly useful there's a few more
 tricks worth mentioning.</p>
 <p>We'll also be talking about closures, an anonymous function with the ability to
@@ -1825,7 +1854,7 @@ Result: 3
 Result: -1
 == () (5.4354ms)
 </code></pre>
-<h2><a class="header" href="#closures" id="closures">Closures</a></h2>
+<h2><a class="header" href="#closures-1" id="closures-1">Closures</a></h2>
 <p>Closures are anonymous functions which closes over their environment.
 This means that they capture any variables used inside of the closure, allowing
 them to be used when the function is being called.</p>
