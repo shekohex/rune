@@ -204,8 +204,7 @@ learning Rust to write their own commands.</p>
 <p>Embedding a Rust compiler isn't feasible. So I started looking
 into dynamic programming languages. Ones that could be embedded into an existing
 application with little to no effort. That seemlessly integrates with its
-environment.</p>
-<p>So a number of candidates came up, and the one that stood out the most to me was
+environment. Anumber of candidates came up, but the one that stood out the most to me was
 <a href="https://github.com/jonathandturner/rhai">Rhai</a>.</p>
 <p>So why is Rhai awesome? It has Rust-like syntax. The runtime is fully written in
 mostly safe Rust, and can be easily embedded. Hooking up Rust functions is a
@@ -215,10 +214,10 @@ And the more I used it, the more I got inspired and started thinking about
 things that could be changed or added. <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">I contributed a bit to the project</a>. And
 it started to dawn on me that Rhai's approach wasn't exactly what I wanted.
 There's nothing wrong with this. The authors of Rhai have specific goals and
-ideas of what they want to accomplish. And while I believe that it's feasible to
-push Rhai in a different direction, the project probably would emerge looking
-much different on the other side. So I wanted a fresh slate to find my own
-compromises. To discover more freely what works and doesn't work well.</p>
+ideas of what they want to accomplish. And while it would be feasible to
+push Rhai in a different direction, the project would emerge looking
+much different on the other side. Which wouldn't be fair towards the people leveraging Rhai's strengths today.
+So I wanted a fresh slate to find my own compromises. To discover freely what works and doesn't work well.</p>
 <p>When I started working on Rune I had the following <em>rough</em> goals in mind:</p>
 <ul>
 <li>Performance should be comparable to Lua and Python (And eventually LuaJIT when
