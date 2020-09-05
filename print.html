@@ -428,12 +428,11 @@ fn main() -&gt; runestick::Result&lt;()&gt; {
     let context = Context::with_default_modules()?;
 
     let options = rune::Options::default();
-    let mut warnings = rune::Warnings::default();
+    let mut warnings = rune::Warnings::disabled();
 
     let unit = rune::load_source(
         &amp;context,
         &amp;options,
-        &amp;mut warnings,
         Source::new(
             &quot;test&quot;,
             r#&quot;
@@ -442,6 +441,7 @@ fn main() -&gt; runestick::Result&lt;()&gt; {
              }
              &quot;#,
         ),
+        &amp;mut warnings,
     )?;
 
     let vm = runestick::Vm::new(Arc::new(context), Arc::new(unit));
@@ -951,12 +951,11 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
     context.install(&amp;my_module)?;
 
     let options = rune::Options::default();
-    let mut warnings = rune::Warnings::default();
+    let mut warnings = rune::Warnings::disabled();
 
     let unit = rune::load_source(
         &amp;context,
         &amp;options,
-        &amp;mut warnings,
         Source::new(
             &quot;test&quot;,
             r#&quot;
@@ -965,6 +964,7 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
             }
             &quot;#,
         ),
+        &amp;mut warnings,
     )?;
 
     let vm = runestick::Vm::new(Arc::new(context), Arc::new(unit));
