@@ -192,18 +192,18 @@ can be used by others. It's starting to see a little bit of that use now which
 is a lot of fun. I made something which helps people do something cool.</p>
 <p>All the commands in the bot are written in <a href="https://rust-lang.org">Rust</a>, and <a href="https://github.com/udoprog/OxidizeBot/tree/master/bot/src/module">compiled straight into
 the bot</a>. This is nice because Rust is an incredible language. But Rust is also
-complex. Not nedlessly mind you. In my view it's complex because it decided to
-tackle <em>really hard problems</em>. And that usually comes with a <a href="https://en.wikipedia.org/wiki/Waterbed_theory">base level of
+complex. Not nedlessly mind you. I believe it's complex because it
+tackles <em>really hard problems</em>. And that usually comes with a <a href="https://en.wikipedia.org/wiki/Waterbed_theory">base level of
 complexity</a> that it's very hard to get rid of.</p>
 <p>But it's still tricky enough that streamers who have limited programming
-experience struggle getting up and running*. I wanted them to be able to write
+experience struggle getting up and running. I wanted them to be able to write
 their own commands. Ones they could just drop into a folder and <em>presto</em> -
 you're up and running.</p>
 <blockquote>
-<p>*: To this day I've tutored two of these streamers who were interested in
+<p>To this day I've tutored two of these streamers who were interested in
 learning Rust to write their own commands.</p>
 </blockquote>
-<p>Embedding a Rust compiler isn't feasible. So for this reason I started looking
+<p>Embedding a Rust compiler isn't feasible. So I started looking
 into dynamic programming languages. Ones that could be embedded into an existing
 application with little to no effort. That seemlessly integrates with its
 environment.</p>
@@ -214,7 +214,7 @@ mostly safe Rust, and can be easily embedded. Hooking up Rust functions is a
 piece of cake.</p>
 <p>But Rhai has a set of design decisions which didn't <em>exactly</em> scratch my itch.
 And the more I used it, the more I got inspired and started thinking about
-things that could be changed or added. <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">I contributed a bit to the project</a>. But
+things that could be changed or added. <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">I contributed a bit to the project</a>. And
 it started to dawn on me that Rhai's approach wasn't exactly what I wanted.
 There's nothing wrong with this. The authors of Rhai have specific goals and
 ideas of what they want to accomplish. And while I believe that it's feasible to
@@ -237,12 +237,12 @@ still have concurrency and threading using async code as you'll see later in
 this book.</p>
 </blockquote>
 <p>Rune is now in a state where I want people to poke at it. Not <em>too</em> hard mind
-you. It's still very early days. The compiler is very much in flux and a
+you. It's still early days. The compiler is very much in flux and a
 miscompilation will definitely cause the wrong closure to be called. You know,
 the one that <em>doesn't</em> doesn't perform your security checks 😅.</p>
 <p>But the more poking and prodding people do, the more issues will be found. Every
 solved issue brings Rune one step close to being production ready. Every set of
-eyeballs that takes a look can bring new perspective and ideas, making the
+eyeballs that takes a look can bring fresh perspective and ideas, making the
 project better for me and everyone else.</p>
 <p>I really want to thank Jonathan Turner and all the contributors to the Rhai
 project. They have been an an immense inspiration to me. If you need an embedded
