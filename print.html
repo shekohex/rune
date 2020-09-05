@@ -899,7 +899,9 @@ be stabilized and documented in a future release.</p>
 <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.inst_fn"><code>Module::inst_fn</code></a> and <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.async_inst_fn"><code>Module::async_inst_fn</code></a> functions. The type is
 identified as the first argument of the instance function, and must be a type
 registered in the module using <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.ty"><code>Module::ty</code></a>.</p>
-<pre><code class="language-rust noplayground">use runestick::{Context, FromValue, Hash, Item, Module, Source};
+<pre><code class="language-rust noplayground">use rune::termcolor::{ColorChoice, StandardStream};
+use rune::EmitDiagnostics as _;
+use runestick::{Context, FromValue, Hash, Item, Module, Source};
 use std::sync::Arc;
 
 fn divide_by_three(value: i64) -&gt; i64 {
@@ -934,8 +936,7 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
     let unit = match result {
         Ok(unit) =&gt; unit,
         Err(error) =&gt; {
-            use rune::termcolor;
-            let mut writer = termcolor::StandardStream::stderr(termcolor::ColorChoice::Never);
+            let mut writer = StandardStream::stderr(ColorChoice::Never);
             error.emit_diagnostics(&amp;mut writer)?;
             return Ok(());
         }
