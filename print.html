@@ -2063,7 +2063,7 @@ that are outside of the slice.</p>
 <li>Instructions cannot access values outside of their current call frame.</li>
 <li>When we return from the call frame the subslice must be empty.</li>
 </ul>
-<p>If these two conditions aren't fulfilled, the virtual machine will error.</p>
+<p>If any these two conditions aren't maintained, the virtual machine will error.</p>
 <p>Call frames fill two purposes. The subslice provides a well-defined variable
 region. Stack-relative operations like <code>copy 0</code> are always defined relative to
 the top of their call frame. Where <code>copy 0</code> would mean &quot;copy from offset 0 of
