@@ -210,9 +210,7 @@ be stabilized and documented in a future release.</p>
 <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.inst_fn"><code>Module::inst_fn</code></a> and <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.async_inst_fn"><code>Module::async_inst_fn</code></a> functions. The type is
 identified as the first argument of the instance function, and must be a type
 registered in the module using <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.ty"><code>Module::ty</code></a>.</p>
-<pre><code class="language-rust noplayground">use rune::termcolor::{ColorChoice, StandardStream};
-use rune::EmitDiagnostics as _;
-use runestick::{Context, FromValue, Hash, Item, Module, Source};
+<pre><code class="language-rust noplayground">use runestick::{Context, FromValue, Module, Source};
 use std::sync::Arc;
 
 fn divide_by_three(value: i64) -&gt; i64 {
@@ -230,37 +228,24 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
     let options = rune::Options::default();
     let mut warnings = rune::Warnings::default();
 
-    let result = rune::load_source(
+    let unit = rune::load_source(
         &amp;context,
         &amp;options,
         &amp;mut warnings,
         Source::new(
             &quot;test&quot;,
             r#&quot;
-            fn call_instance_fn(number) {
+            fn main(number) {
                 number.divide_by_three()
             }
             &quot;#,
         ),
-    );
-
-    let unit = match result {
-        Ok(unit) =&gt; unit,
-        Err(error) =&gt; {
-            let mut writer = StandardStream::stderr(ColorChoice::Never);
-            error.emit_diagnostics(&amp;mut writer)?;
-            return Ok(());
-        }
-    };
+    )?;
 
     let vm = runestick::Vm::new(Arc::new(context), Arc::new(unit));
-
-    let output = vm
-        .call_function(Hash::type_hash(Item::of(&amp;[&quot;call_instance_fn&quot;])), (33i64,))?
-        .async_complete()
-        .await?;
-
+    let output = vm.call(&amp;[&quot;main&quot;], (33i64,))?.complete()?;
     let output = i64::from_value(output)?;
+
     println!(&quot;output: {}&quot;, output);
     Ok(())
 }

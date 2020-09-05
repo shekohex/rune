@@ -204,6 +204,42 @@ Hello
 <p>Depending on who you talk to, this is either the best things since sliced bread
 or quite scary. It allows for a larger ability to express a program, but at the
 same time it can be harder to reason on what your program will do.</p>
+<h2><a class="header" href="#calling-functions-in-rust" id="calling-functions-in-rust">Calling functions in Rust</a></h2>
+<p>Rune functions can be easily set up and called from Rust.</p>
+<pre><code class="language-rust noplayground">use runestick::{Context, FromValue, Source};
+use std::sync::Arc;
+
+fn main() -&gt; runestick::Result&lt;()&gt; {
+    let context = Context::with_default_modules()?;
+
+    let options = rune::Options::default();
+    let mut warnings = rune::Warnings::default();
+
+    let unit = rune::load_source(
+        &amp;context,
+        &amp;options,
+        &amp;mut warnings,
+        Source::new(
+            &quot;test&quot;,
+            r#&quot;
+             fn main(number) {
+                 number + 10
+             }
+             &quot;#,
+        ),
+    )?;
+
+    let vm = runestick::Vm::new(Arc::new(context), Arc::new(unit));
+    let output = vm.call(&amp;[&quot;main&quot;], (33i64,))?.complete()?;
+    let output = i64::from_value(output)?;
+
+    println!(&quot;output: {}&quot;, output);
+    Ok(())
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run --example basic_add
+output: 11
+</code></pre>
 
                     </main>
 
