@@ -203,10 +203,10 @@ you're up and running.</p>
 <p>To this day I've tutored two of these streamers who were interested in
 learning Rust to write their own commands.</p>
 </blockquote>
-<p>Embedding a Rust compiler isn't feasible. So I started looking
-into dynamic programming languages. Ones that could be embedded into an existing
-application with little to no effort. That seemlessly integrates with its
-environment. Anumber of candidates came up, but the one that stood out the most to me was
+<p>Embedding a Rust compiler isn't feasible. So I started looking into dynamic
+programming languages. Ones that could be embedded into an existing application
+with little to no effort. That seemlessly integrates with its environment.
+Anumber of candidates came up, but the one that stood out the most to me was
 <a href="https://github.com/jonathandturner/rhai">Rhai</a>.</p>
 <p>So why is Rhai awesome? It has Rust-like syntax. The runtime is fully written in
 mostly safe Rust, and can be easily embedded. Hooking up Rust functions is a
@@ -216,16 +216,18 @@ And the more I used it, the more I got inspired and started thinking about
 things that could be changed or added. <a href="https://github.com/jonathandturner/rhai/commits?author=udoprog">I contributed a bit to the project</a>. And
 it started to dawn on me that Rhai's approach wasn't exactly what I wanted.
 There's nothing wrong with this. The authors of Rhai have specific goals and
-ideas of what they want to accomplish. And while it would be feasible to
-push Rhai in a different direction, the project would emerge looking
-much different on the other side. Which wouldn't be fair towards the people leveraging Rhai's strengths today.
-So I wanted a fresh slate to find my own compromises. To discover freely what works and doesn't work well.</p>
+ideas of what they want to accomplish. And while it would be feasible to push
+Rhai in a different direction, the project would emerge looking much different
+on the other side. Which wouldn't be fair towards the people leveraging Rhai's
+strengths today. So I wanted a fresh slate to find my own compromises. To
+discover freely what works and doesn't work well.</p>
 <p>When I started working on Rune I had the following <em>rough</em> goals in mind:</p>
 <ul>
 <li>Performance should be comparable to Lua and Python (And eventually LuaJIT when
 we have cranelift).</li>
 <li>Scripts should compile quickly.</li>
 <li>Rune should feel like &quot;Rust without types&quot;.</li>
+<li>Incredible support for asynchronous programming (i.e. native <code>select</code> statements).</li>
 <li>Be as good as Rhai when it comes to integrating with native Rust.</li>
 <li>Work well through C bindings.</li>
 <li>A minimalistic stack-based runtime that is strictly singlethreaded*.</li>
