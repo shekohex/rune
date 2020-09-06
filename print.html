@@ -320,11 +320,11 @@ Hello World
 <p>Note: Something which might trip up Rust users is that the <code>println</code> is not a
 macro-like function as <code>println!</code>.</p>
 </blockquote>
-<p>At the end of the script you see this rather odd looking line:</p>
-<pre><code class="language-text">== () (412.2µs)
+<p>At the end of the script's output, you see this rather odd looking line:</p>
+<pre><code class="language-text">== () (1.0864ms)
 </code></pre>
 <p>This simply means that the script evaluated to a unit, or a <code>()</code>.
-And that the execution took <code>412</code> microseconds.</p>
+And that the execution took <code>1.0864</code> milliseconds.</p>
 <blockquote>
 <p>Cool Hint:
 Any function that doesn't have a return value returns a unit.</p>
@@ -682,7 +682,7 @@ control flow operator like a <code>break</code> or a <code>return</code>.</p>
 
 async fn main() {
     loop {
-        println(&quot;loop forever&quot;);
+        println(&quot;Hello forever!&quot;);
         time::delay_for(Duration::from_secs(1)).await;
     }
 }
@@ -1246,7 +1246,7 @@ key did not exist
 <p>These are useful because they allow their data to be specified dynamically,
 which is exactly the same use case as storing unknown JSON.</p>
 <p>One of the biggest motivations for <em>Rune</em> to have anonymous objects is so that
-we can natively data with unknown structure.</p>
+we can natively handle data with unknown structure.</p>
 <pre><code class="language-rust noplaypen">async fn get_commits(repo, limit) {
     let limit = limit.unwrap_or(10);
 
