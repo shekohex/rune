@@ -174,7 +174,7 @@ special even, since it's part of the <em>prelude</em>, allowing us to use it wit
 importing it. But what about <code>assert</code>?</p>
 <p>If we wanted to use <code>assert</code> we would have to import it first with a <code>use</code>
 statement:</p>
-<pre><code class="language-rust noplayground">use std::test::assert;
+<pre><code class="language-rune">use std::test::assert;
 
 fn main() {
     assert(1 &lt; 2, &quot;one is less than two&quot;);
@@ -184,7 +184,7 @@ fn main() {
 == () (34.6µs)
 </code></pre>
 <p>Trying to use an item which doesn't exist results in a compile error:</p>
-<pre><code class="language-rust noplayground">fn main() {
+<pre><code class="language-rune">fn main() {
     let foo = Foo::new();
 }
 </code></pre>
@@ -197,6 +197,53 @@ error: compile error
 </code></pre>
 <p>Every item used in a Rune program must be known at compile time. This is one of
 the guarantees a Rune scripts are required to fulfill.</p>
+<h1><a class="header" href="#dynamic-modules" id="dynamic-modules">Dynamic modules</a></h1>
+<p>Rune has support for dynamic modules, purely defined in Rune itself. This is
+done using the <code>mod</code> keyword. And the module can either be loaded from a
+different file matching the name of the module or defined directly inside of the
+source file.</p>
+<p>The following is an example of an <em>inline</em> module:</p>
+<pre><code class="language-rune">mod foo {
+    fn get_number() {
+        1
+    }
+}
+
+mod bar {
+    fn get_number() {
+        2
+    }
+}
+
+fn main() {
+    foo::get_number() + bar::get_number()
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/items_imports/inline_modules.rn
+== 3 (33.2µs)
+</code></pre>
+<p>And this is the equivalent modules loaded from the filesystem. These are three
+separate files:</p>
+<pre><code class="language-rune">mod foo;
+mod bar;
+
+fn main() {
+    foo::get_number() + bar::get_number()
+}
+</code></pre>
+<pre><code class="language-rune">// file: ./foo/mod.rn
+fn get_number() {
+    2
+}
+</code></pre>
+<pre><code class="language-rune">// file: ./bar.rn
+fn get_number() {
+    1
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/items_imports/modules.rn
+== 3 (37.5µs)
+</code></pre>
 
                     </main>
 

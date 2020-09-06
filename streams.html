@@ -164,7 +164,7 @@
 <p>They have almost identical <code>next</code> and <code>resume</code> functions, but each must be used
 with <code>.await</code>, and we are now allowed to use asynchronous functions inside of
 the generator.</p>
-<pre><code class="language-rust noplayground">async fn send_requests(list) {
+<pre><code class="language-rune">async fn send_requests(list) {
     let client = http::Client::new();
 
     let do_request = async |url| {

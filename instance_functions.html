@@ -166,7 +166,7 @@ is the first part <code>value</code>. And the <em>instance function</em> is <cod
 <p>These are a bit special in Rune. Since Rune is a dynamic programming language we
 can't tell at compile time which instance any specific <code>value</code> can be. So
 instance functions must be looked up at runtime.</p>
-<pre><code class="language-rust noplayground">struct Foo;
+<pre><code class="language-rune">struct Foo;
 
 impl Foo {
     fn new() {
@@ -194,7 +194,7 @@ able to provide better diagnostics by adding debug information.</p>
 the item in the virtual machine and is the result of a deterministic computation
 based on its item. So the hash for the item <code>Foo::new</code> will always be the same.</p>
 <p>In Rust, we can calculate this hash using <code>Item</code> and <code>Hash::function</code> method:</p>
-<pre><code class="language-rust noplayground">use runestick::{Hash, Item};
+<pre><code class="language-rune">use runestick::{Hash, Item};
 
 fn main() {
     println!(&quot;{}&quot;, Hash::type_hash(Item::of(&amp;[&quot;Foo&quot;, &quot;new&quot;])));
@@ -210,7 +210,8 @@ be stabilized and documented in a future release.</p>
 <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.inst_fn"><code>Module::inst_fn</code></a> and <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.async_inst_fn"><code>Module::async_inst_fn</code></a> functions. The type is
 identified as the first argument of the instance function, and must be a type
 registered in the module using <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.ty"><code>Module::ty</code></a>.</p>
-<pre><code class="language-rust noplayground">use runestick::{Context, FromValue, Module, Source};
+<pre><code class="language-rune">use rune::{Options, Sources, Warnings};
+use runestick::{Context, FromValue, Module, Source, Vm};
 use std::sync::Arc;
 
 fn divide_by_three(value: i64) -&gt; i64 {
@@ -225,24 +226,22 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
     let mut context = Context::with_default_modules()?;
     context.install(&amp;my_module)?;
 
-    let options = rune::Options::default();
-    let mut warnings = rune::Warnings::disabled();
+    let options = Options::default();
+    let mut warnings = Warnings::disabled();
+    let mut sources = Sources::new();
 
-    let unit = rune::load_source(
-        &amp;context,
-        &amp;options,
-        Source::new(
-            &quot;test&quot;,
-            r#&quot;
-            fn main(number) {
-                number.divide_by_three()
-            }
-            &quot;#,
-        ),
-        &amp;mut warnings,
-    )?;
+    sources.insert_default(Source::new(
+        &quot;test&quot;,
+        r#&quot;
+        fn main(number) {
+            number.divide_by_three()
+        }
+        &quot;#,
+    ));
 
-    let vm = runestick::Vm::new(Arc::new(context), Arc::new(unit));
+    let unit = rune::load_sources(&amp;context, &amp;options, &amp;mut sources, &amp;mut warnings)?;
+
+    let vm = Vm::new(Arc::new(context), Arc::new(unit));
     let output = vm.call(&amp;[&quot;main&quot;], (33i64,))?.complete()?;
     let output = i64::from_value(output)?;
 

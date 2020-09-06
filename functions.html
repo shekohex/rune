@@ -206,24 +206,27 @@ or quite scary. It allows for a larger ability to express a program, but at the
 same time it can be harder to reason on what your program will do.</p>
 <h2><a class="header" href="#calling-functions-in-rust" id="calling-functions-in-rust">Calling functions in Rust</a></h2>
 <p>Rune functions can be easily set up and called from Rust.</p>
-<pre><code class="language-rust noplayground">use rune::{Options, Warnings};
+<pre><code class="language-rune">use rune::{Options, Sources, Warnings};
 use runestick::{Context, FromValue, Source, Vm};
 use std::sync::Arc;
 
 fn main() -&gt; runestick::Result&lt;()&gt; {
     let context = Context::with_default_modules()?;
+    let mut sources = Sources::new();
 
-    let unit = rune::load_source(
+    sources.insert_default(Source::new(
+        &quot;test&quot;,
+        r#&quot;
+         fn main(number) {
+             number + 10
+         }
+         &quot;#,
+    ));
+
+    let unit = rune::load_sources(
         &amp;context,
         &amp;Options::default(),
-        Source::new(
-            &quot;test&quot;,
-            r#&quot;
-             fn main(number) {
-                 number + 10
-             }
-             &quot;#,
-        ),
+        &amp;mut sources,
         &amp;mut Warnings::disabled(),
     )?;
 
