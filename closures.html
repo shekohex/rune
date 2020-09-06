@@ -170,7 +170,7 @@ from its environment.</p>
 its name without calling it.</p>
 <p>This allows for some really neat tricks, like passing in a function which
 represents the operation you want another function to use.</p>
-<pre><code class="language-rust noplaypen">fn do_thing(op) {
+<pre><code class="language-rune">fn do_thing(op) {
     op(1, 2)
 }
 
@@ -196,7 +196,7 @@ Result: -1
 <p>Closures are anonymous functions which closes over their environment.
 This means that they capture any variables used inside of the closure, allowing
 them to be used when the function is being called.</p>
-<pre><code class="language-rust noplaypen">fn work(op) {
+<pre><code class="language-rune">fn work(op) {
     op(1, 2)
 }
 
@@ -222,7 +222,7 @@ pointers out of the virtual machine using the <code>Function</code> type.</p>
 <p>This allows you to write code that takes a function constructed in Rune, and use
 it for something else.</p>
 <p>Below we showcase this, with the help of the <code>rune!</code> macro from <code>rune-testing</code>.</p>
-<pre><code class="language-rust noplaypen">use rune_testing::*;
+<pre><code class="language-rune">use rune_testing::*;
 
 fn main() -&gt; runestick::Result&lt;()&gt; {
     let function: Function = rune! {

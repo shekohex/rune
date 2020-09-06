@@ -169,7 +169,7 @@ reached, which can be a powerful tool for accomplishing programming tasks.</p>
 <code>break</code> keyword.</p>
 <p>When Rune encounters a break, it will immediately jump out of the loop it is
 currently in and continue running right after it.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let value = 0;
 
     while value &lt; 100 {
@@ -191,7 +191,7 @@ The value is 50
 <p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
 One that repeats unconditionally forever, until it is exited using another
 control flow operator like a <code>break</code> or a <code>return</code>.</p>
-<pre><code class="language-rust noplaypen">use time::Duration;
+<pre><code class="language-rune">use time::Duration;
 
 async fn main() {
     loop {
@@ -215,7 +215,7 @@ Well talk more about these in a later section.</p>
 <p>When broken out of, loops produce the value provided as an argument to the
 <code>break</code> keyword.
 By default, this is simply a unit <code>()</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let counter = 0;
 
     let total = loop {

@@ -165,7 +165,7 @@ set of keys that are known at compile time and guaranteed to be defined.</p>
 <p>Structs can also, like most types, have an <code>impl</code> block associated with them
 which creates instance functions that you can call on an instance of that
 struct.</p>
-<pre><code class="language-rust noplaypen">struct User {
+<pre><code class="language-rune">struct User {
     username,
     active,
 }
@@ -203,7 +203,7 @@ setbac is active
 <p>Structs can also be pattern matched, like most types.</p>
 <p>But since the fields of a struct are known at compile time, the compiler can
 ensure that you're only using fields which are defined.</p>
-<pre><code class="language-rust noplaypen">struct User {
+<pre><code class="language-rune">struct User {
     username,
     active,
 }

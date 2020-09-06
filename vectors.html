@@ -162,7 +162,7 @@
                         <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>A vector is a native data structure of Rune which is a dynamic list of values. A
 vector isn't typed, and can store <em>any</em> rune values.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
     dbg(values[0]);
@@ -183,7 +183,7 @@ vector isn't typed, and can store <em>any</em> rune values.</p>
 <p>As you can see, you can iterate over a vector because it implements the iterator
 protocol. It is also possible to create and use an iterator manually using
 <code>Vec::iter</code>, giving you more control over it.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
     for v in values.iter().rev() {
@@ -198,7 +198,7 @@ protocol. It is also possible to create and use an iterator manually using
 </code></pre>
 <h2><a class="header" href="#using-vectors-from-rust" id="using-vectors-from-rust">Using vectors from Rust</a></h2>
 <p>Vectors are represented externally as the standard <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.</p>
-<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+<pre><code class="language-rune">use rune_testing::{run, Result};
 
 fn main() -&gt; Result&lt;()&gt; {
     let input: Vec&lt;i64&gt; = vec![1, 2, 3, 4];
@@ -228,7 +228,7 @@ fn main() -&gt; Result&lt;()&gt; {
 </code></pre>
 <p>If you have a vector which have values of non-uniform types, you can use 
 <a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
-<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+<pre><code class="language-rune">use rune_testing::{run, Result};
 use runestick::VecTuple;
 
 fn main() -&gt; Result&lt;()&gt; {

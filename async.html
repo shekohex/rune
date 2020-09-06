@@ -167,7 +167,7 @@ how it applies to Rune as a dynamic programming language.</p>
 <p>Asynchronous code allows us to run multiple tasks concurrently, and work with
 the result of those tasks.</p>
 <p>A typical example would be if we want to perform multiple HTTP requests at once:</p>
-<pre><code class="language-rust noplaypen">async fn main() {
+<pre><code class="language-rune">async fn main() {
     let a = http::get(&quot;https://google.com&quot;);
     let b = http::get(&quot;https://amazon.com&quot;);
 
@@ -198,7 +198,7 @@ at the same time and we collect the result.</p>
 It enables us to wait on a set of futures at the same time.</p>
 <p>A simple example of this is if we were to implement a simple request with a
 timeout:</p>
-<pre><code class="language-rust noplaypen">struct Timeout;
+<pre><code class="language-rune">struct Timeout;
 
 async fn request(timeout) {
     let request = http::get(`http://httpstat.us/200?sleep={timeout}`);
@@ -238,7 +238,7 @@ function is run one at-a-time.</p>
 produce a <code>Future</code>.</p>
 <p>In order to get the result of this <code>Future</code> it must be <code>.await</code>ed. And <code>.await</code>
 is only permitted inside of <code>async</code> functions and closures.</p>
-<pre><code class="language-rust noplaypen">use std::future;
+<pre><code class="language-rune">use std::future;
 
 struct Timeout;
 
@@ -271,7 +271,7 @@ Request timed out!
 <h2><a class="header" href="#async-closures" id="async-closures"><code>async</code> closures</a></h2>
 <p>Closures can be prefixed with the <code>async</code> keyword, meaning calling them will
 produce a future.</p>
-<pre><code class="language-rust noplaypen">fn do_request(url) {
+<pre><code class="language-rune">fn do_request(url) {
     async || {
         Ok(http::get(url).await?.status())
     }
@@ -290,7 +290,7 @@ Status: 200 OK
 <h2><a class="header" href="#async-blocks" id="async-blocks"><code>async</code> blocks</a></h2>
 <p>Blocks can be marked with <code>async</code> to produce on-the-fly futures. These blocks
 can capture variables the same way as closures do, but take no arguments.</p>
-<pre><code class="language-rust noplaypen">fn do_request(url) {
+<pre><code class="language-rune">fn do_request(url) {
     async {
         Ok(http::get(url).await?.status())
     }

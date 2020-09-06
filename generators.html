@@ -166,7 +166,7 @@ of suspending themselves and their state.</p>
 state is stored in the generator function.</p>
 <p>With this, we can create a fairly efficient generator to build fibonacci
 numbers.</p>
-<pre><code class="language-rust noplaypen">fn fib() {
+<pre><code class="language-rune">fn fib() {
     let a = 0;
     let b = 1;
 
@@ -212,7 +212,7 @@ The <code>next</code> function simply slates over some of that complexity to mak
 things easier to do.</p>
 <p>The first thing to know is that <code>yield</code> itself can actually <em>produce</em> a value,
 allowing the calling procedure to send values to the generator.</p>
-<pre><code class="language-rust noplaypen">fn printer() {
+<pre><code class="language-rune">fn printer() {
     loop {
         let out = yield;
         dbg(out);
@@ -236,7 +236,7 @@ fn main() {
 resume once.
 At that point it runs the block prior to the first yield, we can see this by
 instrumenting our code a little.</p>
-<pre><code class="language-rust noplaypen">fn printer() {
+<pre><code class="language-rune">fn printer() {
     loop {
         println(&quot;waiting for value...&quot;);
         let out = yield;
@@ -270,7 +270,7 @@ But how do we <em>receive</em> them?</p>
 <p>This adds a bit of complexity, since we need to pull out <code>GeneratorState</code>.
 This enum has two variants: <code>Yielded</code> and <code>Complete</code>, and represents all the
 possible states a generator can suspend itself into.</p>
-<pre><code class="language-rust noplaypen">fn print_once() {
+<pre><code class="language-rune">fn print_once() {
     let out = yield 1;
     dbg(out);
     2
@@ -294,7 +294,7 @@ This corresponds to the <code>yield 1</code> statement in the generator.</p>
 This corresponds to the <em>return value</em> of the generator.</p>
 <p>Trying to resume the generator after this will cause the virtual machine to
 error.</p>
-<pre><code class="language-rust noplaypen">fn print_once() {
+<pre><code class="language-rune">fn print_once() {
     yield 1
 }
 

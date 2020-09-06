@@ -164,7 +164,7 @@
 looking strings like <code>`Hello {name}`</code>. These are called <em>template strings</em>,
 and allow use to conveniently build strings using variables from the
 environment.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let age = 30;
     println(`I am {age} years old!`);
 }
@@ -179,10 +179,8 @@ protocol</em> and it can be a very efficient to build complex strings out of it.
 <p>The <code>STRING_DISPLAY</code> protocol is a function that can be implemented by any
 <em>external</em> type which allows it to be used in a template string.</p>
 <p>It expects a function with the signature <code>fn(&amp;self, buf: &amp;mut String) -&gt; fmt::Result</code>.</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use std::fmt::Write as _;
+<pre><code class="language-rust noplaypen">use std::fmt::Write as _;
+use std::fmt;
 
 #[derive(Debug)]
 pub struct StatusCode {
@@ -200,11 +198,10 @@ pub fn module() -&gt; Result&lt;runestick::Module, runestick::ContextError&gt; {
     module.inst_fn(runestick::STRING_DISPLAY, StatusCode::display)?;
     Ok(module)
 }
-<span class="boring">}
-</span></code></pre></pre>
+</code></pre>
 <p>This is what allows status codes to be formatted into template strings, any
 types which do not implement this protocol will fail to run.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let vec = [1, 2, 3];
     println(`{vec}`);
 }

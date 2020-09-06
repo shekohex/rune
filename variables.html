@@ -162,7 +162,7 @@
                         <h1><a class="header" href="#variables-and-memory" id="variables-and-memory">Variables and memory</a></h1>
 <p>Variables in Rune are defined using the <code>let</code> keyword. In contrast to Rust, all
 variables in Rune are mutable and can be changed at any time.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let x = 5;
     println(`The value of x is: {x}`);
     x = 6;
@@ -188,7 +188,7 @@ has a few more tricks.</p>
 </blockquote>
 <p>We can see how this works by sharing and mutating one object across two
 variables:</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let object = #{field: 1};
     let object2 = object;
     println(`{object.field}`);
@@ -211,7 +211,7 @@ raised in the virtual machine.</p>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
 take its argument and free it.</p>
 </blockquote>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let object = #{field: 1};
     let object2 = object;
     println(`field: {object.field}`);
@@ -231,7 +231,7 @@ error: virtual machine error
 <code>is_readable</code>, and for writing with <code>is_writable</code>. These are both imported in
 the prelude. An object which is writable is also <em>movable</em>, and can be provided
 to functions which needs to move the value, like <code>drop</code>.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let object = #{field: 1};
     let object2 = object;
     println(`field: {object.field}`);

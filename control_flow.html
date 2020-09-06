@@ -169,7 +169,7 @@ from the current function. If used without an argument, the function will return
 a unit <code>()</code>.</p>
 <p>The last statement in a function is known as an <em>implicit return</em>, and will be
 what the function returns by default unless a <code>return</code> is specified.</p>
-<pre><code class="language-rust noplaypen">fn foo(n) {
+<pre><code class="language-rune">fn foo(n) {
     if n &lt; 1 {
         return &quot;less than one&quot;;
     }
@@ -190,7 +190,7 @@ something else
 <h2><a class="header" href="#if-expressions" id="if-expressions"><code>if</code> expressions</a></h2>
 <p>If expressions allow you to provide a condition with one or more code branches.
 If the condition is <code>true</code>, the provided block of code will run.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let number = 3;
 
     if number &lt; 5 {
@@ -204,7 +204,7 @@ The number *is* smaller than 5
 </code></pre>
 <p>Optionally, we can add another branch under <code>else</code>, which will execute in case
 the condition is false.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let number = 3;
 
     if number &lt; 5 {
@@ -220,7 +220,7 @@ the number is smaller than 5
 </code></pre>
 <p>We can also add an arbitrary number of <code>else if</code> branches, which allow us to
 specify many different conditions.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let number = 3;
 
     if number &lt; 5 {
@@ -239,7 +239,7 @@ the number is smaller than 5
 <p>Do note however that if you have <em>many</em> conditions, it might be cleaner to use
 a <code>match</code>.</p>
 <p>This will be covered in a later section, but here is a sneak peek:</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let number = 3;
 
     match number {

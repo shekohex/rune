@@ -176,7 +176,7 @@ distinct <em>copies</em> of the underlying value.</p>
 </ul>
 <p>You can see that these bytes are <code>Copy</code> when assigning them to a different
 variable, because a separate copy of the variable will be used.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let a = 1;
     let b = a;
     a = 2;
@@ -192,7 +192,7 @@ variable, because a separate copy of the variable will be used.</p>
 <p>Other types like <em>strings</em> are stored by reference on the stack. Assigning them
 to a different variable will only <em>copy their reference</em>, but they still point
 to the same underlying data.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let a = String::from_str(&quot;Hello&quot;);
     let b = a;
     a.push_str(&quot; World&quot;);

@@ -163,7 +163,7 @@
 <p>Tuples in Rune are fixed-size sequences of values. Similarly to a vector tuples
 can contains any sequence of values. But there's no way to change the size of a
 tuple.</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
     dbg(values)
 
@@ -178,7 +178,7 @@ tuple.</p>
 == () (38.3136ms)
 </code></pre>
 <p>The following is a simple example of a function returning a tuple:</p>
-<pre><code class="language-rust noplaypen">fn foo() {
+<pre><code class="language-rune">fn foo() {
     (1, &quot;test&quot;)
 }
 
@@ -191,7 +191,7 @@ fn main() {
 == () (387.6µs)
 </code></pre>
 <p>Tuples can also be pattern matched:</p>
-<pre><code class="language-rust noplaypen">fn main() {
+<pre><code class="language-rune">fn main() {
     match (&quot;test&quot;, 1) {
         (&quot;test&quot;, n) =&gt; {
             dbg(&quot;the first part was a number:&quot;, n);
@@ -209,7 +209,7 @@ fn main() {
 </code></pre>
 <h2><a class="header" href="#using-tuples-from-rust" id="using-tuples-from-rust">Using tuples from Rust</a></h2>
 <p>Tuples are represented externally as <a href="https://doc.rust-lang.org/std/primitive.tuple.html">primitive tuple types</a>.</p>
-<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
+<pre><code class="language-rune">use rune_testing::{run, Result};
 
 fn main() -&gt; Result&lt;()&gt; {
     let object: (i64, i64) = run(
