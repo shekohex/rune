@@ -222,7 +222,7 @@ pointers out of the virtual machine using the <code>Function</code> type.</p>
 <p>This allows you to write code that takes a function constructed in Rune, and use
 it for something else.</p>
 <p>Below we showcase this, with the help of the <code>rune!</code> macro from <code>rune-testing</code>.</p>
-<pre><code class="language-rune">use rune_testing::*;
+<pre><code class="language-rust noplaypen">use rune_testing::*;
 
 fn main() -&gt; runestick::Result&lt;()&gt; {
     let function: Function = rune! {

@@ -473,7 +473,7 @@ or quite scary. It allows for a larger ability to express a program, but at the
 same time it can be harder to reason on what your program will do.</p>
 <h2><a class="header" href="#calling-functions-in-rust" id="calling-functions-in-rust">Calling functions in Rust</a></h2>
 <p>Rune functions can be easily set up and called from Rust.</p>
-<pre><code class="language-rune">use rune::{Options, Sources, Warnings};
+<pre><code class="language-rust noplaypen">use rune::{Options, Sources, Warnings};
 use runestick::{Context, FromValue, Source, Vm};
 use std::sync::Arc;
 
@@ -990,7 +990,7 @@ be stabilized and documented in a future release.</p>
 <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.inst_fn"><code>Module::inst_fn</code></a> and <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.async_inst_fn"><code>Module::async_inst_fn</code></a> functions. The type is
 identified as the first argument of the instance function, and must be a type
 registered in the module using <a href="https://docs.rs/runestick/0.5.3/runestick/struct.Module.html#method.ty"><code>Module::ty</code></a>.</p>
-<pre><code class="language-rune">use rune::{Options, Sources, Warnings};
+<pre><code class="language-rust noplaypen">use rune::{Options, Sources, Warnings};
 use runestick::{Context, FromValue, Module, Source, Vm};
 use std::sync::Arc;
 
@@ -1131,8 +1131,8 @@ distinct <em>copies</em> of the underlying value.</p>
 <li>characters, like <code>'今'</code>.</li>
 <li>integers, like <code>42</code>.</li>
 <li>floats, like <code>3.1418</code>.</li>
-<li>static strings.</li>
-<li>types.</li>
+<li>static strings, like <code>&quot;Hello World&quot;</code>.</li>
+<li>type hashes.</li>
 </ul>
 <p>You can see that these bytes are <code>Copy</code> when assigning them to a different
 variable, because a separate copy of the variable will be used.</p>
@@ -1204,7 +1204,7 @@ protocol. It is also possible to create and use an iterator manually using
 </code></pre>
 <h2><a class="header" href="#using-vectors-from-rust" id="using-vectors-from-rust">Using vectors from Rust</a></h2>
 <p>Vectors are represented externally as the standard <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html"><code>Vec</code></a>.</p>
-<pre><code class="language-rune">use rune_testing::{run, Result};
+<pre><pre class="playground"><code class="language-rust">use rune_testing::{run, Result};
 
 fn main() -&gt; Result&lt;()&gt; {
     let input: Vec&lt;i64&gt; = vec![1, 2, 3, 4];
@@ -1228,13 +1228,13 @@ fn main() -&gt; Result&lt;()&gt; {
     println!(&quot;{:?}&quot;, output);
     Ok(())
 }
-</code></pre>
+</code></pre></pre>
 <pre><code class="language-text">$&gt; cargo run --example vector
 [10]
 </code></pre>
 <p>If you have a vector which has values of non-uniform types, you can use 
 <a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
-<pre><code class="language-rune">use rune_testing::{run, Result};
+<pre><pre class="playground"><code class="language-rust">use rune_testing::{run, Result};
 use runestick::VecTuple;
 
 fn main() -&gt; Result&lt;()&gt; {
@@ -1256,7 +1256,7 @@ fn main() -&gt; Result&lt;()&gt; {
     println!(&quot;({:?}, {:?})&quot;, a, b);
     Ok(())
 }
-</code></pre>
+</code></pre></pre>
 <pre><code class="language-text">$&gt; cargo run --example vec_tuple
 (2, &quot;Hello World&quot;)
 </code></pre>
@@ -1340,7 +1340,7 @@ cba225dad143779a0a9543cfb05cde9710083af5
 <p>Objects are represented externally as the <a href="https://docs.rs/runestick/0/runestick/type.Object.html"><code>Object</code></a> type alias. The keys are
 always strings, but its value must be specified as the sole type parameter.
 Note that the dynamic <a href="https://docs.rs/runestick/0/runestick/enum.Value.html"><code>Value</code></a> can be used if the type is unknown.</p>
-<pre><code class="language-rune">use rune_testing::{run, Result};
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
 use runestick::{Object, Value};
 
 fn main() -&gt; Result&lt;()&gt; {
@@ -1417,7 +1417,7 @@ fn main() {
 </code></pre>
 <h2><a class="header" href="#using-tuples-from-rust" id="using-tuples-from-rust">Using tuples from Rust</a></h2>
 <p>Tuples are represented externally as <a href="https://doc.rust-lang.org/std/primitive.tuple.html">primitive tuple types</a>.</p>
-<pre><code class="language-rune">use rune_testing::{run, Result};
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
 
 fn main() -&gt; Result&lt;()&gt; {
     let object: (i64, i64) = run(
@@ -1838,7 +1838,7 @@ pointers out of the virtual machine using the <code>Function</code> type.</p>
 <p>This allows you to write code that takes a function constructed in Rune, and use
 it for something else.</p>
 <p>Below we showcase this, with the help of the <code>rune!</code> macro from <code>rune-testing</code>.</p>
-<pre><code class="language-rune">use rune_testing::*;
+<pre><code class="language-rust noplaypen">use rune_testing::*;
 
 fn main() -&gt; runestick::Result&lt;()&gt; {
     let function: Function = rune! {

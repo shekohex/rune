@@ -239,7 +239,7 @@ cba225dad143779a0a9543cfb05cde9710083af5
 <p>Objects are represented externally as the <a href="https://docs.rs/runestick/0/runestick/type.Object.html"><code>Object</code></a> type alias. The keys are
 always strings, but its value must be specified as the sole type parameter.
 Note that the dynamic <a href="https://docs.rs/runestick/0/runestick/enum.Value.html"><code>Value</code></a> can be used if the type is unknown.</p>
-<pre><code class="language-rune">use rune_testing::{run, Result};
+<pre><code class="language-rust noplaypen">use rune_testing::{run, Result};
 use runestick::{Object, Value};
 
 fn main() -&gt; Result&lt;()&gt; {
