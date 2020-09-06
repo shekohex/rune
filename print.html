@@ -422,6 +422,10 @@ fn get_number() {
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/items_imports/modules.rn
 == 3 (37.5µs)
 </code></pre>
+<blockquote>
+<p>Note: Rust has visibility rules (<code>pub</code>, <code>pub(crate)</code>, ...) which are not yet
+implemented in Rune. See <a href="https://github.com/rune-rs/rune/issues/5">issue #5</a>.</p>
+</blockquote>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>One of the most common things in all of programming are functions. These are
 stored procedures which take a arguments, do some work, and then return.
