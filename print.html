@@ -307,7 +307,7 @@ be more suitable to output to a log file.</p>
 directly to stdout, but these cannot be relied on to be present to the same
 degree as <code>dbg</code>. But for our purposes we will be using <code>rune-cli</code>, which has all
 of these modules installed. This is also what was used to run the above code.</p>
-<p>So for a more formal introduction, here is the officla Rune <code>&quot;Hello World&quot;</code>:</p>
+<p>So for a more formal introduction, here is the official Rune <code>&quot;Hello World&quot;</code>:</p>
 <pre><code class="language-rune">fn main() {
     println(&quot;Hello World&quot;);
 }
@@ -445,7 +445,7 @@ Hello World
 </code></pre>
 <p>In Rune, you don't have to specify the return type of a function. Given that
 Rune is a dynamic programming language, this allows a function to return
-anything. Every completely distinct types.</p>
+anything, even completely distinct types.</p>
 <pre><code class="language-rune">fn foo(condition) {
     if condition {
         &quot;Hello&quot;
@@ -464,7 +464,7 @@ Hello
 1
 == () (8.437ms)
 </code></pre>
-<p>Depending on who you talk to, this is either the best things since sliced bread
+<p>Depending on who you talk to, this is either the best thing since sliced bread
 or quite scary. It allows for a larger ability to express a program, but at the
 same time it can be harder to reason on what your program will do.</p>
 <h2><a class="header" href="#calling-functions-in-rust" id="calling-functions-in-rust">Calling functions in Rust</a></h2>
@@ -502,7 +502,7 @@ fn main() -&gt; runestick::Result&lt;()&gt; {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run --example basic_add
-output: 11
+output: 43
 </code></pre>
 <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
 <p>Rune supports a number of control flow expressions. We will be dedicating this
@@ -523,7 +523,7 @@ what the function returns by default unless a <code>return</code> is specified.<
 }
 
 fn main() {
-    println(foo(0)) // =&gt; outputs: &quot;less than one&quot;
+    println(foo(0)); // =&gt; outputs: &quot;less than one&quot;
     println(foo(10)); // =&gt; outputs: &quot;something else&quot;
 }
 </code></pre>
@@ -650,7 +650,7 @@ variables:</p>
 </code></pre>
 <p>This can cause issues if we call an external function which expects to take
 ownership of its arguments. We say that functions like these <em>move</em> their
-argument, and if we try to use a variable which has been move,d an error will be
+argument, and if we try to use a variable which has been moved an error will be
 raised in the virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
@@ -675,7 +675,7 @@ error: virtual machine error
 <p>If you need to, you can test if a variable is still accessible for reading with
 <code>is_readable</code>, and for writing with <code>is_writable</code>. These are both imported in
 the prelude. An object which is writable is also <em>movable</em>, and can be provided
-to functions which needs to move the value, like <code>drop</code>.</p>
+to functions which need to move the value, like <code>drop</code>.</p>
 <pre><code class="language-rune">fn main() {
     let object = #{field: 1};
     let object2 = object;
@@ -723,7 +723,7 @@ The value is 50
 == () (501.1µs)
 </code></pre>
 <h2><a class="header" href="#loop-expressions" id="loop-expressions"><code>loop</code> Expressions</a></h2>
-<p>The <code>loop</code> keywords builds the most fundamental form of loop in Rune.
+<p>The <code>loop</code> keyword builds the most fundamental form of loop in Rune.
 One that repeats unconditionally forever, until it is exited using another
 control flow operator like a <code>break</code> or a <code>return</code>.</p>
 <pre><code class="language-rune">use time::Duration;
@@ -771,7 +771,7 @@ The final count is: 11
 <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
 <p>In this section we will be discussing <em>Pattern Matching</em>.</p>
 <p>Pattern matching is a flexible mechanism that allows for validating the
-structure and type of the argument, while also destructing it to give easy
+structure and type of the argument, while also destructuring it to give easy
 access to what you need.</p>
 <p>Below are some examples of its common uses to match on branch conditions:</p>
 <pre><code class="language-rune">fn match_input(n) {
@@ -802,7 +802,7 @@ Something else. Can I go eat now?
 </code></pre>
 <p>We will be covering each of these variants in detail in the coming sections.</p>
 <h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
-<p>Literals are the simplest form of matching. Where we test if the branch is
+<p>Literals are the simplest form of matching, where we test if the branch is
 exactly equal to a literal.</p>
 <p>Literals take a number of form:</p>
 <ul>
@@ -836,7 +836,7 @@ fn main() {
 Second item in vector is 2.
 == () (281.3µs)
 </code></pre>
-<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
+<p>In contrast to ignoring, we can also <em>bind</em> the value to a variable that is then
 in scope of the match arm.</p>
 <pre><code class="language-rune">fn test_ignore(vector) {
     match vector {
@@ -884,7 +884,7 @@ What, where did you get that?
 <h1><a class="header" href="#template-strings" id="template-strings">Template strings</a></h1>
 <p>If you've been paying attention on previous sections you might have seen odd
 looking strings like <code>`Hello {name}`</code>. These are called <em>template strings</em>,
-and allow use to conveniently build strings using variables from the
+and allow you to conveniently build strings using variables from the
 environment.</p>
 <pre><code class="language-rune">fn main() {
     let age = 30;
@@ -896,7 +896,7 @@ I am 30 years old!
 == () (4.5678ms)
 </code></pre>
 <p>Template strings are accelerated by the Vm, each argument uses a <em>display
-protocol</em> and it can be a very efficient to build complex strings out of it.</p>
+protocol</em> and it can be very efficient to build complex strings out of it.</p>
 <h2><a class="header" href="#the-string_display-protocol" id="the-string_display-protocol">The <code>STRING_DISPLAY</code> protocol</a></h2>
 <p>The <code>STRING_DISPLAY</code> protocol is a function that can be implemented by any
 <em>external</em> type which allows it to be used in a template string.</p>
@@ -1028,11 +1028,11 @@ async fn main() -&gt; runestick::Result&lt;()&gt; {
 <pre><code class="language-text">$&gt; cargo run --example custom_instance_fn
 output: 11
 </code></pre>
-<p>For more example on how Modules can be used you can have a look at the source
+<p>For more examples on how modules can be used you can have a look at the source
 for the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune-modules"><code>rune-modules</code></a> crate.</p>
 <h1><a class="header" href="#rune-types" id="rune-types">Rune types</a></h1>
 <p>Types in Rune are identified uniquely by their <em>item</em>. An item path is a
-scope-separated identifier, like <code>std::float</code>. This particular item identifiers
+scope-separated identifier, like <code>std::float</code>. This particular item identifies
 a type.</p>
 <p>These items can be used to perform basic type checking using the <code>is</code> and <code>is not</code> operations, like this:</p>
 <pre><code class="language-rune">use std::test::assert;
@@ -1045,6 +1045,7 @@ fn main() {
     assert(42 is int, &quot;integers should be integers&quot;);
     assert(42.1 is float, &quot;floats should be floats&quot;);
     assert(&quot;hello&quot; is String, &quot;strings should be strings&quot;);
+    assert(&quot;x&quot; is not char, &quot;strings are not chars&quot;);
     assert(#{&quot;hello&quot;: &quot;world&quot;} is Object, &quot;objects should be objects&quot;);
     assert([&quot;hello&quot;, &quot;world&quot;] is Vec, &quot;vectors should be vectors&quot;);
 }
@@ -1067,7 +1068,7 @@ error: virtual machine error
 4 │     assert([&quot;hello&quot;, &quot;world&quot;] is String, &quot;vectors should be strings&quot;);
   │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ panicked `assertion failed `vectors should be strings``
 </code></pre>
-<p>This gives us insight at runtime which type is which, and allows rune scripts to
+<p>This gives us insight at runtime which type is which, and allows Rune scripts to
 make decisions depending on what type a value has.</p>
 <pre><code class="language-rune">fn dynamic_type(n) {
     if n is String {
@@ -1091,7 +1092,7 @@ n is a vector
 n is unknown
 == () (1.0544ms)
 </code></pre>
-<p>A tighter way to accomplish this would be by using pattern matching. A mechanism
+<p>A tighter way to accomplish this would be by using pattern matching, a mechanism
 especially suited for many conditional branches. Especially when the branches
 are different types or variants in an enum.</p>
 <pre><code class="language-rune">fn dynamic_type(n) {
@@ -1162,12 +1163,12 @@ Hello World
 </code></pre>
 <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>A vector is a native data structure of Rune which is a dynamic list of values. A
-vector isn't typed, and can store <em>any</em> rune values.</p>
+vector isn't typed, and can store <em>any</em> Rune values.</p>
 <pre><code class="language-rune">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
     dbg(values[0]);
-    dbg(values.1); // items be accessed like tuples fields.
+    dbg(values.1); // items be accessed like tuple fields.
 
     for v in values {
         dbg(v);
@@ -1227,7 +1228,7 @@ fn main() -&gt; Result&lt;()&gt; {
 <pre><code class="language-text">$&gt; cargo run --example vector
 [10]
 </code></pre>
-<p>If you have a vector which have values of non-uniform types, you can use 
+<p>If you have a vector which has values of non-uniform types, you can use 
 <a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
 <pre><code class="language-rune">use rune_testing::{run, Result};
 use runestick::VecTuple;
@@ -1289,7 +1290,7 @@ key did not exist
 </code></pre>
 <p>These are useful because they allow their data to be specified dynamically,
 which is exactly the same use case as storing unknown JSON.</p>
-<p>One of the biggest motivations for <em>Rune</em> to have anonymous objects is so that
+<p>One of the biggest motivations for Rune to have anonymous objects is so that
 we can natively handle data with unknown structure.</p>
 <pre><code class="language-rune">async fn get_commits(repo, limit) {
     let limit = limit.unwrap_or(10);
@@ -1363,16 +1364,16 @@ fn main() -&gt; Result&lt;()&gt; {
 Some(&quot;World&quot;)
 </code></pre>
 <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are fixed-size sequences of values. Similarly to a vector tuples
-can contains any sequence of values. But there's no way to change the size of a
+<p>Tuples in Rune are fixed-size sequences of values. Similarly to a vector, tuples
+can contain any sequence of values. But there's no way to change the size of a
 tuple.</p>
 <pre><code class="language-rune">fn main() {
     let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
-    dbg(values)
+    dbg(values);
 
     values.2 = &quot;Don't&quot;;
     values.3 = &quot;!&quot;;
-    dbg(values)
+    dbg(values);
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/tuples/tuple_masquerade.rn
@@ -2044,14 +2045,14 @@ async fn main() {
 <h1><a class="header" href="#advanced" id="advanced">Advanced</a></h1>
 <p>This chapter is dedicated to the advanced topics of Rune. Here we will discuss
 the advanced and internal details of the language. This chapter is primarily
-targeted at people who wants to understand Rune and Runestick in detail.</p>
+targeted at people who want to understand Rune and Runestick in detail.</p>
 <h1><a class="header" href="#safety" id="safety">Safety</a></h1>
 <p>Rune is implemented in Rust, but that doesn't automatically make the language
 safe (as Rust defines safety) since there are some uses of <code>unsafe</code>. In this
 section we'll be documenting the pieces of the implementation which are
 currently <code>unsafe</code>, rationalize, and document potential soundness holes.</p>
 <h2><a class="header" href="#conflicts-in-type-hashes" id="conflicts-in-type-hashes">Conflicts in type hashes</a></h2>
-<p>GitHub issue: https://github.com/rune-rs/rune/issues/15</p>
+<p>GitHub issue: <a href="https://github.com/rune-rs/rune/issues/15">https://github.com/rune-rs/rune/issues/15</a></p>
 <p>A type hash is a 64-bit hash which uniquely identifies a type in Rune. The type
 hash for an external <code>Any</code> type is currently defined like this:</p>
 <pre><pre class="playground"><code class="language-rust">
@@ -2095,7 +2096,7 @@ use such a table at the time we install modules into the <a href="https://docs.r
 </ul>
 <h2><a class="header" href="#internal-any-type" id="internal-any-type">Internal <code>Any</code> type</a></h2>
 <p>Rune uses an <a href="https://docs.rs/runestick/0/runestick/struct.Any.html">internal <code>Any</code> type</a>.</p>
-<p>Apart from the <a href="safety.html#conflicts-in-type-hashes">hash conflict</a> documented above. The
+<p>Apart from the <a href="safety.html#conflicts-in-type-hashes">hash conflict</a> documented above, the
 implementation should be sound. We have an internal <code>Any</code> type instead of
 relying on <code>Box&lt;dyn Any&gt;</code> to allow <a href="https://github.com/rune-rs/rune/blob/e910fb9/crates/runestick/src/any.rs#L171"><code>AnyVtable</code></a> to be implementable by external
 types to support external types through a C ffi.</p>
@@ -2107,7 +2108,7 @@ have <a href="https://docs.rs/runestick/0/runestick/struct.Shared.html#method.ow
 pointer and a raw guard, which is used in many implementations of
 <a href="https://docs.rs/runestick/0/runestick/trait.UnsafeFromValue.html"><code>UnsafeFromValue</code></a>.</p>
 <p><a href="https://docs.rs/runestick/0/runestick/trait.UnsafeFromValue.html"><code>UnsafeFromValue</code></a> is a conversion trait which is strictly used internally to
-convert values into references. Its safety documented in the trait.</p>
+convert values into references. Its safety is documented in the trait.</p>
 <h1><a class="header" href="#the-stack" id="the-stack">The stack</a></h1>
 <p>Runestick is a stack-based virtual machine. It has two primary places where
 things are stored. <em>The stack</em> and <em>the heap</em>. It has no registers.</p>
@@ -2277,7 +2278,7 @@ call frame.</p>
     0+0 = 3
     0+1 = 3
 </code></pre>
-<p>We call the <code>clean 2</code> instruction. Which tells the vm to preserve the top of the
+<p>We call the <code>clean 2</code> instruction, which tells the vm to preserve the top of the
 stack (<code>1+2</code>), and clean two items below it, leaving us with <code>3</code>. We then
 <code>return</code>, which jumps us back to <code>frame 0</code>, which now has <code>0+0</code> visible <em>and</em>
 our return value at <code>0+1</code>.</p>

@@ -165,7 +165,7 @@ safe (as Rust defines safety) since there are some uses of <code>unsafe</code>. 
 section we'll be documenting the pieces of the implementation which are
 currently <code>unsafe</code>, rationalize, and document potential soundness holes.</p>
 <h2><a class="header" href="#conflicts-in-type-hashes" id="conflicts-in-type-hashes">Conflicts in type hashes</a></h2>
-<p>GitHub issue: https://github.com/rune-rs/rune/issues/15</p>
+<p>GitHub issue: <a href="https://github.com/rune-rs/rune/issues/15">https://github.com/rune-rs/rune/issues/15</a></p>
 <p>A type hash is a 64-bit hash which uniquely identifies a type in Rune. The type
 hash for an external <code>Any</code> type is currently defined like this:</p>
 <pre><pre class="playground"><code class="language-rust">
@@ -209,7 +209,7 @@ use such a table at the time we install modules into the <a href="https://docs.r
 </ul>
 <h2><a class="header" href="#internal-any-type" id="internal-any-type">Internal <code>Any</code> type</a></h2>
 <p>Rune uses an <a href="https://docs.rs/runestick/0/runestick/struct.Any.html">internal <code>Any</code> type</a>.</p>
-<p>Apart from the <a href="#conflicts-in-type-hashes">hash conflict</a> documented above. The
+<p>Apart from the <a href="#conflicts-in-type-hashes">hash conflict</a> documented above, the
 implementation should be sound. We have an internal <code>Any</code> type instead of
 relying on <code>Box&lt;dyn Any&gt;</code> to allow <a href="https://github.com/rune-rs/rune/blob/e910fb9/crates/runestick/src/any.rs#L171"><code>AnyVtable</code></a> to be implementable by external
 types to support external types through a C ffi.</p>
@@ -221,7 +221,7 @@ have <a href="https://docs.rs/runestick/0/runestick/struct.Shared.html#method.ow
 pointer and a raw guard, which is used in many implementations of
 <a href="https://docs.rs/runestick/0/runestick/trait.UnsafeFromValue.html"><code>UnsafeFromValue</code></a>.</p>
 <p><a href="https://docs.rs/runestick/0/runestick/trait.UnsafeFromValue.html"><code>UnsafeFromValue</code></a> is a conversion trait which is strictly used internally to
-convert values into references. Its safety documented in the trait.</p>
+convert values into references. Its safety is documented in the trait.</p>
 
                     </main>
 

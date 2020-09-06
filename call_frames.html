@@ -274,7 +274,7 @@ call frame.</p>
     0+0 = 3
     0+1 = 3
 </code></pre>
-<p>We call the <code>clean 2</code> instruction. Which tells the vm to preserve the top of the
+<p>We call the <code>clean 2</code> instruction, which tells the vm to preserve the top of the
 stack (<code>1+2</code>), and clean two items below it, leaving us with <code>3</code>. We then
 <code>return</code>, which jumps us back to <code>frame 0</code>, which now has <code>0+0</code> visible <em>and</em>
 our return value at <code>0+1</code>.</p>

@@ -160,16 +160,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#tuples" id="tuples">Tuples</a></h1>
-<p>Tuples in Rune are fixed-size sequences of values. Similarly to a vector tuples
-can contains any sequence of values. But there's no way to change the size of a
+<p>Tuples in Rune are fixed-size sequences of values. Similarly to a vector, tuples
+can contain any sequence of values. But there's no way to change the size of a
 tuple.</p>
 <pre><code class="language-rune">fn main() {
     let values = (&quot;Now&quot;, &quot;You&quot;, &quot;See&quot;, &quot;Me&quot;);
-    dbg(values)
+    dbg(values);
 
     values.2 = &quot;Don't&quot;;
     values.3 = &quot;!&quot;;
-    dbg(values)
+    dbg(values);
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run -- scripts/book/tuples/tuple_masquerade.rn

@@ -161,12 +161,12 @@
                     <main>
                         <h1><a class="header" href="#vectors" id="vectors">Vectors</a></h1>
 <p>A vector is a native data structure of Rune which is a dynamic list of values. A
-vector isn't typed, and can store <em>any</em> rune values.</p>
+vector isn't typed, and can store <em>any</em> Rune values.</p>
 <pre><code class="language-rune">fn main() {
     let values = [&quot;Hello&quot;, 42];
 
     dbg(values[0]);
-    dbg(values.1); // items be accessed like tuples fields.
+    dbg(values.1); // items be accessed like tuple fields.
 
     for v in values {
         dbg(v);
@@ -226,7 +226,7 @@ fn main() -&gt; Result&lt;()&gt; {
 <pre><code class="language-text">$&gt; cargo run --example vector
 [10]
 </code></pre>
-<p>If you have a vector which have values of non-uniform types, you can use 
+<p>If you have a vector which has values of non-uniform types, you can use 
 <a href="https://docs.rs/runestick/0/runestick/struct.VecTuple.html"><code>VecTuple</code></a> to deal with them.</p>
 <pre><code class="language-rune">use rune_testing::{run, Result};
 use runestick::VecTuple;

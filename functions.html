@@ -182,7 +182,7 @@ Hello World
 </code></pre>
 <p>In Rune, you don't have to specify the return type of a function. Given that
 Rune is a dynamic programming language, this allows a function to return
-anything. Every completely distinct types.</p>
+anything, even completely distinct types.</p>
 <pre><code class="language-rune">fn foo(condition) {
     if condition {
         &quot;Hello&quot;
@@ -201,7 +201,7 @@ Hello
 1
 == () (8.437ms)
 </code></pre>
-<p>Depending on who you talk to, this is either the best things since sliced bread
+<p>Depending on who you talk to, this is either the best thing since sliced bread
 or quite scary. It allows for a larger ability to express a program, but at the
 same time it can be harder to reason on what your program will do.</p>
 <h2><a class="header" href="#calling-functions-in-rust" id="calling-functions-in-rust">Calling functions in Rust</a></h2>
@@ -239,7 +239,7 @@ fn main() -&gt; runestick::Result&lt;()&gt; {
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run --example basic_add
-output: 11
+output: 43
 </code></pre>
 
                     </main>

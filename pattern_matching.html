@@ -162,7 +162,7 @@
                         <h1><a class="header" href="#pattern-matching" id="pattern-matching">Pattern Matching</a></h1>
 <p>In this section we will be discussing <em>Pattern Matching</em>.</p>
 <p>Pattern matching is a flexible mechanism that allows for validating the
-structure and type of the argument, while also destructing it to give easy
+structure and type of the argument, while also destructuring it to give easy
 access to what you need.</p>
 <p>Below are some examples of its common uses to match on branch conditions:</p>
 <pre><code class="language-rune">fn match_input(n) {
@@ -193,7 +193,7 @@ Something else. Can I go eat now?
 </code></pre>
 <p>We will be covering each of these variants in detail in the coming sections.</p>
 <h2><a class="header" href="#matching-literals" id="matching-literals">Matching Literals</a></h2>
-<p>Literals are the simplest form of matching. Where we test if the branch is
+<p>Literals are the simplest form of matching, where we test if the branch is
 exactly equal to a literal.</p>
 <p>Literals take a number of form:</p>
 <ul>
@@ -227,7 +227,7 @@ fn main() {
 Second item in vector is 2.
 == () (281.3µs)
 </code></pre>
-<p>In contrast to ignoring, we cal also <em>bind</em> the value to a variable that is then
+<p>In contrast to ignoring, we can also <em>bind</em> the value to a variable that is then
 in scope of the match arm.</p>
 <pre><code class="language-rune">fn test_ignore(vector) {
     match vector {

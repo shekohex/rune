@@ -205,7 +205,7 @@ variables:</p>
 </code></pre>
 <p>This can cause issues if we call an external function which expects to take
 ownership of its arguments. We say that functions like these <em>move</em> their
-argument, and if we try to use a variable which has been move,d an error will be
+argument, and if we try to use a variable which has been moved an error will be
 raised in the virtual machine.</p>
 <blockquote>
 <p>Note: Below we use the <code>drop</code> function, which is a built-in function that will
@@ -230,7 +230,7 @@ error: virtual machine error
 <p>If you need to, you can test if a variable is still accessible for reading with
 <code>is_readable</code>, and for writing with <code>is_writable</code>. These are both imported in
 the prelude. An object which is writable is also <em>movable</em>, and can be provided
-to functions which needs to move the value, like <code>drop</code>.</p>
+to functions which need to move the value, like <code>drop</code>.</p>
 <pre><code class="language-rune">fn main() {
     let object = #{field: 1};
     let object2 = object;

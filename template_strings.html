@@ -162,7 +162,7 @@
                         <h1><a class="header" href="#template-strings" id="template-strings">Template strings</a></h1>
 <p>If you've been paying attention on previous sections you might have seen odd
 looking strings like <code>`Hello {name}`</code>. These are called <em>template strings</em>,
-and allow use to conveniently build strings using variables from the
+and allow you to conveniently build strings using variables from the
 environment.</p>
 <pre><code class="language-rune">fn main() {
     let age = 30;
@@ -174,7 +174,7 @@ I am 30 years old!
 == () (4.5678ms)
 </code></pre>
 <p>Template strings are accelerated by the Vm, each argument uses a <em>display
-protocol</em> and it can be a very efficient to build complex strings out of it.</p>
+protocol</em> and it can be very efficient to build complex strings out of it.</p>
 <h2><a class="header" href="#the-string_display-protocol" id="the-string_display-protocol">The <code>STRING_DISPLAY</code> protocol</a></h2>
 <p>The <code>STRING_DISPLAY</code> protocol is a function that can be implemented by any
 <em>external</em> type which allows it to be used in a template string.</p>
