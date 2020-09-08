@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Compiler guide - The Rune Programming Language</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="foreword.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting_started.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">4.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="items_imports.html"><strong aria-hidden="true">4.1.</strong> Items and imports</a></li><li class="chapter-item expanded "><a href="functions.html"><strong aria-hidden="true">4.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="control_flow.html"><strong aria-hidden="true">4.3.</strong> Control flow</a></li><li class="chapter-item expanded "><a href="variables.html"><strong aria-hidden="true">4.4.</strong> Variables and memory</a></li><li class="chapter-item expanded "><a href="loops.html"><strong aria-hidden="true">4.5.</strong> Loops</a></li><li class="chapter-item expanded "><a href="pattern_matching.html"><strong aria-hidden="true">4.6.</strong> Pattern Matching</a></li><li class="chapter-item expanded "><a href="template_strings.html"><strong aria-hidden="true">4.7.</strong> Template strings</a></li><li class="chapter-item expanded "><a href="instance_functions.html"><strong aria-hidden="true">4.8.</strong> Instance functions</a></li></ol></li><li class="chapter-item expanded "><a href="types.html"><strong aria-hidden="true">5.</strong> Built-in types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="primitives.html"><strong aria-hidden="true">5.1.</strong> Primitives and references</a></li><li class="chapter-item expanded "><a href="vectors.html"><strong aria-hidden="true">5.2.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">5.3.</strong> Objects</a></li><li class="chapter-item expanded "><a href="tuples.html"><strong aria-hidden="true">5.4.</strong> Tuples</a></li></ol></li><li class="chapter-item expanded "><a href="dynamic_types.html"><strong aria-hidden="true">6.</strong> Dynamic types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="structs.html"><strong aria-hidden="true">6.1.</strong> Structs</a></li><li class="chapter-item expanded "><a href="enums.html"><strong aria-hidden="true">6.2.</strong> Enums</a></li></ol></li><li class="chapter-item expanded "><a href="try_operator.html"><strong aria-hidden="true">7.</strong> Try operator</a></li><li class="chapter-item expanded "><a href="generators.html"><strong aria-hidden="true">8.</strong> Generators</a></li><li class="chapter-item expanded "><a href="closures.html"><strong aria-hidden="true">9.</strong> Closures</a></li><li class="chapter-item expanded "><a href="async.html"><strong aria-hidden="true">10.</strong> Asynchronous programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="streams.html"><strong aria-hidden="true">10.1.</strong> Streams</a></li></ol></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">11.</strong> Macros</a></li><li class="chapter-item expanded "><a href="advanced.html"><strong aria-hidden="true">12.</strong> Advanced</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="safety.html"><strong aria-hidden="true">12.1.</strong> Safety</a></li><li class="chapter-item expanded "><a href="the_stack.html"><strong aria-hidden="true">12.2.</strong> The stack</a></li><li class="chapter-item expanded "><a href="call_frames.html"><strong aria-hidden="true">12.3.</strong> Call frames</a></li><li class="chapter-item expanded "><a href="compiler_guide.html" class="active"><strong aria-hidden="true">12.4.</strong> Compiler guide</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Rune Programming Language</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#compiler-guide" id="compiler-guide">Compiler guide</a></h1>
+<p>This is intended to be a guide into the compiler architecture for Rune for
+people who want to hack on it.</p>
+<blockquote>
+<p><strong>Rune is heavily in development</strong> and this is bound to change in the future.</p>
+</blockquote>
+<p>Compiling a rune program involves the following stages:</p>
+<ul>
+<li>Parse and queue the initial source files into <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a>, specified by (<a href="https://docs.rs/runestick/0/runestick/struct.Source.html#method.insert_default"><code>Source::insert_default</code></a>).</li>
+<li><strong>Indexing and macro expansion</strong>, which processes tasks in the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/worker.rs"><code>Worker</code></a>
+queue until it is empty. These are:
+<ul>
+<li><code>Task::Index</code> - Index language items.</li>
+<li><code>Task::Import</code> - Process imports, expands <code>use</code> items and indexes all imported names.</li>
+<li><code>Task::ExpandMacro</code> - Expand macros (which can add more tasks to the worker queue).</li>
+</ul>
+</li>
+<li><strong>Compilation</strong> which processes a queue of items to be compiled.</li>
+</ul>
+<h2><a class="header" href="#indexing" id="indexing">Indexing</a></h2>
+<p>Indexing is primarily handled through the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/index.rs"><code>Index&lt;T&gt;</code></a> trait, which are
+implemented for the type being indexed on top of the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/index.rs"><code>Indexer</code></a>.</p>
+<p>This walks through the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> to be indexed and construct <a href="https://github.com/rune-rs/rune/blob/master/crates/runestick/src/item.rs#L138">components</a> into an item path for every:</p>
+<ul>
+<li>Functions, which adds components named after the function. <code>fn foo</code> would add <code>foo</code>.</li>
+<li>Closures, which adds <code>$closure&lt;number&gt;</code> components.</li>
+<li>Block, which adds <code>$block&lt;number&gt;</code> components.</li>
+<li>Async blocks, which adds <code>$async&lt;number&gt;</code> components.</li>
+<li>Macro calls, which adds <code>$macro&lt;number&gt;</code> components, and queues an <code>Task::ExpandMacro</code> task.</li>
+</ul>
+<h2><a class="header" href="#compilation" id="compilation">Compilation</a></h2>
+<p>The compilation stage processed the entire <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> of every function that is
+queued to be compiled and generates a sequence of instructions for them through
+implementations of the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/compile"><code>Compile&lt;T&gt;</code></a> trait.</p>
+<p>Each item in the AST is relatively isolated when they are being compiled. This
+is one of the benefits of compiling for a stack-based virtual machine in that
+the compilation stage is relatively simple.</p>
+<p>While compiling we keep track of the following state in the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compiler.rs"><code>Compiler</code></a></p>
+<p>The source file and id that we are compiling for and global storage used for
+macro-generated identifiers and literals. This is used to resolve values from
+the AST through the corresponding <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/traits.rs"><code>Resolve&lt;T&gt;</code></a> implementation.</p>
+<p>Our local variable scopes using <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/scopes.rs"><code>Scopes</code></a>. Each block creates a new scope of
+local variables, and this is simply a number that is incremented each time a
+variable is allocated. These can either be named or anonymous. Each named
+variable is associated with an offset relative to the current <a href="./call_frames.html">call
+frame</a> that can be looked up when a variable needs to be used.</p>
+<p>A stack of <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/loops.rs"><code>Loops</code></a> currently being processed and their corresponding state.
+Because if we encounter a <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_break.rs"><code>break</code> expression</a>, any local state they create and
+all local variables up until the break needs to be cleaned up.</p>
+<p><a href="./items_imports.html">The <code>item</code> path</a> which is being traversed through
+<a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/items.rs"><code>Items</code></a>. This is populated in the same way as during indexing. If we encounter
+an item which has been indexed like a <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_closure.rs"><code>closure</code> expression</a>. This actually has
+two separate <code>Compile&lt;T&gt;</code> implementations.</p>
+<ul>
+<li><code>Compile&lt;(ast::ExprClosure, &amp;[CompileMetaCapture])&gt;</code> - which is used when
+compiling the closure function.</li>
+<li><code>Compile&lt;(&amp;ast::ExprClosure, Needs)&gt;</code> - which is for compiling the closure
+invocation.</li>
+</ul>
+<p>The function is compiled and inserted into the unit separately at a given item
+(like <code>foo::$block0::closure1</code>). And when we invoke the closure, we <em>call</em> this
+item.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="call_frames.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="call_frames.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
