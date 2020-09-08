@@ -2388,13 +2388,16 @@ people who want to hack on it.</p>
 </blockquote>
 <p>Compiling a rune program involves the following stages:</p>
 <ul>
-<li>Parse and queue the initial source files into <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a>, specified by (<a href="https://docs.rs/runestick/0/runestick/struct.Source.html#method.insert_default"><code>Source::insert_default</code></a>).</li>
+<li>Parse and queue the initial source files into <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a>, specified by
+<a href="https://docs.rs/runestick/0/runestick/struct.Source.html#method.insert_default"><code>Source::insert_default</code></a>.</li>
 <li><strong>Indexing and macro expansion</strong>, which processes tasks in the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/worker.rs"><code>Worker</code></a>
 queue until it is empty. These are:
 <ul>
 <li><code>Task::Index</code> - Index language items.</li>
-<li><code>Task::Import</code> - Process imports, expands <code>use</code> items and indexes all imported names.</li>
-<li><code>Task::ExpandMacro</code> - Expand macros (which can add more tasks to the worker queue).</li>
+<li><code>Task::Import</code> - Process imports, expands <code>use</code> items and indexes all
+imported names.</li>
+<li><code>Task::ExpandMacro</code> - Expand macros (which can add more tasks to the worker
+queue).</li>
 </ul>
 </li>
 <li><strong>Compilation</strong> which processes a queue of items to be compiled.</li>
@@ -2402,13 +2405,16 @@ queue until it is empty. These are:
 <h2><a class="header" href="#indexing" id="indexing">Indexing</a></h2>
 <p>Indexing is primarily handled through the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/index.rs"><code>Index&lt;T&gt;</code></a> trait, which are
 implemented for the type being indexed on top of the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/index.rs"><code>Indexer</code></a>.</p>
-<p>This walks through the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> to be indexed and construct <a href="https://github.com/rune-rs/rune/blob/master/crates/runestick/src/item.rs#L138">components</a> into an item path for every:</p>
+<p>This walks through the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> to be indexed and construct <a href="https://github.com/rune-rs/rune/blob/master/crates/runestick/src/item.rs#L138">components</a> into an
+item path for every:</p>
 <ul>
-<li>Functions, which adds components named after the function. <code>fn foo</code> would add <code>foo</code>.</li>
+<li>Functions, which adds components named after the function. <code>fn foo</code> would add
+<code>foo</code>.</li>
 <li>Closures, which adds <code>$closure&lt;number&gt;</code> components.</li>
 <li>Block, which adds <code>$block&lt;number&gt;</code> components.</li>
 <li>Async blocks, which adds <code>$async&lt;number&gt;</code> components.</li>
-<li>Macro calls, which adds <code>$macro&lt;number&gt;</code> components, and queues an <code>Task::ExpandMacro</code> task.</li>
+<li>Macro calls, which adds <code>$macro&lt;number&gt;</code> components, and queues an
+<code>Task::ExpandMacro</code> task.</li>
 </ul>
 <h2><a class="header" href="#compilation" id="compilation">Compilation</a></h2>
 <p>The compilation stage processed the entire <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> of every function that is
