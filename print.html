@@ -2422,7 +2422,7 @@ item path for every:</p>
 <p>The compilation stage processed the entire <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> of every function that is
 queued to be compiled and generates a sequence of instructions for them through
 implementations of the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/compile"><code>Compile&lt;T&gt;</code></a> trait.</p>
-<p>This stage uses the [<code>Query</code>] system to look up metadata about external items,
+<p>This stage uses the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/query.rs"><code>Query</code></a> system to look up metadata about external items,
 and any external item queried for is subsequently queued up to be built.</p>
 <p>Consider the following unit:</p>
 <pre><code class="language-rune">fn main() {
