@@ -193,14 +193,16 @@ able to provide better diagnostics by adding debug information.</p>
 <p>What you're seeing above are type and function hashes. These uniquely identify
 the item in the virtual machine and is the result of a deterministic computation
 based on its item. So the hash for the item <code>Foo::new</code> will always be the same.</p>
-<p>In Rust, we can calculate this hash using <code>Item</code> and <code>Hash::function</code> method:</p>
+<p>In Rust, we can calculate this hash using the <code>Hash::type_hash</code> method:</p>
 <pre><code class="language-rune">use runestick::{Hash, Item};
 
 fn main() {
-    println!(&quot;{}&quot;, Hash::type_hash(Item::of(&amp;[&quot;Foo&quot;, &quot;new&quot;])));
+    println!(&quot;{}&quot;, Hash::type_hash(&amp;Item::of(&amp;[&quot;Foo&quot;, &quot;new&quot;])));
+    println!(&quot;{}&quot;, Hash::type_hash(&amp;[&quot;Foo&quot;, &quot;new&quot;]));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run --example function_hash
+0xb5dc92ab43cb37d9
 0xb5dc92ab43cb37d9
 </code></pre>
 <p>The exact implementation of the hash function is currently not defined, but will

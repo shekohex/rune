@@ -973,14 +973,16 @@ able to provide better diagnostics by adding debug information.</p>
 <p>What you're seeing above are type and function hashes. These uniquely identify
 the item in the virtual machine and is the result of a deterministic computation
 based on its item. So the hash for the item <code>Foo::new</code> will always be the same.</p>
-<p>In Rust, we can calculate this hash using <code>Item</code> and <code>Hash::function</code> method:</p>
+<p>In Rust, we can calculate this hash using the <code>Hash::type_hash</code> method:</p>
 <pre><code class="language-rune">use runestick::{Hash, Item};
 
 fn main() {
-    println!(&quot;{}&quot;, Hash::type_hash(Item::of(&amp;[&quot;Foo&quot;, &quot;new&quot;])));
+    println!(&quot;{}&quot;, Hash::type_hash(&amp;Item::of(&amp;[&quot;Foo&quot;, &quot;new&quot;])));
+    println!(&quot;{}&quot;, Hash::type_hash(&amp;[&quot;Foo&quot;, &quot;new&quot;]));
 }
 </code></pre>
 <pre><code class="language-text">$&gt; cargo run --example function_hash
+0xb5dc92ab43cb37d9
 0xb5dc92ab43cb37d9
 </code></pre>
 <p>The exact implementation of the hash function is currently not defined, but will
@@ -2420,34 +2422,99 @@ item path for every:</p>
 <p>The compilation stage processed the entire <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/ast"><code>AST</code></a> of every function that is
 queued to be compiled and generates a sequence of instructions for them through
 implementations of the <a href="https://github.com/rune-rs/rune/tree/master/crates/rune/src/compile"><code>Compile&lt;T&gt;</code></a> trait.</p>
-<p>Each item in the AST is relatively isolated when they are being compiled. This
-is one of the benefits of compiling for a stack-based virtual machine in that
-the compilation stage is relatively simple.</p>
+<p>This stage uses the [<code>Query</code>] system to look up metadata about external items,
+and any external item queried for is subsequently queued up to be built.</p>
+<p>Consider the following unit:</p>
+<pre><code class="language-rune">fn main() {
+    return foo();
+
+    fn foo() {
+        2
+    }
+
+    fn bar() {
+        3
+    }
+}
+</code></pre>
+<p>Let's dump all dynamic functions in it:</p>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/compiler_guide/dead_code.rn --dump-functions
+# dynamic functions
+0xe7fc1d6083100dcd = main()
+0x20c6d8dd92b51018 = main::$block0::foo()
+---
+== 2 (59.8µs)
+</code></pre>
+<p>As you can see, the code for <code>main::$block0::bar</code> was <em>never generated</em>. This is
+because it's a local function that is never called. And therefore never queried
+for. So it's never queued to be built in the compilation stage.</p>
+<h2><a class="header" href="#state-during-compilation" id="state-during-compilation">State during compilation</a></h2>
+<p>Each item in the AST is relatively isolated while they are being compiled. This
+is one of the benefits of compiling for a stack-based virtual machine - the
+compilation stage is relatively simple and <em>most</em> reasoning about what
+instructions to emit can be made locally.</p>
+<blockquote>
+<p>Note that this quickly changes if you want to perform most forms of
+optimizations. But it's definitely true for naive (and therefore fast!) code
+generation.</p>
+</blockquote>
 <p>While compiling we keep track of the following state in the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compiler.rs"><code>Compiler</code></a></p>
 <p>The source file and id that we are compiling for and global storage used for
 macro-generated identifiers and literals. This is used to resolve values from
-the AST through the corresponding <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/traits.rs"><code>Resolve&lt;T&gt;</code></a> implementation.</p>
-<p>Our local variable scopes using <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/scopes.rs"><code>Scopes</code></a>. Each block creates a new scope of
-local variables, and this is simply a number that is incremented each time a
-variable is allocated. These can either be named or anonymous. Each named
+the AST through the corresponding <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/traits.rs"><code>Resolve</code></a> implementation. An example of this
+is the <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/ast/lit_str.rs"><code>Resolve</code> implementation of <code>LitStr</code></a>.</p>
+<p>We keep track of local variables using <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/scopes.rs"><code>Scopes</code></a>. Each block creates a new
+scope of local variables, and this is simply a number that is incremented each
+time a variable is allocated. These can either be named or anonymous. Each named
 variable is associated with an offset relative to the current <a href="./call_frames.html">call
 frame</a> that can be looked up when a variable needs to be used.</p>
-<p>A stack of <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/loops.rs"><code>Loops</code></a> currently being processed and their corresponding state.
-Because if we encounter a <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_break.rs"><code>break</code> expression</a>, any local state they create and
-all local variables up until the break needs to be cleaned up.</p>
-<p><a href="./items_imports.html">The <code>item</code> path</a> which is being traversed through
-<a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/items.rs"><code>Items</code></a>. This is populated in the same way as during indexing. If we encounter
-an item which has been indexed like a <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_closure.rs"><code>closure</code> expression</a>. This actually has
-two separate <code>Compile&lt;T&gt;</code> implementations.</p>
+<p>We maintain information on loops we're through <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/loops.rs"><code>Loops</code></a>. This is a stack that
+contains every loop we are nested in, information on the label in which the loop
+terminates, and locals that would have to be cleaned up in case we encounter a
+<a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_break.rs"><code>break</code> expression</a>.</p>
+<p>We maintain the current <a href="./items_imports.html">item path</a> which is being traversed
+through <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/items.rs"><code>Items</code></a>. This is populated in the same way as during indexing. We use
+this to query for compile meta or other things which were indexed, like the AST
+produced by expanded macros. Another example is if we encounter a <a href="https://github.com/rune-rs/rune/blob/master/crates/rune/src/compile/expr_closure.rs"><code>closure</code>
+expression</a> in this phase we generate an instruction to create a closure rather
+than constructing its body. This is actually accomplished through two separate
+<code>Compile&lt;T&gt;</code> implementations.</p>
 <ul>
 <li><code>Compile&lt;(ast::ExprClosure, &amp;[CompileMetaCapture])&gt;</code> - which is used when
-compiling the closure function.</li>
+compiling the closure function from the compile queue.</li>
 <li><code>Compile&lt;(&amp;ast::ExprClosure, Needs)&gt;</code> - which is for compiling the closure
 invocation.</li>
 </ul>
-<p>The function is compiled and inserted into the unit separately at a given item
-(like <code>foo::$block0::closure1</code>). And when we invoke the closure, we <em>call</em> this
-item.</p>
+<p>The closure procedure would be compiled and inserted into the unit separately at
+a given item (like <code>foo::$block0::closure1</code>). And when we invoke the closure, we
+<em>call</em> this item.</p>
+<p>We can see this call by dumping all the dynamic functions in the following
+script:</p>
+<pre><code class="language-rune">fn main() {
+    let callable = || 42;
+    callable();
+}
+</code></pre>
+<pre><code class="language-text">$&gt; cargo run -- scripts/book/compiler_guide/closures.rn --dump-instructions --dump-functions
+# instructions
+fn main() (0xe7fc1d6083100dcd):
+  0000 = fn 0x9aa62663879132fb // closure `main::$block0::$closure0`
+  0001 = copy 0 // var `callable`
+  0002 = call-fn 0
+  0003 = pop
+  0004 = pop
+  0005 = return-unit
+
+fn main::$block0::$closure0() (0x9aa62663879132fb):
+  0006 = integer 42
+  0007 = return
+# dynamic functions
+0x9aa62663879132fb = main::$block0::$closure0()
+0xe7fc1d6083100dcd = main()
+== () (108.6µs)
+</code></pre>
+<p>A function pointer is pushed on the stack <code>fn 0x9aa62663879132fb</code>, then copied
+and called with zero arguments.</p>
 
                     </main>
 
