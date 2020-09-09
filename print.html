@@ -1346,10 +1346,10 @@ Note that the dynamic <a href="https://docs.rs/runestick/0/runestick/enum.Value.
 use runestick::{Object, Value};
 
 fn main() -&gt; Result&lt;()&gt; {
-    let mut object = Object::&lt;Value&gt;::new();
+    let mut object = Object::new();
     object.insert(String::from(&quot;Hello&quot;), Value::from(42i64));
 
-    let object: Object&lt;String&gt; = run(
+    let object: Object = run(
         &amp;[&quot;calc&quot;],
         (object,),
         r#&quot;
