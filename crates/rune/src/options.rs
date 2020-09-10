@@ -51,25 +51,35 @@ impl Options {
     }
 
     /// Set if debug info is enabled or not. Defaults to `true`.
-    pub fn debug_info(&mut self, enabled: bool) {
+    pub fn debug_info(&mut self, enabled: bool) -> &mut Self {
         self.debug_info = enabled;
+        self
     }
 
     /// Set if link checks are enabled or not. Defaults to `true`. This will
     /// cause compilation to fail if an instruction references a function which
     /// does not exist.
-    pub fn link_checks(&mut self, enabled: bool) {
+    pub fn link_checks(&mut self, enabled: bool) -> &mut Self {
         self.link_checks = enabled;
+        self
     }
 
     /// Set if macros are enabled or not. Defaults to `false`.
-    pub fn macros(&mut self, enabled: bool) {
+    pub fn macros(&mut self, enabled: bool) -> &mut Self {
         self.macros = enabled;
+        self
     }
 
     /// Set if bytecode caching is enabled or not. Defaults to `false`.
-    pub fn bytecode(&mut self, enabled: bool) {
+    pub fn bytecode(&mut self, enabled: bool) -> &mut Self {
         self.bytecode = enabled;
+        self
+    }
+
+    /// Memoize the instance function in a loop. Defaults to `false`.
+    pub fn memoize_instance_fn(&mut self, enabled: bool) -> &mut Self {
+        self.memoize_instance_fn = enabled;
+        self
     }
 }
 
