@@ -96,42 +96,14 @@ struct Args {
     /// enabled experimental features.
     #[argh(switch)]
     experimental: bool,
-    #[argh(subcommand)]
-    compiler_options: CompilerOptions,
-}
-
-/// Update the given compiler option.
-#[derive(Debug, Clone, FromArgs)]
-#[argh(subcommand, name = "compiler")]
-struct CompilerOptions {
-    /// inline the lookup of an instance function where appropriate.
-    #[argh(switch)]
-    memoize_instance_fn: bool,
-    /// perform linker checks which makes sure that called functions exist.
-    #[argh(switch)]
-    link_checks: bool,
-    /// enable or disable debug info.
-    #[argh(switch)]
-    debug_info: bool,
-    /// enable or disable macros (experimental).
-    #[argh(switch)]
-    macros: bool,
-    /// enable or disable bytecode caching (experimental).
-    #[argh(switch)]
-    bytecode: bool,
-}
-
-impl From<CompilerOptions> for rune::Options {
-    fn from(o: CompilerOptions) -> Self {
-        let mut options = rune::Options::default();
-        options.bytecode(o.bytecode);
-        options.debug_info(o.debug_info);
-        options.link_checks(o.link_checks);
-        options.macros(o.macros);
-        options.memoize_instance_fn(o.memoize_instance_fn);
-
-        options
-    }
+    /// update the given compiler option (seprated by ",").
+    /// link-checks: Perform link-time checks,
+    /// memoize_instance_fn: Memoize the instance function in a loop,
+    /// debug_info: Include debug information when compiling,
+    /// macros: Support (experimental) macros,
+    /// bytecode: Support (experimental) bytecode caching,
+    #[argh(option, short = 'O')]
+    compiler_options: rune::Options,
 }
 
 #[tokio::main]
@@ -139,7 +111,7 @@ async fn main() -> Result<()> {
     env_logger::init();
     let args: Args = argh::from_env();
     let mut context = rune::default_context()?;
-    let options = args.compiler_options.clone().into();
+    let options = args.compiler_options;
 
     if args.experimental {
         context.install(&rune_macros::module()?)?;

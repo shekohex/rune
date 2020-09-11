@@ -1,6 +1,9 @@
+use std::str::FromStr;
+
 use crate::error::ConfigurationError;
 
 /// Compiler options.
+#[derive(Debug, Clone, Copy)]
 pub struct Options {
     /// Perform link-time checks.
     pub(crate) link_checks: bool,
@@ -12,6 +15,19 @@ pub struct Options {
     pub(crate) macros: bool,
     /// Support (experimental) bytecode caching.
     pub bytecode: bool,
+}
+
+impl FromStr for Options {
+    type Err = ConfigurationError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let mut opt = Options::default();
+        let it = s.split(',');
+        for o in it {
+            opt.parse_option(o)?;
+        }
+        Ok(opt)
+    }
 }
 
 impl Options {
