@@ -121,19 +121,25 @@ struct CompilerOptions {
     bytecode: bool,
 }
 
+impl From<CompilerOptions> for rune::Options {
+    fn from(o: CompilerOptions) -> Self {
+        let mut options = rune::Options::default();
+        options.bytecode(o.bytecode);
+        options.debug_info(o.debug_info);
+        options.link_checks(o.link_checks);
+        options.macros(o.macros);
+        options.memoize_instance_fn(o.memoize_instance_fn);
+
+        options
+    }
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     env_logger::init();
     let args: Args = argh::from_env();
     let mut context = rune::default_context()?;
-    let compiler_options = args.compiler_options.clone();
-    let mut options = rune::Options::default();
-    options
-        .bytecode(compiler_options.bytecode)
-        .debug_info(compiler_options.debug_info)
-        .link_checks(compiler_options.link_checks)
-        .macros(compiler_options.macros)
-        .memoize_instance_fn(compiler_options.memoize_instance_fn);
+    let options = args.compiler_options.clone().into();
 
     if args.experimental {
         context.install(&rune_macros::module()?)?;
@@ -147,6 +153,7 @@ async fn main() -> Result<()> {
         &args,
         (options, context.clone(), &mut sources, &mut warnings),
     )?;
+
     if !warnings.is_empty() {
         let mut writer = StandardStream::stderr(ColorChoice::Always);
         warnings.emit_diagnostics(&mut writer, &sources)?;
