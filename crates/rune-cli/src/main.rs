@@ -96,14 +96,14 @@ struct Args {
     /// enabled experimental features.
     #[argh(switch)]
     experimental: bool,
-    /// update the given compiler option (seprated by ",").
+    /// update the given compiler option.
     /// link-checks: Perform link-time checks,
     /// memoize_instance_fn: Memoize the instance function in a loop,
     /// debug_info: Include debug information when compiling,
     /// macros: Support (experimental) macros,
     /// bytecode: Support (experimental) bytecode caching,
     #[argh(option, short = 'O')]
-    compiler_options: rune::Options,
+    compiler_options: Vec<String>,
 }
 
 #[tokio::main]
@@ -111,7 +111,7 @@ async fn main() -> Result<()> {
     env_logger::init();
     let args: Args = argh::from_env();
     let mut context = rune::default_context()?;
-    let options = args.compiler_options;
+    let options = args.compiler_options.join(",").parse()?;
 
     if args.experimental {
         context.install(&rune_macros::module()?)?;

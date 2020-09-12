@@ -22,7 +22,7 @@ impl FromStr for Options {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut opt = Options::default();
-        let it = s.split(',');
+        let it = s.split(',').skip_while(|o| o.is_empty());
         for o in it {
             opt.parse_option(o)?;
         }
